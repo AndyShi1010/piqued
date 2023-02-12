@@ -14,12 +14,12 @@
 
 | Student Name | Student Email | GitHub Username |        Role         |
 |    :---:     |     :---:     |     :---:       |        :---:        | 
-| Joshua Hayes      |   jhayes10@sfsu.edu           |                 |   Team Lead         |
+| Jose Avila      |   javila6@mail.sfsu.edu           |                 |   Team Lead         |
 | Andy Shi    | ashi2@mail.sfsu.edu              |                 |   Frontend Lead     |
 | Leo Saeteurn      |  lsaeteurn@mail.sfsu.edu            |                 |   Backend Lead      |
 | Gautami Kollolu Srinivasa      |gkollolusrinivasa@sfsu.edu               |                 |   Github Master     |
 | Nishit Pachchigar      | npachchigar@mail.sfsu.edu             |                 |   Database Master   |
-| member6      |               |                 |   Document Editor   |
+| Joshua Hayes      | jhayes10@sfsu.edu              |                 |   Document Editor   |
 
 
 4. All the team members must sign the team contract found [here](https://forms.gle/PoTXjTmPGGKKZjsT6). Missing signatures from students will result in these students being dropped from the course since this means that they disagree with the policies and terms needed to work in a term environment. 
