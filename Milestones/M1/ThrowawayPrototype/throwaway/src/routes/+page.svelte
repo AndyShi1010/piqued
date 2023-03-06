@@ -48,5 +48,5 @@
 <br>
 <a href="/">Joshua Hayes</a>
 <br>
-<a href="/">Gautami Kollolu Srinivasa</a>
+<a href="/gautami">Gautami Kollolu Srinivasa</a>
 </div>
