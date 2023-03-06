@@ -2,7 +2,7 @@
     img {
         width: 270px;
         height: 270px;
-        object-fit: fill;
+        object-fit: cover;
         border-radius: 50%;
     }
     div {
