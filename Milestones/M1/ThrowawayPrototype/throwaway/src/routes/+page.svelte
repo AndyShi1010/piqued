@@ -42,9 +42,9 @@
 <br>
 <a href="/andyshi">Andy Shi</a>
 <br>
-<a href="/">Leo Saeteurn</a>
+<a href="/leosaeteurn">Leo Saeteurn</a>
 <br>
-<a href="/">Nishit Pachchigar</a>
+<a href="/nishit">Nishit Pachchigar</a>
 <br>
 <a href="/">Joshua Hayes</a>
 <br>
