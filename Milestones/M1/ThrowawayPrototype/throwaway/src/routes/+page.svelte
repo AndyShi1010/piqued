@@ -38,7 +38,7 @@
 
 <div id="teamlist">
 <h2>Team Members</h2>
-<a href="/">Jose Avila</a>
+<a href="/jose">Jose Avila</a>
 <br>
 <a href="/andyshi">Andy Shi</a>
 <br>
