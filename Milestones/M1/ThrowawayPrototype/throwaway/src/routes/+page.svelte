@@ -46,7 +46,7 @@
 <br>
 <a href="/nishit">Nishit Pachchigar</a>
 <br>
-<a href="/">Joshua Hayes</a>
+<a href="/josh">Joshua Hayes</a>
 <br>
 <a href="/gautami">Gautami Kollolu Srinivasa</a>
 </div>
