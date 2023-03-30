@@ -3,9 +3,9 @@
 </script>
 
 <div id="nav">
-    <div id="logo">
-
-    </div>
+    <a id="logo" href="/">
+        Piqued
+    </a>
     <div id="action-buttons">
         <Button to="/login" secondary>Log In</Button>
         <Button to="/signup">Sign Up</Button>
@@ -23,11 +23,18 @@
         background-color: #FCCFC5;
         position: fixed;
     }
-    div#logo {
+    a#logo {
         width: 120px;
         height: 100%;
         margin-left: 32px;
-        border: 1px solid black;
+        /* border: 1px solid black; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display-type);
+        color: var(--primary-accent);
+        font-size: 18px;
+        text-decoration: none;
     }
     div#action-buttons {
         display: flex;

@@ -65,6 +65,8 @@
     }
     #homepage-search {
         display: block;
+        /* position: sticky;
+        top: 2px; */
         /* padding: 32px clamp(0px, 20%, 720px); */
     }
 </style>
