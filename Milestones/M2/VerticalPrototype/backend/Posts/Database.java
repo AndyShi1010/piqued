@@ -1,3 +1,4 @@
+package Posts;
 import java.sql.*;
 public class Database {
 
