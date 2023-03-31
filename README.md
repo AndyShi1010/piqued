@@ -28,7 +28,7 @@
 
 |             Name of the Project               |                            URL of the Project                          | 
 |                    :---:                      |                                 :---:                                  |
-|   Piqued |              http://ec2-54-177-172-126.us-west-1.compute.amazonaws.com:5173/   |                                                        
+|   Piqued |              ec2-3-101-20-150.us-west-1.compute.amazonaws.com   |                                                        
  
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
