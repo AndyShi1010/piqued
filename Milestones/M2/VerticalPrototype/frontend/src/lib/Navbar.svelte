@@ -7,8 +7,8 @@
         Piqued
     </a>
     <div id="action-buttons">
-        <Button to="/login" secondary>Log In</Button>
-        <Button to="/signup">Sign Up</Button>
+        <Button to="/login" isDisabled=true>Log In</Button>
+        <Button to="/signup" isDisabled=false>Sign Up</Button>
     </div>
 </div>
 
