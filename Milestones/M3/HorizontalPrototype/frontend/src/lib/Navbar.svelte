@@ -4,17 +4,23 @@
 </script>
 
 <div id="nav">
-    <a id="logo" href="/">
-        Piqued
-    </a>
-    <div id="action-buttons">
-        <Button to="/login" type="secondary">
-            Log In
-        </Button>
-        <Button to="/signup">
-            Sign Up
-        </Button>
+    <div id="nav-container">
+        <a id="logo" href="/">
+            Piqued
+        </a>
+        <div id="action-buttons">
+            <Button to="/test" type="text">
+                Test
+            </Button>
+            <Button to="/login" type="secondary">
+                Log In
+            </Button>
+            <Button to="/signup">
+                Sign Up
+            </Button>
+        </div>
     </div>
+    
 </div>
 
 <style>
@@ -22,18 +28,25 @@
         /* border-bottom: 1px solid black; */
         height: var(--header-height);
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         background-color: var(--primary-orange-700);
         position: fixed;
         border-bottom: 1px solid var(--neutral-pink-200);
+        box-sizing: border-box;
         z-index: 10;
+    }
+    #nav #nav-container {
+        margin: 0px auto;
+        height: 100%;
+        width: var(--page-width);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
     }
     a#logo {
         width: 120px;
         height: 100%;
-        margin-left: 32px;
         /* border: 1px solid black; */
         display: flex;
         align-items: center;
@@ -45,7 +58,6 @@
     }
     div#action-buttons {
         display: flex;
-        gap: 16px;
-        margin-right: 32px;
+        gap: 12px;
     }
 </style>

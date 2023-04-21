@@ -2,8 +2,7 @@
     import Nav from "../lib/Navbar.svelte";
 </script>
 
-<Nav></Nav>
-<div>
+<div class="page-top">
     <slot></slot>
 </div>
 
@@ -36,11 +35,37 @@
         --body-type: 'Nunito Sans', sans-serif;
 
         --header-height: 64px;
-        --global-page-margin:
+        --page-width: 75%;
+        /* --global-page-width: clamp(1080px, , 90%); */
     }
 
     div{
-        padding-top: var(--header-height);
         background-color: var(--primary-orange-100);
+    }
+
+    .page-top :global(.page-container) {
+        padding-top: var(--header-height);
+        background-color: var(--secondary-accent-tint);
+        height: 100%;
+        min-height: calc(100vh - var(--header-height));
+        width: var(--page-width);
+        margin: 0px auto;
+    }
+
+    @media screen and (min-width: 1920px) {
+        :root {
+            --page-width: 1280px;
+        }
+        .page-top :global(.page-container) {
+            width: 1280px;
+        }
+    }
+    @media screen and (max-width: 720px) {
+        :root {
+            --page-width: 90%;
+        }
+        .page-top :global(.page-container) {
+            width: 90%;
+        }
     }
 </style>

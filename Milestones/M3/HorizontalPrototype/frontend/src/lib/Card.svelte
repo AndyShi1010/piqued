@@ -1,5 +1,8 @@
 <script>
     import { TrendUp, MapPin } from "phosphor-svelte"
+    // import { fade } from 'svelte/transition';
+	import Button from "./Button.svelte";
+    import Tag from "./Tag.svelte";
 
     export let title;
     export let nearby = false;
@@ -16,10 +19,10 @@
         {#if nearby || trending}
         <div class="card-badges">
             {#if nearby}
-            <span class="badge"><MapPin size="{12}" weight="bold"/>Nearby</span>
+                <Tag type="badge"><MapPin size="{12}" weight="bold"/>Nearby</Tag>
             {/if}
             {#if trending}
-                <span class="badge"><TrendUp size="{12}" weight="bold"/>Trending</span>
+                <Tag type="badge"><TrendUp size="{12}" weight="bold"/>Trending</Tag>
             {/if}
         </div>
         {/if}
@@ -28,27 +31,34 @@
         {#if tags.length !=0}
         <div class="card-tags">
             {#each tags as t}
-                <a class="card-tag">#{t}</a>
+                <Tag type="hashtag">{t}</Tag>
             {/each}
         </div>
         {/if}
-        <a class="card-link" href={to}>Read More</a>
+        <div class="readmore-button">
+            <Button to={to} type="text">Read More</Button>
+        </div>
+        <!-- <a class="card-link" href={to}>Read More</a> -->
     </div>
 </div>
 
 <style>
     div.card {
         background-color: white;
-        border-radius: 6px;
+        border-radius: 8px;
         box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.1);
+        overflow: hidden;
     }
     div.card-body {
         padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
     .card-badges {
         display: flex;
         gap: 8px;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
     }
     .badge {
         font-family: var(--body-type);
@@ -64,13 +74,12 @@
     img {
         width: 100%;
         display: block;
-        border-radius: 6px 6px 0px 0px;
         aspect-ratio: 16 / 9;
         object-fit: cover;
     }
     h1 {
         margin: 0;
-        margin-bottom: 8px;
+        /* margin-bottom: 8px; */
         font-family: var(--display-type);
         font-size: 24px;
         line-height: 1.25;
@@ -82,31 +91,11 @@
     .card-tags {
         display: flex;
         gap: 8px;
-        margin-top: 8px;
+        /* margin-top: 8px; */
     }
-    a.card-tag {
-        font-family: var(--body-type);
-        background-color: var(--secondary-accent);
-        color: var(--primary-accent);
-        font-size: 12px;
-        padding: 6px;
-        border-radius: 4px;
-        line-height: 1;
-    }
-    a.card-link {
-        font-family: var(--display-type);
-        font-size: 16px;
-        text-decoration: none;
-        color: var(--primary-accent);
+    .readmore-button {
         margin-left: auto;
         display: block;
-        margin-top: 8px;
-        width: max-content;
-        padding: 6px 12px;
-        border-radius: 6px;
-        transition: background-color 0.25s;
-    }
-    a.card-link:hover {
-        background-color: var(--secondary-accent);
+        width: fit-content;
     }
 </style>

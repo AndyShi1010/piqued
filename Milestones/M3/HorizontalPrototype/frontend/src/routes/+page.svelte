@@ -1,6 +1,7 @@
 <script>
     import Search from "../lib/Searchbar.svelte";
     import Card from "../lib/Card.svelte";
+    import Nav from "../lib/Navbar.svelte";
 
     const cardData = {
         card1: {
@@ -33,7 +34,7 @@
     }
 </script>
 
-
+<Nav></Nav>
 <div class="page-container">
     <div id="homepage-search">
         <Search placeholder={"Browse"}/>
@@ -51,16 +52,11 @@
         font-family: var(--display-type);
         margin: 32px 0px;
     }
-    .page-container {
-        background-color: var(--secondary-accent-tint);
-        height: min(100vh, 100%);
-        padding: calc(52px + 64px) clamp(64px, 15%, 480px);
-    }
     .card-container {
         display: grid;
-        /* grid-template-columns: repeat(3, 1fr); */
-        grid-auto-columns: 1fr;
-        grid-auto-flow: column;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        /* grid-auto-columns: 1fr;
+        grid-auto-flow: column; */
         gap: 16px;
     }
     #homepage-search {

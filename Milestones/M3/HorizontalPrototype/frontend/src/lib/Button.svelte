@@ -26,9 +26,12 @@
         font-family: var(--display-type);
         font-size: 16px;
         text-decoration: none;
-        transition: background-color 0.25s, border 0.25s, color 0.25s, box-shadow 0.25s;
+        transition: background-color 0.25s, border 0.25s, color 0.25s, box-shadow 0.15s;
         position: relative;
         display: flex;
+        align-items: center;
+        width: min-content;
+        white-space: nowrap;
     }    
     .btn-primary {
         background-color: var(--accent-red-700);
@@ -49,6 +52,7 @@
         color: var(--neutral-pink-400);
         background-color: var(--neutral-pink-200);
         pointer-events: none;
+        cursor: not-allowed;
     }
 
     .btn-secondary {
@@ -59,7 +63,7 @@
     }
     .btn-secondary:hover {
         color: var(--accent-red-800);
-        background-color: var(--primary-orange-700);
+        background-color: var(--primary-orange-800);
         box-shadow: inset 0px 0px 0px 2px var(--accent-red-800);
     }
     .btn-secondary:focus {
