@@ -21,13 +21,16 @@
     }
     .checkmark {
         width: 20px;
+        min-width: 20px;
+        min-height: 20px;
         height: 20px;
         border: 2px solid var(--accent-red-700);
         border-radius: 4px;
         display: block;
         cursor: pointer;
         transform: scale(1);
-        transition: transform 0.25s, background-color 0.25s;
+        transition: transform 0.15s, background-color 0.25s, border 0.25s;
+        transition-timing-function: ease-out;
         position: relative;
     }
     .checkmark > span {
@@ -49,7 +52,9 @@
     }
     input {
         position: absolute;
-        display: none;
+        /* display: none; */
+        opacity: 0;
+        visibility: hidden;
     }
     input:checked ~ .checkmark {
         background-color: var(--accent-red-700);
@@ -61,7 +66,7 @@
     }
     input:checked ~ .checkmark > span {
         opacity: 1;
-        transform: scale(1) rotate(0);
+        transform: scale(1);
     }
     input:disabled ~ .checkmark {
         background-color: transparent;

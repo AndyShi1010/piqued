@@ -6,15 +6,15 @@
 </script>
 
 {#if type == "secondary"}
-    <a style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-secondary {disabled ? 'disabled' : ''}">
+    <a on:click style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-secondary {disabled ? 'disabled' : ''}" tabindex="{disabled ? '-1' : '0'}">
         <slot></slot>
     </a>    
 {:else if type == "text"}
-    <a style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-text {disabled ? 'disabled' : ''}">
+    <a on:click style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-text {disabled ? 'disabled' : ''}" tabindex="{disabled ? '-1' : '0'}">
         <slot></slot>
     </a> 
 {:else}
-    <a style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-primary {disabled ? 'disabled' : ''}">
+    <a on:click style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-primary {disabled ? 'disabled' : ''}" tabindex="{disabled ? '-1' : '0'}">
         <slot></slot>
     </a>
 {/if}
@@ -32,6 +32,7 @@
         align-items: center;
         width: min-content;
         white-space: nowrap;
+        cursor: pointer;
     }    
     .btn-primary {
         background-color: var(--accent-red-700);
