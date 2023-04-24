@@ -1,12 +1,13 @@
 const express = require("express");
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
-// const path = require("path");
+
+const path = require("path");
 
 
 //routes
-const testRoute = require("./src/routes/testroute.js");
-
+// const testRoute = require("./src/routes/testroute.js");
+const testRoute = require("../frontend/src/routes/test/+page.svelte");
 
 const app = express();
 
