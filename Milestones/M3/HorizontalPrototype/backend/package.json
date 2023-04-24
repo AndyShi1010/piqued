@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "concurrently \"npm:server:dev\"\"npm:build:dev\"",
+    "start": "node server.js",
+    "server:dev": "NODE_ENV=development nodemon --watch backend ./backend/server.js",
+    "build": "vite build",
+    "build:dev": "vite build --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.22"
+  }
+}
