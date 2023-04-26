@@ -16,8 +16,12 @@ app.use("/test", (req, res) => {
   res.redirect('/#/test');
 })
 
-app.use("/about", (req, res) => {
-  res.redirect('/#/about');
+app.use("/login", (req, res) => {
+  res.redirect('/#/login');
+})
+
+app.use("/signup", (req, res) => {
+  res.redirect('/#/signup');
 })
 
 app.listen(port, () => {
