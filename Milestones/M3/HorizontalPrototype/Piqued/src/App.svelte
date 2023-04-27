@@ -14,6 +14,9 @@
     '/test': wrap({
       asyncComponent: () => import('./views/Test.svelte'),
     }),
+    '/search': wrap({
+      asyncComponent: () => import('./views/Search.svelte'),
+    }),
     '/post': wrap({
       asyncComponent: () => import('./views/CreatePost.svelte'),
       conditions: () => {

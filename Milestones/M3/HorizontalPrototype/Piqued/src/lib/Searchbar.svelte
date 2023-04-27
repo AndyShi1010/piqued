@@ -2,16 +2,31 @@
     import { MagnifyingGlass } from "phosphor-svelte"
 
     export let placeholder = "Search"
+
+    function searchSubmit(e) {
+        const keyword = new FormData(e.target).get("search");
+        console.log(keyword);
+        window.location.href = `#/search?by=keyword&q=${keyword}`;
+        // let res = fetch(`/api/search?by=keyword&q=${keyword}`);
+        // console.log(res);
+    }
 </script>
 
 <div id="search">
-    <input type="text" placeholder={placeholder}>
-    <button type="button">
-        <MagnifyingGlass size="{24}" weight="bold"/>
-    </button>
+    <form on:submit|preventDefault={searchSubmit}>
+        <input name="search" type="text" placeholder={placeholder}>
+        <button type="submit">
+            <MagnifyingGlass size="{24}" weight="bold"/>
+        </button>
+    </form>
 </div>
 
 <style>
+    form {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
     #search input{
         color: black;
         background-color: var(--primary-orange-700);

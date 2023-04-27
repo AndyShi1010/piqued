@@ -10,6 +10,14 @@ app.get("/api/v1/hello", (_req, res) => {
   console.log("YAAAYY");
 });
 
+app.get("/api/search", (req, res) => {
+  let type = req.query.by;
+  let query = req.query.q;
+  console.log(type, query);
+  console.log("Search Route");
+  res.send({message: "Search Response"});
+})
+
 app.use("/", express.static('dist'));
 
 app.use("/test", (req, res) => {
