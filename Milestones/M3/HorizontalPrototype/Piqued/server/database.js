@@ -1,4 +1,4 @@
-import mysql from 'mysql2'
+import mysql from 'mysql2';
 
 const pool = mysql.createPool({
   host: 'database-2.cmvveapu2ri8.us-west-1.rds.amazonaws.com',
