@@ -14,9 +14,9 @@
 <style>
     #search input{
         color: black;
-        background-color: var(--secondary-accent);
+        background-color: var(--primary-orange-700);
         /* border-radius: 6px 0px 0px 6px; */
-        border: 2px solid var(--secondary-accent);
+        border: 2px solid var(--primary-orange-700);
         font-size: 16px;
         width: 100%;
         /* display: block; */
@@ -28,13 +28,13 @@
         font-family: var(--body-type);
     }
     #search input::placeholder {
-        color: var(--primary-accent);
+        color: var(--gray-600);
     }
     #search input:focus {
-        border: 2px solid var(--primary-accent);
+        border: 2px solid var(--accent-red-700);
     }
     #search button{
-        background-color: var(--primary-accent);
+        background-color: var(--accent-red-700);
         color: white;
         border: none;
         /* border-radius: 0px 6px 6px 0px; */

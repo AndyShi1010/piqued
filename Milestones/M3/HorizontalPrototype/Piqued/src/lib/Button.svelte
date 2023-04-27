@@ -6,15 +6,30 @@
 </script>
 
 {#if type == "secondary"}
-    <a on:click style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-secondary {disabled ? 'disabled' : ''}" tabindex="{disabled ? -1 : 0}">
+    <a 
+        on:click 
+        style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} 
+        href={disabled ? "javascript:void(0)": to == "" ? "javascript:void(0)" : to} 
+        class="btn-secondary {disabled ? 'disabled' : ''}" 
+        tabindex="{disabled ? -1 : 0}">
         <slot></slot>
     </a>    
 {:else if type == "text"}
-    <a on:click style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-text {disabled ? 'disabled' : ''}" tabindex="{disabled ? -1 : 0}">
+    <a 
+        on:click 
+        style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} 
+        href={disabled ? "javascript:void(0)": to == "" ? "javascript:void(0)" : to}
+        class="btn-text {disabled ? 'disabled' : ''}" 
+        tabindex="{disabled ? -1 : 0}">
         <slot></slot>
     </a> 
 {:else}
-    <a on:click style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} href={disabled ? "javascript:void(0)": to} class="btn-primary {disabled ? 'disabled' : ''}" tabindex="{disabled ? -1 : 0}">
+    <a 
+        on:click 
+        style={icon == "iconLeft" ? "padding: 6px 16px 6px 12px; gap: 8px; flex-direction: row": icon == "iconRight" ? "padding: 6px 12px 6px 16px; gap: 8px; flex-direction: row-reverse;" : "padding: 6px 16px;"} 
+        href={disabled ? "javascript:void(0)": to == "" ? "javascript:void(0)" : to} 
+        class="btn-primary {disabled ? 'disabled' : ''}" 
+        tabindex="{disabled ? -1 : 0}">
         <slot></slot>
     </a>
 {/if}

@@ -2,6 +2,7 @@
     import Searchbar from "../lib/Searchbar.svelte";
     import Card from "../lib/Card.svelte";
     import Nav from "../lib/Navbar.svelte";
+    import PaddedPage from "../layouts/PaddedPage.svelte";
 
     const cardData = {
         card1: {
@@ -32,25 +33,34 @@
             img: "../img/movie.jpg",
         }
     }
+    const logged = localStorage.getItem('logged');
 </script>
 
 <Nav></Nav>
-<div class="page-container">
-    <div id="homepage-search">
-        <Searchbar placeholder={"Browse"}/>
+<PaddedPage>
+    <div class="page-container">
+        {#if logged == "true"}
+            <h2 style="margin-bottom: 32px;">You are now logged in.</h2>
+        {/if}
+        <div id="homepage-search">
+            <Searchbar placeholder={"Browse"}/>
+        </div>
+        <h1>Highlights</h1>
+        <div class="card-container">
+            <Card {...cardData.card1} />
+            <Card {...cardData.card2} />
+            <Card {...cardData.card3} />
+        </div>
     </div>
-    <h1>Highlights</h1>
-    <div class="card-container">
-        <Card {...cardData.card1} />
-        <Card {...cardData.card2} />
-        <Card {...cardData.card3} />
-    </div>
-</div>
+</PaddedPage>
 
 <style>
+    .page-container {
+        padding-top: 64px;
+    }
     h1 {
         font-family: var(--display-type);
-        margin: 32px 0px;
+        margin: 64px 0px 32px 0px;
     }
     .card-container {
         display: grid;

@@ -3,6 +3,7 @@
     // export let placeholder;
     export let error = false;
     export let disabled = false;
+    export let colorway = "regular"
     // export let iconLeft = false;
     // export let iconRight = false;
     
@@ -14,7 +15,14 @@
 </script>
 
 <div>
-    <label class="field-container {error ? "error" : ""} {disabled ? "disabled" : ""} {type} {(textValue != null && textValue != "") ? "filled" : ""}">
+    <label 
+    class="field-container 
+    {error ? "error" : ""}
+    {colorway == "light" ? "light" : ""} 
+    {disabled ? "disabled" : ""} 
+    {type} 
+    {(textValue != null && textValue != "") ? "filled" : ""}"
+    >
         <span class="leading-icon">
             <slot name="leading-icon"></slot>
         </span>
@@ -45,10 +53,12 @@
 </div>
 
 <style>
+    .field-container.light {
+        background-color: var(--primary-orange-100);
+    }
     .field-container {
         height: 48px;
         padding: 0px 16px;
-        background-color: var(--primary-orange-700);
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -58,6 +68,7 @@
         transition: border 0.25s, background-color 0.25s;
         font-family: var(--body-type);
         position: relative;
+        background-color: var(--primary-orange-700);
         /* font-size: 16px; */
     }
     .field-container:hover {
@@ -77,6 +88,7 @@
         margin-right: 12px;
         color: var(--neutral-pink-400);
         transition: color 0.25s;
+        display: inline-flex;
     }
     .field-container:focus-within .leading-icon, .field-container:focus-within .trailing-icon {
         color: var(--accent-red-900);
@@ -88,6 +100,7 @@
         margin-left: 12px;
         color: var(--neutral-pink-400);
         transition: color 0.25s;
+        display: inline-flex;
     }
     .field-container .trailing-icon:empty {
         margin-left: 0px;

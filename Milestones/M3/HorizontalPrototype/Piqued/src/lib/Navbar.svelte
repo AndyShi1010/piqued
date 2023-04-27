@@ -1,6 +1,12 @@
 <script>
     import Button from "./Button.svelte";
-    import { SignIn } from "phosphor-svelte"
+    import { SignIn, NotePencil } from "phosphor-svelte"
+    const logged = localStorage.getItem('logged');
+
+    function logOut() {
+        localStorage.setItem("logged", "false");
+    }
+    
 </script>
 
 <div id="nav">
@@ -8,6 +14,17 @@
         <a id="logo" href="/">
             Piqued
         </a>
+        {#if logged == "true"}
+        <div id="action-buttons">
+            <Button to="/#/signup" icon="iconLeft">
+                <NotePencil size="{24}" weight="bold"/>
+                Post
+            </Button>
+            <Button on:click={logOut} to="/" type="text">
+                Log Out
+            </Button>
+        </div>
+        {:else}
         <div id="action-buttons">
             <Button to="/#/test" type="text">
                 Test
@@ -19,6 +36,7 @@
                 Sign Up
             </Button>
         </div>
+        {/if}
     </div>
     
 </div>
