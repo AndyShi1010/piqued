@@ -26,7 +26,7 @@
         border-radius: 6px;
         transition: background-color 0.25s;
     }
-    a:hover {
+    a:hover, a:focus {
         background-color: var(--primary-orange-800);
     }
     a .left{

@@ -53,9 +53,9 @@
         </div>
         {:else}
         <div id="action-buttons">
-            <Button to="/#/test" type="text">
+            <!-- <Button to="/#/test" type="text">
                 Test
-            </Button>
+            </Button> -->
             <Button to="/#/login" type="secondary">
                 Log In
             </Button>
