@@ -1,7 +1,9 @@
 import express from "express";
+import db from "./database.js";
+
 // import path from "path";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const app = express();
 
@@ -10,13 +12,27 @@ app.get("/api/v1/hello", (_req, res) => {
   console.log("YAAAYY");
 });
 
-app.get("/api/search", (req, res) => {
+app.post("/api/search", (res, req) => {
   let type = req.query.by;
   let query = req.query.q;
   console.log(type, query);
   console.log("Search Route");
-  res.send({message: "Search Response"});
+
+  let sql = ``;
+  db.execute(sql, function(err, results){
+    if(err) throw err;
+    if(results && results.length > 0){
+      res.send(JSON(results))
+      res.redirect("/#searchpage")
+    } else {
+      res.send(404);
+    }
+    console.log(results);
+  });
+
 })
+
+
 
 app.use("/", express.static('dist'));
 
