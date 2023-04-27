@@ -1,4 +1,8 @@
-<div class="padded-page">
+<script>
+    import { fade } from 'svelte/transition';
+</script>
+
+<div class="padded-page" in:fade="{{duration: 500}}">
     <slot></slot>
 </div>
 

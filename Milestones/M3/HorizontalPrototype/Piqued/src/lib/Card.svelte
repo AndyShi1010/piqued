@@ -14,7 +14,7 @@
 </script>
 
 <div class="card">
-    <img src={img} alt="">
+    <img src={img} alt="" loading="lazy">
     <div class="card-body">
         {#if nearby || trending}
         <div class="card-badges">
@@ -59,17 +59,6 @@
         display: flex;
         gap: 8px;
         margin-bottom: 8px;
-    }
-    .badge {
-        font-family: var(--body-type);
-        background-color: var(--primary-accent);
-        color: white;
-        font-size: 12px;
-        padding: 6px;
-        border-radius: 4px;
-        line-height: 1;
-        display: inline-flex;
-        gap: 6px;
     }
     img {
         width: 100%;

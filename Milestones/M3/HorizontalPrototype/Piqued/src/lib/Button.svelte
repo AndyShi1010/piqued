@@ -46,6 +46,7 @@
         display: flex;
         align-items: center;
         width: min-content;
+        height: min-content;
         white-space: nowrap;
         cursor: pointer;
     }    

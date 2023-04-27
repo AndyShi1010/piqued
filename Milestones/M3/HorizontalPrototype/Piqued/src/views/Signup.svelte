@@ -7,12 +7,13 @@
 
     function signUp() {
         localStorage.setItem("logged", "true");
+        localStorage.setItem("user", "SignedUpUser");
     }
 </script>
 
 <div class="page-container">
     <div class="splash">
-        <img src="../img/grapes.jpg" alt="Grapes">
+        <img src="../img/grapes.jpg" alt="Grapes" loading="lazy">
     </div>
     <div class="prompt">
         <div id="home-button"><Button type="primary" to="/" icon="iconLeft"><House size={"24"}/>Home</Button></div>
@@ -36,7 +37,7 @@
                 </div>
             </form>
             <p>Already have an account? <a href="/#/login">Log In!</a></p>
-            <p>By clicking Sign Up you our agreeing to our <a href="/#/login">Terms of Service</a> and <a href="/#/login">Privacy Policy</a>.</p>
+            <p>By clicking Sign Up you our agreeing to our <a href="/#/terms">Terms of Service</a> and <a href="/#/privacy">Privacy Policy</a>.</p>
             <div class="signup-button">
                 <Button on:click={signUp} to="/" icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Sign Up</Button>
             </div>
@@ -72,7 +73,7 @@
 
     .prompt {
         grid-area: 1 / 1;
-        padding: 64px;
+        padding: 32px;
     }
 
     .prompt .signup-container {
@@ -117,6 +118,7 @@
             grid-area: 1 / 2;
             /* background-color: var(--primary-orange-100); */
             box-shadow: -4px 0px 16px rgba(0,0,0,0.15); 
+            padding: 64px;
         }
         .prompt #home-button {
             position: absolute;

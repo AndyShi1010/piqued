@@ -34,14 +34,18 @@
         border: 2px solid var(--accent-red-700);
     }
     #search button{
-        background-color: var(--accent-red-700);
-        color: white;
+        background-color: var(--primary-orange-800);
+        color: var(--accent-red-900);
         border: none;
         /* border-radius: 0px 6px 6px 0px; */
         display: block;
         height: 52px;
         width: 52px;
         padding: 14px;
+    }
+    #search input:focus ~ button {
+        background-color: var(--accent-red-700);
+        color: white;
     }
     #search button:hover {
 
@@ -54,6 +58,6 @@
     }
     #search:focus-within {
         box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);
-        transform: translateY(-2px)
+        /* transform: translateY(-2px) */
     }
 </style>

@@ -57,6 +57,7 @@
 <style>
     .page-container {
         padding-top: 64px;
+        padding-bottom: 64px;
     }
     h1 {
         font-family: var(--display-type);

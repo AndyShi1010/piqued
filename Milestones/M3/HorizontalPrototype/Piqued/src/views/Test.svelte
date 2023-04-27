@@ -1,9 +1,12 @@
 <script>
-    import { EnvelopeSimple, Warning } from 'phosphor-svelte'
+    import { EnvelopeSimple, Warning, CaretRight } from 'phosphor-svelte'
     import Checkbox from '../lib/Checkbox.svelte';
     import Textfield from '../lib/Textfield.svelte';
     import Button from '../lib/Button.svelte';
     import PaddedPage from '../layouts/PaddedPage.svelte';
+    import Menu from '../lib/Menu.svelte';
+    import MenuEntry from '../lib/MenuEntry.svelte';
+    import MenuDropdown from '../lib/MenuDropdown.svelte';
     let showImage = false;
     let checkboxError = false;
     let checkboxDisabled = false;
@@ -42,9 +45,28 @@
                 <!-- <Textfield type="color"></Textfield> -->
             </div>
             
-            <div class="column" id="menu">
+            <!-- <div class="column" id="menu">
                 <Button on:click="{() => {console.log("Hello World")}}" bind:disabled={showImage}>Show Menu</Button>
-            </div>
+            </div> -->
+
+            <Menu width="{240}">
+                <Button slot="menu-button">Menu</Button>
+                <MenuDropdown slot="dropdown">
+                    <MenuEntry>
+                        <EnvelopeSimple slot="leading-icon" size="{24}" />
+                        Orange
+                        <CaretRight slot="trailing-icon" size="{16}" />
+                    </MenuEntry>
+                    <MenuEntry>
+                        <EnvelopeSimple slot="leading-icon" size="{24}" />
+                        Banana
+                    </MenuEntry>
+                    <MenuEntry>
+                        <EnvelopeSimple slot="leading-icon" size="{24}" />
+                        Strawberry
+                    </MenuEntry>
+                </MenuDropdown>
+            </Menu>
 
         </div>    
     </div>

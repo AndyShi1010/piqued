@@ -7,12 +7,13 @@
 
     function logIn() {
         localStorage.setItem("logged", "true");
+        localStorage.setItem("user", "TempUser");
     }
 </script>
 
 <div class="page-container">
     <div class="splash">
-        <img src="../img/grapes.jpg" alt="Grapes">
+        <img src="../img/grapes.jpg" alt="Grapes" loading="lazy">
     </div>
     <div class="prompt">
         <div id="home-button"><Button type="primary" to="/" icon="iconLeft"><House size={"24"}/>Home</Button></div>
@@ -62,7 +63,7 @@
 
     .prompt {
         grid-area: 1 / 1;
-        padding: 64px;
+        padding: 32px;
     }
 
     .prompt .login-container {
@@ -106,7 +107,8 @@
         .prompt {
             grid-area: 1 / 2;
             /* background-color: var(--primary-orange-100); */
-            box-shadow: -4px 0px 16px rgba(0,0,0,0.15); 
+            box-shadow: -4px 0px 16px rgba(0,0,0,0.15);
+            padding: 64px; 
         }
         .prompt #home-button {
             position: absolute;

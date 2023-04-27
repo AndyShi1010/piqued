@@ -14,6 +14,15 @@
     '/test': wrap({
       asyncComponent: () => import('./views/Test.svelte'),
     }),
+    '/post': wrap({
+      asyncComponent: () => import('./views/CreatePost.svelte'),
+      conditions: () => {
+          return (localStorage.getItem('logged') == "true") ? true : false;
+      }
+    }),
+    '*' : wrap({
+      asyncComponent: () => import('./views/404.svelte'),
+    })
   };
 </script>
 
