@@ -11,7 +11,7 @@ let sql = "SELECT * FROM user;";
 pool.execute(sql, function(err, results){
     if(err) throw err;
 
-    console.log(results);
+    //console.log(results);
 });
 
 

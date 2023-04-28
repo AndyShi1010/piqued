@@ -25,7 +25,7 @@
     }),
     '*' : wrap({
       asyncComponent: () => import('./views/404.svelte'),
-    })
+    })  
   };
 </script>
 

@@ -7,12 +7,31 @@
 
     import { onMount } from "svelte";
 
+    let results = ""
+
     onMount(async () => {
         const query = parse($querystring);
         console.log(query);
+        fetch(`/api/search?by=${query.by}&q=${query.q}`)
+        .then(response => response.json())
+        .then(json => {
+            let resJson = JSON.stringify(json);
+            console.log(resJson);
+            results = resJson;
+        })
         //console.log(queryString.get('by'), queryString.get('q'));
-        let res = fetch(`/api/search?by=${query.by}&q=${query.q}`);
-        console.log(res);
+        // let res = await fetch(`/api/search?by=${query.by}&q=${query.q}`, 
+        //     {
+        //         method: 'GET',
+        //         headers: {
+        //             'Accept': 'application/json',
+        //         }
+        //     }
+        // )
+        // .then(result => {
+        //     console.log(result);
+        // });
+        //console.log(res);
     })
 </script>
 
@@ -23,6 +42,7 @@
             <Searchbar />
         </div>
         <h1>Results</h1>
+        {results}
     </div>
 </PaddedPage>
 
