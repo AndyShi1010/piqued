@@ -8,9 +8,16 @@
     import { onMount } from "svelte";
 
     let results = ""
+    let searchTerm = ""
 
-    onMount(async () => {
-        const query = parse($querystring);
+    function performSearch() {
+        console.log("Perform search")
+        let pageHref = window.location.href;
+        console.log(pageHref);
+        // let queries = pageHref.substring(pageHref.indexOf('?'));
+        // console.log(queries)
+        const query = parse(pageHref.substring(pageHref.indexOf('?')), { ignoreQueryPrefix: true });
+        searchTerm = query.q;
         console.log(query);
         fetch(`/api/search?by=${query.by}&q=${query.q}`)
         .then(response => response.json())
@@ -19,6 +26,12 @@
             console.log(resJson);
             results = resJson;
         })
+    }
+
+    onMount(async () => {
+        const query = parse($querystring);
+        console.log(query);
+        performSearch();
         //console.log(queryString.get('by'), queryString.get('q'));
         // let res = await fetch(`/api/search?by=${query.by}&q=${query.q}`, 
         //     {
@@ -39,7 +52,7 @@
 <PaddedPage>
     <div class="container">
         <div class="searchbar">
-            <Searchbar />
+            <Searchbar pageAction={performSearch} value={searchTerm}/>
         </div>
         <h1>Results</h1>
         {results}

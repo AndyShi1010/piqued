@@ -16,7 +16,11 @@ app.get("/api/search", (req, res) => {
   console.log(req.query);
   let type = req.query.by;
   let query = req.query.q;
-  res.json({message: "Hello World!"});
+  res.json({
+    message: "Hello World!",
+    by: type,
+    query: query
+  });
   // console.log(type, query);
   // console.log("Search Route");
 
