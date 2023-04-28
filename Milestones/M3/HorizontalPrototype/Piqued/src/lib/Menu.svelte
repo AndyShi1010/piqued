@@ -7,11 +7,16 @@
 
     function toggleMenu() {
         show = !show;
+        if (show) {
+            document.body.addEventListener('click', toggleMenu);
+        } else {
+            document.body.removeEventListener('click', toggleMenu);
+        }
     }
 </script>
 
 <div class="menu-container">
-    <div class="menu-button" on:click="{toggleMenu}">
+    <div class="menu-button" on:click|stopPropagation="{toggleMenu}">
         <slot name="menu-button"></slot>
     </div>
 

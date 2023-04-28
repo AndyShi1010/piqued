@@ -1,6 +1,6 @@
 <script>
     import Button from "./Button.svelte";
-    import { SignIn, NotePencil, User } from "phosphor-svelte"
+    import { SignOut, NotePencil, User, GearSix } from "phosphor-svelte"
     import Menu from '../lib/Menu.svelte';
     import MenuEntry from '../lib/MenuEntry.svelte';
     import MenuDropdown from '../lib/MenuDropdown.svelte';
@@ -34,10 +34,12 @@
                     </Button>
                     <MenuDropdown slot="dropdown">
                         <MenuEntry to="/">
+                            <GearSix slot="leading-icon" size="{24}" weight="bold" />
                             <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
                             Account Settings
                         </MenuEntry>
                         <MenuEntry on:click={logOut} to="/#/login">
+                            <SignOut slot="leading-icon" size="{24}" weight="bold" />
                             <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
                             Log Out
                         </MenuEntry>
