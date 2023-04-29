@@ -1,11 +1,25 @@
 import express from "express";
+import sessions from "express-session";
+import expressSession from "express-mysql-session";
+import cookieParser from 'cookie-parser';
 import db from "./database.js";
 
+const store = expressSession(sessions);
+const mysqlSessionStore = new store({/* Default Options*/},db);
 // import path from "path";
 
 const port = process.env.PORT || 4000;
 
 const app = express();
+app.use(cookieParser());
+app.use(sessions({
+  key: "sid",
+  secret: "mau1PFR1cmh@ewv@hnb",
+  store: mysqlSessionStore,
+  resave: false,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+  saveUninitialized: false
+}));
 
 app.get("/api/v1/hello", (_req, res) => {
   res.json({ message: "Hello, world!" });
