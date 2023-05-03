@@ -7,6 +7,7 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
+
 app.get("/api/v1/hello", (_req, res) => {
   res.json({ message: "Hello, world!" });
   console.log("YAAAYY");
@@ -52,6 +53,10 @@ app.use("/login", (req, res) => {
 
 app.use("/signup", (req, res) => {
   res.redirect('/#/signup');
+})
+
+app.use("/*", (req, res) => {
+  res.redirect('/#/404');
 })
 
 app.listen(port, () => {
