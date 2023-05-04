@@ -3,10 +3,19 @@
 
     export let placeholder = "Search"
 
+    export let value = "";
+
+    export let pageAction;
+
     function searchSubmit(e) {
+        console.log('Search Submit')
         const keyword = new FormData(e.target).get("search");
         console.log(keyword);
-        window.location.href = `#/search?by=keyword&q=${keyword}`;
+        window.location.href = `/#/search?by=keyword&q=${keyword}`;
+        if (pageAction) {
+            pageAction();
+        }
+        // window.location.reload();
         // let res = fetch(`/api/search?by=keyword&q=${keyword}`);
         // console.log(res);
     }
@@ -14,7 +23,8 @@
 
 <div id="search">
     <form on:submit|preventDefault={searchSubmit}>
-        <input name="search" type="text" placeholder={placeholder}>
+    <!-- <form action=""></form> -->
+        <input name="search" type="text" placeholder={placeholder} {value}>
         <button type="submit">
             <MagnifyingGlass size="{24}" weight="bold"/>
         </button>
