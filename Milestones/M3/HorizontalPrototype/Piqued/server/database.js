@@ -10,7 +10,6 @@ const pool = mysql.createPool({
 let sql = "SELECT * FROM user;";
 pool.execute(sql, function(err, results){
     if(err) throw err;
-
     //console.log(results);
 });
 
