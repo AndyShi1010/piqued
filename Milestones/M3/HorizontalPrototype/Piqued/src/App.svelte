@@ -5,6 +5,12 @@
     '/': wrap({
       asyncComponent: () => import('./views/Home.svelte'),
     }),
+    '/privacy': wrap({
+      asyncComponent: () => import('./views/Privacy.svelte'),
+    }),
+    '/terms': wrap({
+      asyncComponent: () => import('./views/TOS.svelte'),
+    }),
     '/login': wrap({
       asyncComponent: () => import('./views/Login.svelte'),
     }),
