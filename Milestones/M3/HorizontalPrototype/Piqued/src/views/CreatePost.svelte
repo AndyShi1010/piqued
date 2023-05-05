@@ -8,11 +8,22 @@
 
 <Nav />
 <PaddedPage>
-    <h1>Create Post</h1>
-    <Textfield>Title</Textfield>
+    <div class="page-container">
+        <h1>Create Post</h1>
+        <Textfield>Title</Textfield>
 
-    <PostEditor></PostEditor>
+        <PostEditor></PostEditor>
+    </div>
 </PaddedPage>
+
+<style>
+    .page-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 64px 0px;
+    }
+</style>
 
 
 
