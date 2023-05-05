@@ -12,23 +12,25 @@ app.get("/api/v1/hello", (_req, res) => {
   console.log("YAAAYY");
 });
 
-app.post("/api/search", (res, req) => {
+app.get("/api/search", (req, res) => {
+  console.log(req.query);
   let type = req.query.by;
   let query = req.query.q;
-  console.log(type, query);
-  console.log("Search Route");
+  res.json({message: "Hello World!"});
+  // console.log(type, query);
+  // console.log("Search Route");
 
-  let sql = ``;
-  db.execute(sql, function(err, results){
-    if(err) throw err;
-    if(results && results.length > 0){
-      res.send(JSON(results))
-      res.redirect("/#searchpage")
-    } else {
-      res.send(404);
-    }
-    console.log(results);
-  });
+  // let sql = ``;
+  // db.execute(sql, function(err, results){
+  //   if(err) throw err;
+  //   if(results && results.length > 0){
+  //     res.send(JSON(results))
+  //     res.redirect("/#searchpage")
+  //   } else {
+  //     res.send(404);
+  //   }
+  //   console.log(results);
+  // });
 
 })
 
