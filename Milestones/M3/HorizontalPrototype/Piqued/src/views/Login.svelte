@@ -6,7 +6,7 @@
     // export let data;
 
     function logIn() {
-        localStorage.setItem("logged", "true");
+        localStorage.setItem("logged", "false");
         localStorage.setItem("user", "TempUser");
     }
 </script>
