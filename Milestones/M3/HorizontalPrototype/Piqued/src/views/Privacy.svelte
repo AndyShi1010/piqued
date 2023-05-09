@@ -5,6 +5,9 @@
 
 <Navbar />
 <PaddedPage>
+    <br>
+    <h1>Privacy Policies : </h1>
+    <br>
     <h2 class="f5 cl-orange">Introduction</h2>
     <p>
         We at Piqued LLC respect the privacy of your personal information and, as
