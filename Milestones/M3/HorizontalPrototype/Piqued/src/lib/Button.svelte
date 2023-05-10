@@ -53,6 +53,7 @@
     .btn-primary {
         background-color: var(--accent-red-700);
         color: white;
+        box-shadow: inset 0px 1px 1px rgba(255,255,255,0.5), inset 0px -1px 1px rgba(0,0,0,0.2),0px 1px 1px rgba(0,0,0,0.2)
     }
     .btn-primary:hover {
         color: var(--primary-orange-700);
