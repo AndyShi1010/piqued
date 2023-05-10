@@ -33,7 +33,7 @@
                         </span>
                     </Button>
                     <MenuDropdown slot="dropdown">
-                        <MenuEntry to="/">
+                        <MenuEntry to="#/account">
                             <GearSix slot="leading-icon" size="{24}" weight="bold" />
                             <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
                             Account Settings
