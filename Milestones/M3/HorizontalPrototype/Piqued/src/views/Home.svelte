@@ -3,6 +3,7 @@
     import Card from "../lib/Card.svelte";
     import Nav from "../lib/Navbar.svelte";
     import PaddedPage from "../layouts/PaddedPage.svelte";
+    import Footer from "../lib/footer.svelte";
 
     const cardData = {
         card1: {
@@ -51,6 +52,7 @@
             <Card {...cardData.card2} />
             <Card {...cardData.card3} />
         </div>
+        <Footer />
     </div>
 </PaddedPage>
 
