@@ -37,7 +37,7 @@
         </div>
         {/if}
         <div class="readmore-button">
-            <Button to="#/Article" type="text">Read More</Button>
+            <Button to="/#/article" type="text">Read More</Button>
         </div>
         <!-- <a class="card-link" href={to}>Read More</a> -->
     </div>
