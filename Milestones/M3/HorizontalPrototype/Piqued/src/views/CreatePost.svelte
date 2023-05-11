@@ -1,6 +1,6 @@
 <script>
     import Nav from "../lib/Navbar.svelte";
-    import PaddedPage from "../layouts/PaddedPage.svelte";
+    import PageWithNav from "../layouts/PageWithNav.svelte";
     import Textfield from "../lib/Textfield.svelte";
     import PostEditor from "../lib/PostEditor.svelte";
     import Button from "../lib/Button.svelte";
@@ -8,18 +8,17 @@
 </script>
 
 
-<Nav />
-<PaddedPage>
-    <div class="page-container">
-        <h1>Create Post</h1>
-        <Textfield>Title</Textfield>
 
-        <PostEditor></PostEditor>
-        <div id="post-button">  
-            <Button type="primary" to="/" icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
-        </div>
+<div class="page-container">
+    <h1>Create Post</h1>
+    <Textfield>Title</Textfield>
+
+    <PostEditor></PostEditor>
+    <div id="post-button">  
+        <Button type="primary" to="/" icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
     </div>
-</PaddedPage>
+</div>
+
 
 <style>
     .page-container {

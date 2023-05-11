@@ -1,9 +1,14 @@
 <script>
     import { fade } from 'svelte/transition';
+    import Router, {location, link} from 'svelte-spa-router';
+    import Navbar from '../lib/Navbar.svelte';
+    export let routerComponent;
+	export let routes;
 </script>
 
-<div class="padded-page" in:fade="{{duration: 500}}">
-    <slot></slot>
+<Navbar />
+<div class="padded-page">
+    <svelte:component this={routerComponent} {routes} on:routeLoaded/>
 </div>
 
 
