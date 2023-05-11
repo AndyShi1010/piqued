@@ -3,7 +3,7 @@
     import PaddedPage from "../layouts/PaddedPage.svelte";
     import Footer from "../lib/Footer.svelte";
     import Navbar from "../lib/Navbar.svelte";
-    import Tag from "./Tag.svelte";
+    import Tag from "../lib/Tag.svelte";
 </script>
 
 <Navbar/>
