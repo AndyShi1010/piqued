@@ -1,4 +1,5 @@
 import mysql from 'mysql2';
+// const pgp = require("pg-promise")();
 
 const pool = mysql.createPool({
   host: 'database-2.cmvveapu2ri8.us-west-1.rds.amazonaws.com',
@@ -7,11 +8,11 @@ const pool = mysql.createPool({
   database: 'piquedDB',
 });
 
-let sql = "SELECT * FROM user;";
-pool.execute(sql, function(err, results){
-    if(err) throw err;
-    //console.log(results);
-});
+// let sql = "SELECT * FROM user;";
+// pool.execute(sql, function(err, results){
+//     if(err) throw err;
+//     console.log(results);
+// });
 
 
 pool.getConnection(function(err) {

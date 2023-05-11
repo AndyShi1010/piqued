@@ -9,6 +9,7 @@ import sessions from "express-session";
 import expressSession from "express-mysql-session";
 import cookieParser from 'cookie-parser';
 import db from "./database.js";
+const createError = require("http-errors");
 
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
@@ -19,17 +20,17 @@ const mysqlSessionStore = new store({/* Default Options*/},db);
 const port = process.env.PORT || 4000;
 
 const app = express();
-app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
-app.set('view engine', 'svelte');
+app.use(morgan('dev'));
+app.use(express.JSON());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+
+app.set('views', 'svelte');
 
 app.use(session({
   secret: 'piqued',
-  // resave: true,
+  resave: true,
   saveUninitialized: true
 } )); // session secret
 app.use(passport.initialize());
@@ -40,7 +41,7 @@ app.use(flash());
 app.use(cookieParser());
 app.use(sessions({
   key: "sid",
-  secret: "mau1PFR1cmh@ewv@hnb",
+  secret: "piqued",
   store: mysqlSessionStore,
   resave: false,
   cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
@@ -48,10 +49,10 @@ app.use(sessions({
 }));
 
 
-app.get("/api/v1/hello", (_req, res) => {
-  res.json({ message: "Hello, world!" });
-  console.log("YAAAYY");
-});
+// app.get("/api/v1/hello", (_req, res) => {
+//   res.json({ message: "Hello, world!" });
+//   console.log("YAAAYY");
+// });
 
 app.get("/api/search", (req, res) => {
   console.log(req.query);
@@ -62,20 +63,20 @@ app.get("/api/search", (req, res) => {
     by: type,
     query: query
   });
-  // console.log(type, query);
-  // console.log("Search Route");
+  console.log(type, query);
+  console.log("Search Route");
 
-  // let sql = ``;
-  // db.execute(sql, function(err, results){
-  //   if(err) throw err;
-  //   if(results && results.length > 0){
-  //     res.send(JSON(results))
-  //     res.redirect("/#searchpage")
-  //   } else {
-  //     res.send(404);
-  //   }
-  //   console.log(results);
-  // });
+  let sql = ``;
+  db.execute(sql, function(err, results){
+    if(err) throw err;
+    if(results && results.length > 0){
+      res.send(JSON(results))
+      res.redirect("/#/searchpage")
+    } else {
+      res.send(404);
+    }
+    console.log(results);
+  });
 
 })
 
@@ -104,24 +105,8 @@ app.listen(port, () => {
   console.log("Server listening on port", port);
 });
 
-// app.get("/api/search", (req, res) => {
-//   console.log(req.query);
-//   let type = req.query.by;
-//   let query = req.query.q;
-//   res.json({message: "Hello World!"});
-// console.log(type, query);
-// console.log("Search Route");
+app.use((request, response, next) => {
+  next(createError(404));
+});
 
-// let sql = ``;
-// db.execute(sql, function(err, results){
-//   if(err) throw err;
-//   if(results && results.length > 0){
-//     res.send(JSON(results))
-//     res.redirect("/#searchpage")
-//   } else {
-//     res.send(404);
-//   }
-//   console.log(results);
-// });
 
-// })

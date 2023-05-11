@@ -1,5 +1,5 @@
 import express from'express'
-import mysql from 'mysql2';
+import mysql from 'mysql';
 import passportLocal from 'passport-local'
 
 const app = express();
@@ -10,37 +10,37 @@ module.exports = function(app, passport) {
         res.render('Home.svelte');
     });
 
-    app.get('/login', function(req, res) {
+    app.get('/#/login', function(req, res) {
         res.render('Login.svelte', { message: req.flash('loginMessage') });
     });
 
-    app.post('/login', passport.authenticate('local-login', {
+    app.post('/#/login', passport.authenticate('local-login', {
             successRedirect : '/',
             failureRedirect : '/#/login',
             failureFlash : true
-        // }),
-        // function(req, res) {
-        //     console.log("hello");
-        //
-        //     if (req.body.remember) {
-        //         req.session.cookie.maxAge = 1000 * 60 * 3;
-        //     } else {
-        //         req.session.cookie.expires = false;
-        //     }
-        //     res.redirect('/');
-        }));
+        }),
+        function(req, res) {
+            console.log("hello");
+        
+            if (req.body.remember) {
+                req.session.cookie.maxAge = 1000 * 60 * 3;
+            } else {
+                req.session.cookie.expires = false;
+            }
+            res.redirect('/');
+        })
 
-    app.get('/signup', function(req, res) {
+    app.get('/#/signup', function(req, res) {
         res.render('Signup.svelte', { message: req.flash('signupMessage') });
     });
 
-    app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/#/signup', passport.authenticate('local-signup', {
         successRedirect : '/',
         failureRedirect : '/#/signup',
         failureFlash : true
     }));
 
-    app.get('/logout', function(req, res) {
+    app.get('/#/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
