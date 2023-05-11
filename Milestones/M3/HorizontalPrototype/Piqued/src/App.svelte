@@ -53,12 +53,13 @@
       console.log("fullscreen true");
     } else {
       fullscreen = false;
+      console.log("fullscreen false");
     }
   }
 </script>
 
 {#if fullscreen}
-<Router routes={routes} />
+<Router routes={routes} on:routeLoaded={routeChanged}/>
 {:else}
 <PageWithNav routes={routes} routerComponent={Router} on:routeLoaded={routeChanged}/>
 {/if}
