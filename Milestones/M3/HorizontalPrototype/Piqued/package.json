@@ -10,12 +10,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "prod": "npm run build && npm run dev:backend",
-    "prepare": "husky install"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.3",
     "@types/cookie-parser": "^1.4.3",
-    "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "nodemon": "^2.0.22",
     "svelte": "^3.57.0",
@@ -27,26 +25,17 @@
     "@tiptap/extension-placeholder": "^2.0.3",
     "@tiptap/pm": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
-<<<<<<< HEAD
-=======
     "bcrypt": "^5.1.0",
->>>>>>> dev
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-<<<<<<< HEAD
     "express": "^4.18.2",
     "express-mysql-session": "^3.0.0",
     "express-session": "^1.17.3",
     "http-errors": "^2.0.0",
-=======
     "esbuild": "^0.17.18",
-    "express": "^4.18.2",
-    "express-mysql-session": "^3.0.0",
-    "express-session": "^1.17.3",
->>>>>>> dev
     "morgan": "^1.10.0",
     "mysql2": "^3.2.4",
     "passport": "^0.6.0",
