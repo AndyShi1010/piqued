@@ -3,7 +3,7 @@
     import Card from "../lib/Card.svelte";
     import Nav from "../lib/Navbar.svelte";
     import PaddedPage from "../layouts/PaddedPage.svelte";
-    import Footer from "../lib/footer.svelte";
+    import Footer from "../lib/Footer.svelte";
 
     const cardData = {
         card1: {
@@ -41,7 +41,7 @@
 <PaddedPage>
     <div class="page-container">
         {#if logged == "true"}
-            <h2 style="margin-bottom: 32px;">You are now logged in.</h2>
+            <!-- <h2 style="margin-bottom: 32px;">You are now logged in.</h2> -->
         {/if}
         <div id="homepage-search">
             <Searchbar placeholder={"Browse"}/>
