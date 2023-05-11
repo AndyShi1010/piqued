@@ -11,7 +11,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --accent-red-100: #F8D3DD;
+  /* --accent-red-100: #F8D3DD;
   --accent-red-700: #BE1E4E;
   --accent-red-800: #92173C;
   --accent-red-900: #65102A;
@@ -23,8 +23,24 @@
 
   --neutral-pink-200: #DDBBC0;
   --neutral-pink-300: #CC99A3;
-  --neutral-pink-400: #BB7783;
+  --neutral-pink-400: #BB7783; */
 
+  --accent-red-100: #21C050;
+  --accent-red-700: #17893A;
+  --accent-red-800: #12692C;
+  --accent-red-900: #0f5023;
+
+  --primary-orange-100: #FFF7EB;
+  --primary-orange-700: #FFEDD0;
+  --primary-orange-800: #FFD899;
+  --primary-orange-900: #FFC870;
+
+  --neutral-pink-200: #BECEA1;
+  --neutral-pink-300: #A2B979;
+  --neutral-pink-400: #79934D;
+
+  --error-red-100: #fec0a8;
+  --error-red-700: #de3835;
   --pure-white: #ffffff;
 
   --gray-200: #CCCCCC;

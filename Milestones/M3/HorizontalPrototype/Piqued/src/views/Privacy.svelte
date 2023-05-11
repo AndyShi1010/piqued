@@ -1,7 +1,3 @@
-<script>
-    import Footer from "../lib/Footer.svelte";
-</script>
-
 <h1>Privacy Policies</h1>
 <br>
 <h2 class="f5 cl-orange">Introduction</h2>
@@ -1167,5 +1163,3 @@
 
 <style>
 </style>
-
-<Footer />

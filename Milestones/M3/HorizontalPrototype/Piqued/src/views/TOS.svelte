@@ -1,7 +1,3 @@
-<script>
-    import Footer from "../lib/Footer.svelte";
-
-</script>
 <h1>Terms of Services</h1>
 <br>
 <h3>1.  Acceptance The Use Of Piqued Terms and Conditions</h3>
@@ -85,5 +81,3 @@
 <h3>13.  OUR CONTACT DETAILS</h3>
 <p>Our Support Address: <a href="http://www.astudioofourown.com" target="_blank">http://www.astudioofourown.com</a></p>
 <br />
-
-<Footer/>

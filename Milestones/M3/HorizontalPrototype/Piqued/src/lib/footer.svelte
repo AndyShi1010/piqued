@@ -31,6 +31,9 @@
         gap: 8px;
         padding-top: 16px;
         padding-bottom: 16px;
+        background-color: var(--primary-orange-700);
+        border-top: 1px solid var(--neutral-pink-200);
+        box-sizing: border-box;
     }
     .links-container {
         display: flex;
