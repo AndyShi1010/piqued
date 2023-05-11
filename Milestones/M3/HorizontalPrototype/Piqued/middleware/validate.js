@@ -17,19 +17,19 @@ const regValidate = (req, res, next) =>{
     if(!checkUsername(username)){
         req.flash('error', "invalid username!");
         req.session.save(err => {
-            res.redirect("/registration");
+            res.redirect("/signup");
         })
     }
     else if(!checkEmail(email)){
         req.flash('error', "invalid email!");
         req.session.save(err=>{
-            res.redirect("/registration");
+            res.redirect("/signup");
         })
     }
     else if(!checkPassword(password)){
         req.flash('error', "invalid password!");
         req.session.save(err=>{
-            res.redirect("/registration");
+            res.redirect("/signup");
         })
     }
     else{

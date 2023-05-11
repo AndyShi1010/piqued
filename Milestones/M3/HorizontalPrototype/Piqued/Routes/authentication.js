@@ -24,7 +24,7 @@ router.post('/signup', (req, res, next) => {
     .then((userDoesNameExists) => {
       if (userDoesNameExists) {
         throw new UserError(
-          "Registration Failed: Username already exists",
+          "signup Failed: Username already exists",
           "/singup",
           200
         );
@@ -36,7 +36,7 @@ router.post('/signup', (req, res, next) => {
     .then((emailDoesExists) => {
       if (emailDoesExists) {
         throw new UserError(
-          "Registration Failed: Email already exists",
+          "signup Failed: Email already exists",
           "/signup",
           200
         );
