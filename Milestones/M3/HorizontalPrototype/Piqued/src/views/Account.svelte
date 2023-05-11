@@ -70,22 +70,40 @@
     <div id="username-dialog">
         <h2>Change Username</h2>
         <Textfield >New Username</Textfield>
+        <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
             <Button on:click={() => {usernameModal.closeClick()}}>Close</Button>
             <Button>Change Username</Button>
         </div>
     </div>
 </Dialog>
+
+
 <Dialog bind:this={fullNameModal}>
     <div id="fullname-dialog">
-        Change your full name here.
+        <h2>Change Full Name</h2>
+        <Textfield >New Full Name</Textfield>
+        <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
             <Button on:click={() => {fullNameModal.closeClick()}}>Close</Button>
             <Button>Change Full Name</Button>
         </div>
     </div>
 </Dialog>
+
 <Dialog bind:this={emailModal}>
+    <div id="email-dialog">
+        <h2>Change your Email here</h2>
+        <Textfield >New Email</Textfield>
+        <Textfield >Confirm Password</Textfield>
+        <div class="dialog-buttons">
+            <Button on:click={() => {emailModal.closeClick()}}>Close</Button>
+            <Button>Change Email</Button>
+        </div>
+    </div>
+</Dialog>
+
+<!-- <Dialog bind:this={emailModal}>
     <div id="email-dialog">
         Change your email here.
         <div class="dialog-buttons">
@@ -93,8 +111,22 @@
             <Button>Change Email</Button>
         </div>
     </div>
-</Dialog>
+</Dialog> -->
+
 <Dialog bind:this={passwordModal}>
+    <div id="password-dialog">
+        <h2>Change your Password here</h2>
+        <Textfield >Old Password</Textfield>
+        <Textfield >New Password</Textfield>
+        <Textfield >Confirm Password</Textfield>
+        <div class="dialog-buttons">
+            <Button on:click={() => {passwordModal.closeClick()}}>Close</Button>
+            <Button>Change Password</Button>
+        </div>
+    </div>
+</Dialog>
+
+<!-- <Dialog bind:this={passwordModal}>
     <div id="password-dialog">
         Change your password here.
         <div class="dialog-buttons">
@@ -103,7 +135,7 @@
         </div>
 
     </div>
-</Dialog>
+</Dialog> -->
 
 <style>
     .account-settings h1 {
