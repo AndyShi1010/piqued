@@ -42,23 +42,28 @@
 
 <!-- Styling -->
 <style>
-	:root {
+	/* :root {
 		padding: 10px;
-	}
-[contenteditable] {
+	} */
+/* [contenteditable] {
 	margin: 10px 0 0 0;
 	background: #eee;
 	padding: 20px;
-}
+} */
 	dialog {
 		border-radius: 8px;
 		border-width: 0px;
 		transition: all 2s;
 		padding: 32px;
+		box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
+		
+	}
+	dialog[open] {
+		animation: slide-in 0.5s;
 	}  
 	dialog::backdrop {
-    background-color: rgba(0,0,0,0.5);
-    animation: fade-in 1s;
+    background-color: rgba(0,0,0,0.25);
+    animation: fade-in 0.5s;
 }
 
 @keyframes fade-in {
@@ -68,5 +73,16 @@
     to {
         opacity: 1;
     }
+}
+
+@keyframes slide-in {
+	from {
+		opacity: 0;
+		transform: scale(0.8) translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
 }
 </style>
