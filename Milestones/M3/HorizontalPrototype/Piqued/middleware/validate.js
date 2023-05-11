@@ -10,7 +10,7 @@ const checkEmail = (email) => {
     let emailChecker = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailChecker.test(email);
 }
-const registerValidator = (req, res, next) =>{
+const regValidate = (req, res, next) =>{
     let username = req.body.username;
     let password = req.body.password;
     let email = req.body.email;
@@ -36,4 +36,4 @@ const registerValidator = (req, res, next) =>{
         next();
     }
 }
-module.exports = {registerValidator};
+module.exports = {regValidate};
