@@ -1,8 +1,6 @@
 <script>
     import Searchbar from "../lib/Searchbar.svelte";
     import Card from "../lib/Card.svelte";
-    import Nav from "../lib/Navbar.svelte";
-    import PageWithNav from "../layouts/PageWithNav.svelte";
     import Footer from "../lib/Footer.svelte";
 
     const cardData = {
@@ -54,10 +52,10 @@
 </div>
 
 <style>
-    .page-container {
+    /* .page-container {
         padding-top: 64px;
         padding-bottom: 64px;
-    }
+    } */
     h1 {
         font-family: var(--display-type);
         margin: 64px 0px 32px 0px;

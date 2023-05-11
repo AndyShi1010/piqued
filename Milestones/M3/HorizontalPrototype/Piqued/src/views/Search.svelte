@@ -1,6 +1,4 @@
 <script>
-    import Nav from "../lib/Navbar.svelte";
-    import PageWithNav from "../layouts/PageWithNav.svelte";
     import Searchbar from "../lib/Searchbar.svelte";
     import {location, querystring} from 'svelte-spa-router'
     import {parse} from 'qs'
@@ -90,10 +88,6 @@
 
 
 <style>
-    .container {
-        padding-top: 64px;
-        padding-bottom: 64px;
-    }
     .searchbar {
         margin-bottom: 64px;
     }

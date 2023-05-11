@@ -3,7 +3,6 @@
     import Checkbox from '../lib/Checkbox.svelte';
     import Textfield from '../lib/Textfield.svelte';
     import Button from '../lib/Button.svelte';
-    import PageWithNav from '../layouts/PageWithNav.svelte';
     import Menu from '../lib/Menu.svelte';
     import MenuEntry from '../lib/MenuEntry.svelte';
     import MenuDropdown from '../lib/MenuDropdown.svelte';

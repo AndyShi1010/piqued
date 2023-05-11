@@ -1,6 +1,4 @@
 <script>
-    import Nav from "../lib/Navbar.svelte";
-    import PageWithNav from "../layouts/PageWithNav.svelte";
     import Textfield from "../lib/Textfield.svelte";
     import PostEditor from "../lib/PostEditor.svelte";
     import Button from "../lib/Button.svelte";

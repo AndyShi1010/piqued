@@ -14,7 +14,8 @@
 
 <style>
     .padded-page {
-        padding-top: var(--header-height);
+        padding-top: calc(var(--header-height) + 64px);
+        padding-bottom: 64px;
         /* background-color: var(--secondary-accent-tint); */
         height: 100%;
         min-height: calc(100vh - var(--header-height));

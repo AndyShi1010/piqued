@@ -1,11 +1,4 @@
-<script>
-    import PageWithNav from "../layouts/PageWithNav.svelte";
-    import Navbar from "../lib/Navbar.svelte";
-</script>
-
-
-<br>
-<h1>Privacy Policies : </h1>
+<h1>Privacy Policies</h1>
 <br>
 <h2 class="f5 cl-orange">Introduction</h2>
 <p>

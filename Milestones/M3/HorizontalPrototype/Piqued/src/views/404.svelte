@@ -1,6 +1,4 @@
 <script>
-    import Nav from "../lib/Navbar.svelte";
-    import PaddedPage from "../layouts/PageWithNav.svelte";
     import Button from '../lib/Button.svelte';
     import { House } from 'phosphor-svelte'
 </script>
