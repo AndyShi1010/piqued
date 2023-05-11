@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../conf/database.js');
+var db = require('../database.js');
 const UserModel = require('../models/users.js');
-const userError = require('../helpers/error/userError.js');
-const { errorPrint, successPrint } = require('../helpers/debug/debugprint');
+const userError = require('../errorhandle/userError.js');
+const { errorPrint, successPrint } = require('../debug/debugprint');
 const { regValidate } = require('../middleware/validate.js');
 var bcrypt = require('bcrypt');
 

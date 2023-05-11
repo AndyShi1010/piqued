@@ -2,42 +2,40 @@ import express from "express";
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import passport from 'passport'
 import flash from 'connect-flash'
 import {resolveBaseUrl} from "vite";
 import sessions from "express-session";
 import expressSession from "express-mysql-session";
 import cookieParser from 'cookie-parser';
 import db from "./database.js";
-const createError = require("http-errors");
+import path from "path";
+import createError from "http-errors";
+import requestPrint from "./debug/debugprint";
 
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
-// import path from "path";
-
-// require('../configuration/passport.js')
 
 const port = process.env.PORT || 4000;
 
 const app = express();
 
+app.set("views", path.join(__dirname, "views"));
+app.use(flash());
+app.set("view engine", "svelte");
 app.use(morgan('dev'));
 app.use(express.JSON());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
-app.set('views', 'svelte');
+
 
 app.use(session({
   secret: 'piqued',
   resave: true,
   saveUninitialized: true
 } )); // session secret
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 
-// require('../Routes/authentication.js')(app, passport);
 app.use(cookieParser());
 app.use(sessions({
   key: "sid",
@@ -48,10 +46,17 @@ app.use(sessions({
   saveUninitialized: false
 }));
 
+app.use((req, res, next)=>{
+  requestPrint(req.url);
+  next();
+});
 
-// app.get("/api/v1/hello", (_req, res) => {
-//   res.json({ message: "Hello, world!" });
-//   console.log("YAAAYY");
+// app.get("/users", (req,res) =>{
+//   db.query("SELECT * FROM users")
+//   .then (([results, fields])=>{
+//     res.json(results);
+//   })
+//   .catch(err => res,json(err));
 // });
 
 app.get("/api/search", (req, res) => {
@@ -81,32 +86,33 @@ app.get("/api/search", (req, res) => {
 })
 
 
-
 app.use("/", express.static('dist'));
 
-app.use("/api/test", (req, res) => {
-  res.redirect('/#/test');
+// app.use("/#/test", (req, res) => {
+//   res.redirect('/test');
+// })
+
+app.use("/#/login", (req, res) => {
+  res.redirect('/login');
 })
 
-app.use("/api/login", (req, res) => {
-  res.redirect('/#/login');
+app.use("/#/signup", (req, res) => {
+  res.redirect('/signup');
 })
 
-app.use("/api/signup", (req, res) => {
-  res.redirect('/#/signup');
-})
 
-//connect to port
 app.use("/*", (req, res) => {
   res.redirect('/#/404');
 })
 
+//connect to port
 app.listen(port, () => {
   console.log("Server listening on port", port);
 });
 
-app.use((request, response, next) => {
-  next(createError(404));
-});
+// catch routing error
+app.use((req,res,next) => {
+  next(createError(404, `The route ${req.method} : ${req.url} does not exist.`));
+})
 
 
