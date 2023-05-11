@@ -1,7 +1,6 @@
 <script>
     import Searchbar from "../lib/Searchbar.svelte";
     import Card from "../lib/Card.svelte";
-    import Footer from "../lib/Footer.svelte";
 
     const cardData = {
         card1: {
@@ -48,7 +47,6 @@
         <Card {...cardData.card2} />
         <Card {...cardData.card3} />
     </div>
-    <Footer />
 </div>
 
 <style>

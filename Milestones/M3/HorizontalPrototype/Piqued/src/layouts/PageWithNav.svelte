@@ -2,6 +2,7 @@
     import { fade } from 'svelte/transition';
     import Router, {location, link} from 'svelte-spa-router';
     import Navbar from '../lib/Navbar.svelte';
+    import Footer from '../lib/Footer.svelte';
     export let routerComponent;
 	export let routes;
 </script>
@@ -10,6 +11,7 @@
 <div class="padded-page">
     <svelte:component this={routerComponent} {routes} on:routeLoaded/>
 </div>
+<Footer />
 
 
 <style>
@@ -18,9 +20,10 @@
         padding-bottom: 64px;
         /* background-color: var(--secondary-accent-tint); */
         height: 100%;
-        min-height: calc(100vh - var(--header-height));
+        min-height: 100vh;
         width: var(--page-width);
         margin: 0px auto;
+        box-sizing: border-box;
     }
 
     @media screen and (min-width: 1920px) {

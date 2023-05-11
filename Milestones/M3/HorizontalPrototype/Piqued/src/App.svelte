@@ -5,7 +5,7 @@
 
   let fullscreen = false;
 
-  let layoutRoutes = {
+  let routes = {
     '/': wrap({
       asyncComponent: () => import('./views/Home.svelte'),
     }),
@@ -29,26 +29,23 @@
       conditions: () => {
           return (localStorage.getItem('logged') == "true") ? true : false;
       }
-      
-    }), 
-    '*' : wrap({
-      asyncComponent: () => import('./views/404.svelte'),
-    })
-  };
-  let fullscreenRoutes = {
+    }),
     '/login': wrap({
       asyncComponent: () => import('./views/Login.svelte'),
     }),
     '/signup': wrap({
       asyncComponent: () => import('./views/Signup.svelte'),
-    }),
-    
-  }
+    }), 
+    '*' : wrap({
+      asyncComponent: () => import('./views/404.svelte'),
+    })
+  };
+  let fullscreenRoutes = ["/login", "/signup"]
 
   function routeChanged(e) {
     console.log(e);
     console.log(e.detail.location);
-    if (e.detail.location in fullscreenRoutes) {
+    if (fullscreenRoutes.includes(e.detail.location)) {
       fullscreen = true;
       console.log("fullscreen true");
     } else {
@@ -58,9 +55,9 @@
 </script>
 
 {#if fullscreen}
-<Router routes={fullscreenRoutes} />
+<Router routes={routes} />
 {:else}
-<PageWithNav routes={layoutRoutes} routerComponent={Router} on:routeLoaded={routeChanged}/>
+<PageWithNav routes={routes} routerComponent={Router} on:routeLoaded={routeChanged}/>
 {/if}
 
 

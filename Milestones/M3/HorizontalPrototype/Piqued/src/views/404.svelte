@@ -25,5 +25,6 @@
     }
     .container p {
         font-size: 18px;
+        margin-bottom: 32px;
     }
 </style>

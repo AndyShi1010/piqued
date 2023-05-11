@@ -4,13 +4,15 @@
         Piqued
         </a>
     </div>
-    <div class="logo-container">
+    <div class="links-container">
        <a href="/#/terms">
             Terms of Service 
         </a>
+        <p>•</p>
         <a href="#/privacy">
             Privacy Policy
         </a>
+        <p>•</p>
         <a href="#/account">
             Account
         </a>
@@ -20,12 +22,28 @@
     </div>
 </div>
 
-<!-- <style>
-    .page-container {
+<style>
+    .footer-container {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 16px;
-        margin: 64px 0px;
+        align-items: center;
+        gap: 8px;
+        padding-top: 16px;
+        padding-bottom: 16px;
     }
-</style> -->
+    .links-container {
+        display: flex;
+        gap: 16px;
+    }
+    .links-container a{
+        color: var(--black);
+        text-decoration: none;
+        font-family: var(--body-type);
+    }
+    .links-container a:hover {
+        color: var(--accent-red-700);
+        text-decoration: underline;
+    }
+</style>
 
