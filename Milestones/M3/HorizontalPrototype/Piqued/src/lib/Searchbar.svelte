@@ -1,20 +1,28 @@
 <script>
     import { MagnifyingGlass } from "phosphor-svelte"
+    import {push, replace} from 'svelte-spa-router'
 
     export let placeholder = "Search"
 
     export let value = "";
 
-    export let pageAction;
+    export let onsubmit = null;
 
     function searchSubmit(e) {
         console.log('Search Submit')
         const keyword = new FormData(e.target).get("search");
         console.log(keyword);
-        window.location.href = `/#/search?by=keyword&q=${keyword}`;
-        if (pageAction) {
-            pageAction();
+        console.log("Push");
+        if (keyword.toString().charAt(0) == "#") {
+            push(`/search?by=tag&q=${keyword.toString().substring(1)}`);
+        } else {
+            push(`/search?by=keyword&q=${keyword}`);
         }
+        //window.location.href = `/#/search?by=keyword&q=${keyword}`;
+        // if (onsubmit) {
+        //     console.log("Page Action")
+        //     onsubmit();
+        // }
         // window.location.reload();
         // let res = fetch(`/api/search?by=keyword&q=${keyword}`);
         // console.log(res);
@@ -24,7 +32,7 @@
 <div id="search">
     <form on:submit|preventDefault={searchSubmit}>
     <!-- <form action=""></form> -->
-        <input name="search" type="text" placeholder={placeholder} {value}>
+        <input name="search" type="text" placeholder={placeholder} bind:value={value}>
         <button type="submit">
             <MagnifyingGlass size="{24}" weight="bold"/>
         </button>
