@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../conf/database');
-const UserModel = require('../models/Users');
-const UserError = require('../helpers/error/UserError');
-const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
-const { regValidate } = require('../middleware/validate');
+var db = require('../conf/database.js');
+const UserModel = require('../models/users.js');
+const userError = require('../helpers/error/userError.js');
+const { errorPrint, successPrint } = require('../helpers/debug/debugprint');
+const { regValidate } = require('../middleware/validate.js');
 var bcrypt = require('bcrypt');
 
 
@@ -23,7 +23,7 @@ router.post('/signup', (req, res, next) => {
   UserModel.usernameExists(username)
     .then((userDoesNameExists) => {
       if (userDoesNameExists) {
-        throw new UserError(
+        throw new userError(
           "signup Failed: Username already exists",
           "/singup",
           200
@@ -35,8 +35,8 @@ router.post('/signup', (req, res, next) => {
     })
     .then((emailDoesExists) => {
       if (emailDoesExists) {
-        throw new UserError(
-          "signup Failed: Email already exists",
+        throw new userError(
+          "Signup Failed: Email already exists",
           "/signup",
           200
         );
@@ -47,7 +47,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then((createUserId) => {
       if (createUserId < 0) {
-        throw new UserError(
+        throw new userError(
           "Server Error, user could not be created",
           "/signup",
           500
@@ -64,7 +64,7 @@ router.post('/signup', (req, res, next) => {
     })
     .catch((err) => {
       errorPrint("User could not be made", err);
-      if (err instanceof UserError) {
+      if (err instanceof userError) {
         errorPrint(err.getMessage());
         req.flash('error', err.getMessage());
         res.status(err.getStatus());
@@ -95,12 +95,12 @@ router.post('/login', (req, res, next) => {
         })
       }
       else {
-        throw new UserError("Invalid username and/or password", "/login", 200);
+        throw new userError("Invalid username and/or password", "/login", 200);
       }
     })
     .catch((err) => {
       errorPrint("user login failed");
-      if (err instanceof UserError) {
+      if (err instanceof userError) {
         errorPrint(err.getMessage());
         req.flash('error', err.getMessage());
         res.status(err.getStatus());
