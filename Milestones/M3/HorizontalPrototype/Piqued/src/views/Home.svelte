@@ -1,8 +1,6 @@
 <script>
     import Searchbar from "../lib/Searchbar.svelte";
     import Card from "../lib/Card.svelte";
-    import Nav from "../lib/Navbar.svelte";
-    import PaddedPage from "../layouts/PaddedPage.svelte";
 
     const cardData = {
         card1: {
@@ -36,29 +34,26 @@
     const logged = localStorage.getItem('logged');
 </script>
 
-<Nav></Nav>
-<PaddedPage>
-    <div class="page-container">
-        {#if logged == "true"}
-            <h2 style="margin-bottom: 32px;">You are now logged in.</h2>
-        {/if}
-        <div id="homepage-search">
-            <Searchbar placeholder={"Browse"}/>
-        </div>
-        <h1>Highlights</h1>
-        <div class="card-container">
-            <Card {...cardData.card1} />
-            <Card {...cardData.card2} />
-            <Card {...cardData.card3} />
-        </div>
+<div class="page-container">
+    {#if logged == "true"}
+        <h2 style="margin-bottom: 32px;">You are now logged in.</h2>
+    {/if}
+    <div id="homepage-search">
+        <Searchbar placeholder={"Browse"}/>
     </div>
-</PaddedPage>
+    <h1>Highlights</h1>
+    <div class="card-container">
+        <Card {...cardData.card1} />
+        <Card {...cardData.card2} />
+        <Card {...cardData.card3} />
+    </div>
+</div>
 
 <style>
-    .page-container {
+    /* .page-container {
         padding-top: 64px;
         padding-bottom: 64px;
-    }
+    } */
     h1 {
         font-family: var(--display-type);
         margin: 64px 0px 32px 0px;

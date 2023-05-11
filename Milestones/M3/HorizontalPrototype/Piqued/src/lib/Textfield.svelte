@@ -80,8 +80,8 @@
         outline-offset: 0px;
     }
     .field-container.error {
-        border: 2px dashed var(--accent-red-700);
-        background-color: var(--accent-red-100);
+        border: 2px dashed var(--error-red-700);
+        background-color: var(--error-red-100);
         animation: bounce 0.2s 2 ease-in-out alternate;
     }
     .field-container .leading-icon {

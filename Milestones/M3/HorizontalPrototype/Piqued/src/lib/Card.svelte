@@ -1,7 +1,7 @@
 <script>
     import { TrendUp, MapPin } from "phosphor-svelte"
     // import { fade } from 'svelte/transition';
-	import Button from "./Button.svelte";
+    import Button from "./Button.svelte";
     import Tag from "./Tag.svelte";
 
     export let title;
@@ -11,9 +11,10 @@
     export let tags = [];
     export let to;
     export let img;
+    export let horizontal = false;
 </script>
 
-<div class="card">
+<div class="card {horizontal ? 'horizontal' : ''}">
     <img src={img} alt="" loading="lazy">
     <div class="card-body">
         {#if nearby || trending}
@@ -36,7 +37,7 @@
         </div>
         {/if}
         <div class="readmore-button">
-            <Button to={to} type="text">Read More</Button>
+            <Button to="/#/article" type="text">Read More</Button>
         </div>
         <!-- <a class="card-link" href={to}>Read More</a> -->
     </div>
@@ -48,6 +49,22 @@
         border-radius: 8px;
         box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.1);
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    div.card.horizontal {
+        flex-direction: row;
+    }
+    div.card.horizontal img {
+        width: 50%;
+        max-width: 340px;
+        aspect-ratio: 16 / 9;
+    }
+    div.card.horizontal .card-body {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     div.card-body {
         padding: 24px;

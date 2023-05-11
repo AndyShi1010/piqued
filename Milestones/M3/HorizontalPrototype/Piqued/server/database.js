@@ -8,11 +8,19 @@ const pool = mysql.createPool({
   database: 'piquedDB',
 });
 
+<<<<<<< HEAD
 // let sql = "SELECT * FROM user;";
 // pool.execute(sql, function(err, results){
 //     if(err) throw err;
 //     console.log(results);
 // });
+=======
+let sql = "SELECT * FROM user;";
+pool.execute(sql, function(err, results){
+    if(err) throw err;
+    console.log(results);
+});
+>>>>>>> dev
 
 
 pool.getConnection(function(err) {

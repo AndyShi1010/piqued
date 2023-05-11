@@ -1,5 +1,5 @@
 <script>
-    export let type
+    export let type = "tag"
     export let to = ""
 </script>
 

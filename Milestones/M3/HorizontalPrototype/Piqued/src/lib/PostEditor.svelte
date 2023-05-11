@@ -1,21 +1,26 @@
 <script>
     import { onMount, onDestroy } from 'svelte'
     import { Editor } from '@tiptap/core'
+    import { Placeholder } from '@tiptap/extension-placeholder'
     import StarterKit from '@tiptap/starter-kit'
-    import { TextItalic, TextStrikethrough, TextBolder, TextT, TextHOne, TextHTwo, PaperPlaneTilt} from 'phosphor-svelte';
+    import { TextItalic, TextStrikethrough, TextBolder, TextT, TextHOne, TextHTwo} from 'phosphor-svelte';
     import Button from './Button.svelte';
   
   
     let element
     let editor
+    export let data = ""
   
     onMount(() => {
+      
       editor = new Editor({
         element: element,
         extensions: [
           StarterKit,
+          Placeholder.configure({
+            placeholder: 'Write your story...',
+          })
         ],
-        content: '<p>Write your story.. </p>',
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
           editor = editor
@@ -30,8 +35,8 @@
     })
   </script>
   
+  <div class="editor-container">
   {#if editor}
-    <div class="editor-container">
       <div class="toolbar">
 
       <button
@@ -76,15 +81,17 @@
       >
       <TextStrikethrough size={24} weight="bold"/>
       </button>
+      <button
+        on:click={() => {console.log(editor.getJSON())}}
+        class:active={editor.isActive('strike')}
+      >
+      Save
+      </button>
     </div>
-  </div>
+    {/if}
+    <div class="editor" bind:this={element} />
+</div>
 
-  {/if}
-  
-  <div class="editor" bind:this={element} />
-
-  <div id="post-button">  <Button type="primary" to="/" icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
-  </div>
 
   
   <style>
@@ -97,27 +104,23 @@
       margin-bottom: 0px;
     }
     button.active {
-      background: var(--accent-red-700);
-      color: white;
+      /* background: var(--accent-red-700);
+      color: white; */
+      border: 2px solid var(--accent-red-700);
     }
     .toolbar {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 4px;
+      margin-bottom: 16px;
     }
     .editor {
       background-color: var(--primary-orange-700);
-      min-height: 512px;
-      height: auto;
+      height: 100%;
       padding: 24px;
       border: none;
       border-radius: 16px;
-    }
-    #post-button {
-      margin-left: auto;
-      width: fit-content;
-      margin-top: 16px;
     }
     .separator {
       display: inline-block;
@@ -129,5 +132,20 @@
     }
     .editor h1 {
       line-height: 1.5;
+    }
+    .editor :global(.ProseMirror) {
+      min-height: 128px;
+      /* resize: vertical; */
+      /* overflow: auto; */
+    }
+    .editor :global(.ProseMirror:focus) {
+      outline: none;
+    }
+    .editor :global(.ProseMirror p.is-editor-empty:first-child::before) {
+      color: var(--gray-600);
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
     }
   </style>
