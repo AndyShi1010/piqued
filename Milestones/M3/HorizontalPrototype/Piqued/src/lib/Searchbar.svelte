@@ -75,6 +75,7 @@
         height: 52px;
         width: 52px;
         padding: 14px;
+        transition: background-color 0.25s, color 0.25s;
     }
     #search input:focus ~ button {
         background-color: var(--accent-red-700);

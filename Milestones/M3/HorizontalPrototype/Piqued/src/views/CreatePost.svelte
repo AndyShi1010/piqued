@@ -23,7 +23,6 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        margin: 64px 0px;
     }
     #post-button {
       margin-left: auto;

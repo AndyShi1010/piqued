@@ -57,6 +57,7 @@
     }
     div.card.horizontal img {
         width: 50%;
+        max-width: 340px;
         aspect-ratio: 16 / 9;
     }
     div.card.horizontal .card-body {

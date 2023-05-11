@@ -11,12 +11,20 @@
         localStorage.setItem("logged", "false");
     }
     
+
+    let scroll;
+    const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
+    console.log(scrollY, navHeight)
+
+    
+    
 </script>
 
-<div id="nav">
+<div id="nav" class="{(scroll >= navHeight) ? "full-width" : ""}">
     <div id="nav-container">
+        
         <a id="logo" href="/">
-            Piqued
+            <img src="../img/PiquedLogoG.svg" alt="logo"/>
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
@@ -70,18 +78,24 @@
     
 </div>
 
+<svelte:window bind:scrollY={scroll} />
+
 <style>
     div#nav {
         /* border-bottom: 1px solid black; */
         height: var(--header-height);
         width: 100%;
-        background-color: var(--primary-orange-700);
         position: fixed;
-        border-bottom: 1px solid var(--neutral-pink-200);
         box-sizing: border-box;
         z-index: 10;
+        transition: background-color 0.25s, border-bottom 0.25s;
+    }
+    div#nav.full-width {
+        background-color: var(--primary-orange-700);
+        border-bottom: 1px solid var(--neutral-pink-200);
     }
     #nav #nav-container {
+        padding: 0px 16px;
         margin: 0px auto;
         height: 100%;
         width: var(--page-width);
@@ -89,11 +103,13 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        background-color: var(--primary-orange-200);
+        border-bottom: 1px solid var(--neutral-pink-200);
 
     }
     a#logo {
-        width: 120px;
-        height: 100%;
+        width: auto;
+        height: 36px;
         /* border: 1px solid black; */
         display: flex;
         align-items: center;
@@ -102,6 +118,14 @@
         color: var(--accent-red-700);
         font-size: 18px;
         text-decoration: none;
+        padding: 0px 16px;
+    }
+    #logo img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        color: gray;
+        user-select: none;
     }
     div#action-buttons {
         display: flex;

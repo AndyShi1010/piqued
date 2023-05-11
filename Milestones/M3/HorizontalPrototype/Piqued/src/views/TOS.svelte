@@ -1,34 +1,30 @@
 <h1>Terms of Services</h1>
 <br>
-<h3>1.  Acceptance The Use Of Piqued Terms and Conditions</h3>
+<h2>1.  Acceptance The Use Of Piqued Terms and Conditions</h2>
 <p>Your access to and use of Piqued (the app) is subject exclusively to these Terms and Conditions. You will not use the app for any purpose that is unlawful or prohibited by these Terms and Conditions. By using the app you are fully accepting the terms, conditions and disclaimers contained in this notice. If you do not accept these Terms and Conditions you must immediately stop using the app.</p>
-<br />
 
-<h3>2.  CREDIT CARD DETAILS</h3>
+<h2>2. Credit Card Details</h2>
 <p>All Piqued purchases are managed by the individual App Stores (Apple, Google Windows) and Piqued will never store your credit card information or make it available to any third parties. Any purchasing information provided will be provided directly from you to the respective App Store and you will be subject to their credit card policies.</p>
-<br />
 
-<h3>3.  LEGAL ADVICE</h3>
+<h2>3.  Legal Advice</h2>
 <p>
     The contents of Piqued app do not constitute advice and should not be relied upon in making or refraining from making, any decision. <br />
     All material contained on Piqued is provided without any or warranty of any kind. You use the material on Piqued at your own discretion
 </p>
-<br />
 
-<h3>4.  CHANGE OF USE</h3>
+<h2>4.  Change of Use</h2>
 <p>
     Piqued reserves the right to:<br />
     <ul>
         <li>4.1  change or remove (temporarily or permanently) the app or any part of it without notice and you confirm that Piqued shall not be liable to you for any such change or removal and.</li>
         <li>4.2  change these Terms and Conditions at any time, and your continued use of the app following any changes shall be deemed to be your acceptance of such change.</li>
     </ul>
-<br />
 
-<h3>5.  Links to Third Party apps and websites</h3>
+<h2>5.  Links to Third Party Apps and Websites</h2>
 <p>Piqued app may include links to third party apps and websites that are controlled and maintained by others. Any link to other apps and websites is not an endorsement of such and you acknowledge and agree that we are not responsible for the content or availability of any such apps and websites.</p>
-<br />
 
-<h3>6.  COPYRIGHT</h3>
+
+<h2>6.  Copyright</h2>
 <p>
     <ul>
         <li>6.1  All copyright, trade marks and all other intellectual property rights in the app and its content (including without limitation the app design, text, graphics and all software and source codes connected with the app) are owned by or licensed to Piqued or otherwise used by Piqued as permitted by law.</li>
@@ -36,7 +32,7 @@
     </ul>
 <br />
 
-<h3>7.  LINKS TO AND FROM OTHER apps and websites</h3>
+<h2>7.  Links to and from Other Apps and Websites</h2>
 <p>
     <ul>
         <li>7.1  Throughout this app you may find links to third party apps. The provision of a link to such an app does not mean that we endorse that app. If you visit any app via a link in this app you do so at your own risk.</li>
@@ -52,7 +48,7 @@
     </ul>
 <br />
 
-<h3>8.   DISCLAIMERS AND LIMITATION OF LIABILITY</h3>
+<h2>8.   Disclaimers and Limitations of Liability</h2>
 <p>
     <ul>
         <li>8.1  The app is provided on an AS IS and AS AVAILABLE basis without any representation or endorsement made and without warranty of any kind whether express or implied, including but not limited to the implied warranties of satisfactory quality, fitness for a particular purpose, non-infringement, compatibility, security and accuracy.</li>
@@ -62,22 +58,33 @@
     </ul>
 <br />
 
-<h3>9.  INDEMNITY</h3>
+<h2>9.  Indemnity</h2>
 <p>You agree to indemnify and hold Piqued and its employees and agents harmless from and against all liabilities, legal fees, damages, losses, costs and other expenses in relation to any claims or actions brought against Piqued arising out of any breach by you of these Terms and Conditions or other liabilities arising out of your use of this app.</p>
 <br />
 
-<h3>10.  SEVERANCE</h3>
+<h2>10.  Severance</h2>
 <p>If any of these Terms and Conditions should be determined to be invalid, illegal or unenforceable for any reason by any court of competent jurisdiction then such Term or Condition shall be severed and the remaining Terms and Conditions shall survive and remain in full force and effect and continue to be binding and enforceable.</p>
 <br />
 
-<h3>11.  WAIVER</h3>
+<h2>11.  Waiver</h2>
 <p>If you breach these Conditions of Use and we take no action, we will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use.</p>
 <br />
 
-<h3>12.  GOVERNING LAW</h3>
+<h2>12.  Governing Law</h2>
 <p>These Terms and Conditions shall be governed by and construed in accordance with the law of and you hereby submit to the exclusive jurisdiction of the courts.</p>
 <br />
 
-<h3>13.  OUR CONTACT DETAILS</h3>
-<p>Our Support Address: <a href="http://www.astudioofourown.com" target="_blank">http://www.astudioofourown.com</a></p>
+<h2>13.  Contact Details</h2>
+<p>
+    Contact: Privacy Officer<br />Email:
+    <a href="mailto:legal@piqued.com">legal@piqued.com</a><br />Office:
+    165 11th St, San Francisco, CA 94103
+</p>
 <br />
+
+<style>
+    p {
+        margin-block-start: 12px;
+        margin-block-end: 12px;
+    }
+</style>
