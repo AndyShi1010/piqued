@@ -3,6 +3,7 @@
     import Card from "../lib/Card.svelte";
     import {location, querystring} from 'svelte-spa-router'
     import {parse} from 'qs'
+    import {fade} from 'svelte/transition'
 
     import { onMount } from "svelte";
 
@@ -56,16 +57,19 @@
     });
 
     function performSearch(by, query) {
-
+        loading = true;
         // let pageHref = $querystring;
         console.log("Perform search", by, query);
-        fetch(`/api/search?by=${by}&q=${query}`)
-        .then(response => response.json())
-        .then(json => {
-            let resJson = JSON.stringify(json);
-            console.log(resJson);
-            results = resJson;
-        })
+        setTimeout(() => {
+            fetch(`/api/search?by=${by}&q=${query}`)
+            .then(response => response.json())
+            .then(json => {
+                let resJson = JSON.stringify(json);
+                console.log(resJson);
+                results = resJson;
+                loading = false;
+            })
+        } , 2000);
         
         // let queries = pageHref.substring(pageHref.indexOf('?'));
         // console.log(queries)
@@ -116,7 +120,7 @@
     </div>
     <h1 style="color: #0f5023">Results</h1>
     {#if loading}
-        <div class="skeleton-loader">
+        <div class="skeleton-loader" transition:fade>
             <div></div>
             <div></div>
             <div></div>
