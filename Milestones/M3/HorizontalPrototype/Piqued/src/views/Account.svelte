@@ -7,24 +7,6 @@
 	let usernameModal;
 	let emailModal;
 	let passwordModal;
-    
-    // const editUsername = () => {
-    //     console.log("Edit username");
-	// 	usernameModal.showDialogClick();
-	// };
-    // const editFullName = () => {
-    //     console.log("Edit full name");
-	// 	fullNameModal.showDialogClick();
-	// };
-    // const editEmail = () => {
-    //     console.log("Edit email");
-	// 	emailModal.showDialogClick();
-	// };
-    // const editPassword = () => {
-    //     console.log("Edit password");
-	// 	passwordModal.showDialogClick();
-	// };
-
 </script>
 
 
@@ -103,16 +85,6 @@
     </div>
 </Dialog>
 
-<!-- <Dialog bind:this={emailModal}>
-    <div id="email-dialog">
-        Change your email here.
-        <div class="dialog-buttons">
-            <Button on:click={() => {emailModal.closeClick()}}>Close</Button>
-            <Button>Change Email</Button>
-        </div>
-    </div>
-</Dialog> -->
-
 <Dialog bind:this={passwordModal}>
     <div id="password-dialog">
         <h2>Change your Password here</h2>
@@ -125,17 +97,6 @@
         </div>
     </div>
 </Dialog>
-
-<!-- <Dialog bind:this={passwordModal}>
-    <div id="password-dialog">
-        Change your password here.
-        <div class="dialog-buttons">
-            <Button on:click={() => {passwordModal.closeClick()}}>Close</Button>
-            <Button>Change Password</Button>
-        </div>
-
-    </div>
-</Dialog> -->
 
 <style>
     .account-settings h1 {
@@ -161,15 +122,6 @@
         flex-direction: column;
         gap: 16px; 
     }
-    /* dialog {
-		height: 250px;
-		border-radius: 5px;
-		border-width: 1px;
-		transition: all 2s;
-	}  
-	dialog::backdrop {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
-    animation: fade-in 1s;
-} */
+    
 </style>
 
