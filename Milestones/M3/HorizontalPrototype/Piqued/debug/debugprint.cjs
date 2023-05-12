@@ -15,9 +15,9 @@ const printers = {
         console.log(colors.success(message));
     },
 
-    requestPrint: (message) => {
-        console.log(colors.request(message));
-    }
+    // requestPrint: (message) => {
+    //     console.log(colors.request(message));
+    // }
 }
 
 module.exports = printers;

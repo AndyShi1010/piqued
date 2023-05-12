@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../database.js');
 const UserModel = require('../models/users.js');
 const userError = require('../errorhandle/userError.js');
-const { errorPrint, successPrint } = require('../debug/debugprint');
+const { errorPrint, successPrint } = require('../debug/debugprint.cjs');
 const { regValidate } = require('../middleware/validate.js');
 var bcrypt = require('bcrypt');
 

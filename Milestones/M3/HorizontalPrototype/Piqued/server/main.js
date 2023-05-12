@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import db from "./database.js";
 import path from "path";
 import createError from "http-errors";
-import requestPrint from "./debug/debugprint";
+// import requestPrint from "../debug/debugprint.cjs";
 
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
@@ -19,16 +19,18 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-app.set("views", path.join(__dirname, "views"));
 app.use(flash());
 app.set("view engine", "svelte");
 app.use(morgan('dev'));
-app.use(express.JSON());
+app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-
+// app.use((req, res, next)=>{
+//   requestPrint(req.url);
+//   next();
+// });
 
 app.use(session({
   secret: 'piqued',
@@ -46,10 +48,6 @@ app.use(sessions({
   saveUninitialized: false
 }));
 
-app.use((req, res, next)=>{
-  requestPrint(req.url);
-  next();
-});
 
 // app.get("/users", (req,res) =>{
 //   db.query("SELECT * FROM users")
