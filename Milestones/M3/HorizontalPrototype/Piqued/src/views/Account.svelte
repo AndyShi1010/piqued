@@ -93,7 +93,7 @@
 
 <Dialog bind:this={emailModal}>
     <div id="email-dialog">
-        <h2>Change your Email here</h2>
+        <h2>Change Email</h2>
         <Textfield >New Email</Textfield>
         <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
@@ -115,7 +115,7 @@
 
 <Dialog bind:this={passwordModal}>
     <div id="password-dialog">
-        <h2>Change your Password here</h2>
+        <h2>Change Password</h2>
         <Textfield >Old Password</Textfield>
         <Textfield >New Password</Textfield>
         <Textfield >Confirm Password</Textfield>

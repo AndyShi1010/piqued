@@ -12,7 +12,7 @@
 
     export let textValue = "";
 
-    export let elem;
+    export let elem = undefined;
 </script>
 
 <div>

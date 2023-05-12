@@ -56,14 +56,14 @@
 		transition: all 2s;
 		padding: 32px;
 		box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
-		
+		background-color: var(--primary-orange-100);
 	}
 	dialog[open] {
-		animation: slide-in 0.5s;
+		animation: slide-in 0.3s;
 	}  
 	dialog::backdrop {
     background-color: rgba(0,0,0,0.25);
-    animation: fade-in 0.5s;
+    animation: fade-in 0.3s;
 }
 
 @keyframes fade-in {
@@ -78,11 +78,11 @@
 @keyframes slide-in {
 	from {
 		opacity: 0;
-		transform: scale(0.8) translateY(-10px);
+		transform: translateY(-20px);
 	}
 	to {
 		opacity: 1;
-		transform: scale(1) translateY(0);
+		transform: translateY(0);
 	}
 }
 </style>
