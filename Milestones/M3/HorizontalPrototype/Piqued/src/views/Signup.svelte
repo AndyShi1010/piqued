@@ -76,7 +76,7 @@
                 </div>
             </form>
             <p>Already have an account? <a href="/#/login">Log In!</a></p>
-            <p>By clicking Sign Up you our agreeing to our <a href="/#/terms">Terms of Service</a> and <a href="/#/privacy">Privacy Policy</a>.</p>
+            <p>By clicking Sign Up you are agreeing to our <a href="/#/terms">Terms of Service</a> and <a href="/#/privacy">Privacy Policy</a>.</p>
             <div class="signup-button">
                 <Button on:click={signUp} to="/" icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Sign Up</Button>
             </div>
