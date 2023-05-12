@@ -4,6 +4,7 @@
     import Menu from '../lib/Menu.svelte';
     import MenuEntry from '../lib/MenuEntry.svelte';
     import MenuDropdown from '../lib/MenuDropdown.svelte';
+    import { onMount } from "svelte";
     const logged = localStorage.getItem('logged');
     const userName = localStorage.getItem('user');
 
@@ -12,15 +13,25 @@
     }
     
 
-    let scroll;
-    const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
-    console.log(scrollY, navHeight)
+    let scroll
+    let nav
+    let navHeight
+
+    onMount(() => {
+        navHeight = parseInt(nav.offsetHeight);
+        // console.log(scroll, navHeight);
+    }) 
+    
+
+    function onScroll() {
+        console.log(scroll, navHeight);
+    }
 
     
     
 </script>
 
-<div id="nav" class="{(scroll >= navHeight) ? "full-width" : ""}">
+<div id="nav" class="{(scroll >= navHeight) ? "full-width" : ""}" bind:this={nav}>
     <div id="nav-container">
         
         <a id="logo" href="/">

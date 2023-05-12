@@ -5,9 +5,44 @@
     // /** @type {import('./$types').PageData} */
     // export let data;
 
+    let fullnameElem;
+    let usernameElem;
+    let emailElem;
+    let passwordElem;
+    let passwordConfirmElem;
+
+    // let emailElemVal = "";
+    let showEmailError = false;
+
+    let emailValid = false;
+    let usernameValid = false;
+    let passwordValid = false;
+    let passwordMatch = false;
+
+    let emailError = "Email is invalid";
+
     function signUp() {
         localStorage.setItem("logged", "true");
         localStorage.setItem("user", "SignedUpUser");
+    }
+
+    function validateEmail() {
+        // console.log(emailElemVal);
+        if (emailElem.checkValidity()) {
+            emailValid = true;
+        } else {
+            emailValid = false;
+            emailError = emailElem.validationMessage;
+            showEmailError = true;
+        }
+    }
+
+    function validateUsername() {
+        
+    }
+
+    function print() {
+        console.log(emailElem.value, emailElem.validationMessage);
     }
 </script>
 
@@ -21,19 +56,23 @@
             <h1>Sign Up</h1>
             <form action="">
                 <div class="textfield-container">
-                    <Textfield type="text">Full Name</Textfield>
+                    <Textfield type="text" bind:elem={fullnameElem}>Full Name</Textfield>
                 </div>
                 <div class="textfield-container">
-                    <Textfield type="email">Email</Textfield>
+                    <Textfield type="email" bind:elem={emailElem} on:change={validateEmail}>Email</Textfield>
+                    {#if (!emailValid) && (showEmailError)}
+                        {emailError}
+                    {/if}
+
                 </div>
                 <div class="textfield-container">
-                    <Textfield type="text">Username</Textfield>
+                    <Textfield type="text" bind:elem={usernameElem}>Username</Textfield>
                 </div>
                 <div class="textfield-container">
-                    <Textfield  type="password">Password</Textfield>
+                    <Textfield  type="password" bind:elem={passwordElem}>Password</Textfield>
                 </div>
                 <div class="textfield-container">
-                    <Textfield type="password">Confirm Password</Textfield>
+                    <Textfield type="password" bind:elem={passwordConfirmElem}>Confirm Password</Textfield>
                 </div>
             </form>
             <p>Already have an account? <a href="/#/login">Log In!</a></p>

@@ -4,14 +4,15 @@
     export let error = false;
     export let disabled = false;
     export let colorway = "regular"
+    export let required = false;
     // export let iconLeft = false;
     // export let iconRight = false;
     
     let filled;
 
     export let textValue = "";
-    
 
+    export let elem = undefined;
 </script>
 
 <div>
@@ -30,19 +31,19 @@
             <slot></slot>
         </span>
         {#if type == "text"}
-            <input type="text" bind:value={textValue} {disabled}>
+            <input type="text" bind:value={textValue} {disabled} bind:this={elem} on:change {required}>
         {:else if type == "password"}
-            <input type="password" bind:value={textValue} {disabled}>
+            <input type="password" bind:value={textValue} {disabled} bind:this={elem} on:change {required}>
         {:else if type == "email"}
-            <input type="email" bind:value={textValue} {disabled}> 
+            <input type="email" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
         {:else if type == "date"}
-            <input type="date" bind:value={textValue} {disabled}> 
+            <input type="date" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
         {:else if type == "tel"}
-            <input type="tel" bind:value={textValue} {disabled}> 
+            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
         {:else if type == "time"}
-            <input type="tel" bind:value={textValue} {disabled}> 
+            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
         {:else} 
-            <input bind:value={textValue} {disabled}> 
+            <input bind:value={textValue} {disabled} bind:this={elem} on:change> 
         {/if}
         
         <span class="trailing-icon" on:click>
