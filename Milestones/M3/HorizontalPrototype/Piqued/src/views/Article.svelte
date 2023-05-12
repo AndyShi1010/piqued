@@ -1,6 +1,6 @@
 <script>
     import Button from "../lib/Button.svelte";
-import Footer from "../lib/Footer.svelte";
+    import Footer from "../lib/Footer.svelte";
     import Tag from "../lib/Tag.svelte";
 </script>
 
@@ -9,8 +9,8 @@ import Footer from "../lib/Footer.svelte";
     <div class=post-title>
         <h1>Post Title</h1>
         <div class="tags">
-            <Tag>card-tag1</Tag>
-            <Tag>card-tag2</Tag>
+            <Tag type="tag">card-tag1</Tag>
+            <Tag type="tag">card-tag2</Tag>
         </div>
     </div>
     <!-- Article information -->
@@ -31,5 +31,3 @@ import Footer from "../lib/Footer.svelte";
         <h1>Comments</h1>
     </div>
 </div>
-
-<Footer/>

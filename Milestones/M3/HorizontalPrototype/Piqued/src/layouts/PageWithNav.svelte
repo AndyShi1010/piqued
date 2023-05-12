@@ -9,7 +9,7 @@
 
 <Navbar />
 <div class="padded-page">
-    <svelte:component this={routerComponent} {routes} on:routeLoaded/>
+    <svelte:component this={routerComponent} {routes} on:routeLoaded on:conditionsFailed/>
 </div>
 <Footer />
 

@@ -1,6 +1,7 @@
 <script>
   import Router from 'svelte-spa-router';
   import {wrap} from 'svelte-spa-router/wrap';
+  import {replace} from 'svelte-spa-router'
   import PageWithNav from './layouts/PageWithNav.svelte';
 
   let fullscreen = false;
@@ -23,13 +24,16 @@
     }),
     '/account': wrap({
       asyncComponent: () => import('./views/Account.svelte'),
+      conditions: (detail) => {
+          return (localStorage.getItem('logged') == "true") ? true : false;
+      }
     }),
     '/article': wrap({
       asyncComponent: () => import('./views/Article.svelte'),
     }),
     '/post': wrap({
       asyncComponent: () => import('./views/CreatePost.svelte'),
-      conditions: () => {
+      conditions: (detail) => {
           return (localStorage.getItem('logged') == "true") ? true : false;
       }
     }),
@@ -46,8 +50,8 @@
   let fullscreenRoutes = ["/login", "/signup"]
 
   function routeChanged(e) {
-    console.log(e);
-    console.log(e.detail.location);
+    // console.log(e);
+    // console.log(e.detail.location);
     if (fullscreenRoutes.includes(e.detail.location)) {
       fullscreen = true;
       console.log("fullscreen true");
@@ -56,12 +60,17 @@
       console.log("fullscreen false");
     }
   }
+
+  function conditionsFailed(event) {
+    console.log('conditionsFailed event', event.detail)
+    replace('/login');
+  }
 </script>
 
 {#if fullscreen}
-<Router routes={routes} on:routeLoaded={routeChanged}/>
+<Router routes={routes} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged} />
 {:else}
-<PageWithNav routes={routes} routerComponent={Router} on:routeLoaded={routeChanged}/>
+<PageWithNav routes={routes} routerComponent={Router} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged}/>
 {/if}
 
 
