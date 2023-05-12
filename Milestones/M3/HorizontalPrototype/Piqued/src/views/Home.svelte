@@ -64,12 +64,13 @@
 
 <div class="page-container">  
     {#if logged == "true" && showHeading}
-        <h2 style="margin-bottom: 32px; text-align: center; color: #21C050">You are now logged in.</h2>
+        <h2 style="margin-bottom: 32px; text-align: center; color: #0f5023">You are logged in.</h2>
     {/if}
     <div id="homepage-search">
         <Searchbar placeholder={"Browse"}/>
     </div>
     <h1>Highlights</h1>
+    
     <div class="card-container">
         <Card {...cardData.card1} />
         <Card {...cardData.card2} />

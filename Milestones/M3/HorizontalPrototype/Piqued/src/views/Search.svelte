@@ -114,7 +114,7 @@
     <div class="searchbar">
         <Searchbar onsubmit={() => {performSearch(searchTerm)}} bind:value={searchTerm}/>
     </div>
-    <h1>Results</h1>
+    <h1 style="color: #0f5023">Results</h1>
     {#if loading}
         <div class="skeleton-loader">
             <div></div>
