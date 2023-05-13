@@ -1,6 +1,6 @@
 <script>
     import { TrendUp, MapPin } from "phosphor-svelte"
-    // import { fade } from 'svelte/transition';
+    import { fade } from 'svelte/transition';
     import Button from "./Button.svelte";
     import Tag from "./Tag.svelte";
 
@@ -12,9 +12,11 @@
     export let to;
     export let img;
     export let horizontal = false;
+
+    export let index = 0;
 </script>
 
-<div class="card {horizontal ? 'horizontal' : ''}">
+<div class="card {horizontal ? 'horizontal' : ''}" in:fade="{{duration: 500, delay: index * 100}}">
     <img src={img} alt="" loading="lazy">
     <div class="card-body">
         {#if nearby || trending}
@@ -32,7 +34,7 @@
         {#if tags.length !=0}
         <div class="card-tags">
             {#each tags as t}
-                <Tag type="hashtag">{t}</Tag>
+                <Tag type="hashtag" to="/#/search?by=tag&q={t}">{t}</Tag>
             {/each}
         </div>
         {/if}

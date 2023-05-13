@@ -72,9 +72,9 @@
     <h1>Highlights</h1>
     
     <div class="card-container">
-        <Card {...cardData.card1} />
-        <Card {...cardData.card2} />
-        <Card {...cardData.card3} />
+        <Card {...cardData.card1} index={0}/>
+        <Card {...cardData.card2} index={1}/>
+        <Card {...cardData.card3} index={3}/>
     </div>
 </div>
 

@@ -31,19 +31,19 @@
             <slot></slot>
         </span>
         {#if type == "text"}
-            <input type="text" bind:value={textValue} {disabled} bind:this={elem} on:change {required}>
+            <input type="text" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}>
         {:else if type == "password"}
-            <input type="password" bind:value={textValue} {disabled} bind:this={elem} on:change {required}>
+            <input type="password" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}>
         {:else if type == "email"}
-            <input type="email" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
+            <input type="email" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
         {:else if type == "date"}
-            <input type="date" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
+            <input type="date" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
         {:else if type == "tel"}
-            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
+            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
         {:else if type == "time"}
-            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change {required}> 
+            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
         {:else} 
-            <input bind:value={textValue} {disabled} bind:this={elem} on:change> 
+            <input bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
         {/if}
         
         <span class="trailing-icon" on:click>
