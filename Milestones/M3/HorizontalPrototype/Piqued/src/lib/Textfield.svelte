@@ -133,6 +133,9 @@
     .field-container:focus-within input, .field-container.filled input {
         padding-top: 16px;
     }
+    .field-container.error.filled .label, .field-container.error:focus-within .label{
+        color: var(--error-red-700);
+    }
     .leading-icon:empty ~ .label {
         /* color: blue; */
         left: 16px;

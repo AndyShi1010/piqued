@@ -62,15 +62,15 @@
   }
 
   function conditionsFailed(event) {
-    console.error('conditionsFailed event', event.detail)
+    console.log('conditionsFailed event', event.detail)
     replace('/login');
-}
+  }
 </script>
 
 {#if fullscreen}
-<Router routes={routes} on:routeLoaded={routeChanged} on:conditionsFailed={conditionsFailed}/>
+<Router routes={routes} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged} />
 {:else}
-<PageWithNav routes={routes} routerComponent={Router} on:routeLoaded={routeChanged} on:conditionsFailed={conditionsFailed}/>
+<PageWithNav routes={routes} routerComponent={Router} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged}/>
 {/if}
 
 

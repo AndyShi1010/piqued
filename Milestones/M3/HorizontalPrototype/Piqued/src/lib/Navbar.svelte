@@ -132,7 +132,7 @@
         padding: 0px 16px;
     }
     #logo img {
-        width: 100%;
+        width: auto;
         height: 100%;
         display: block;
         color: gray;

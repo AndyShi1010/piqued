@@ -54,7 +54,7 @@
         <Textfield >New Username</Textfield>
         <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
-            <Button on:click={() => {usernameModal.closeClick()}}>Close</Button>
+            <Button on:click={() => {usernameModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Username</Button>
         </div>
     </div>
@@ -67,7 +67,7 @@
         <Textfield >New Full Name</Textfield>
         <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
-            <Button on:click={() => {fullNameModal.closeClick()}}>Close</Button>
+            <Button on:click={() => {fullNameModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Full Name</Button>
         </div>
     </div>
@@ -79,7 +79,7 @@
         <Textfield >New Email</Textfield>
         <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
-            <Button on:click={() => {emailModal.closeClick()}}>Close</Button>
+            <Button on:click={() => {emailModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Email</Button>
         </div>
     </div>
@@ -92,7 +92,7 @@
         <Textfield >New Password</Textfield>
         <Textfield >Confirm Password</Textfield>
         <div class="dialog-buttons">
-            <Button on:click={() => {passwordModal.closeClick()}}>Close</Button>
+            <Button on:click={() => {passwordModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Password</Button>
         </div>
     </div>
