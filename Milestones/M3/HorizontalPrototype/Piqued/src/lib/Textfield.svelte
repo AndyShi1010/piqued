@@ -22,7 +22,7 @@
     {colorway == "light" ? "light" : ""} 
     {disabled ? "disabled" : ""} 
     {type} 
-    {(textValue != null && textValue != "") ? "filled" : ""}"
+    {(textValue != null && textValue.trim() != "") ? "filled" : ""}"
     >
         <span class="leading-icon">
             <slot name="leading-icon"></slot>
