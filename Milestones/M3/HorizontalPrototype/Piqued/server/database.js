@@ -7,11 +7,11 @@ const pool = mysql.createPool({
   database: 'piquedDB',
 });
 
-let sql = "SELECT * FROM user;";
-pool.execute(sql, function(err, results){
-    if(err) throw err;
-    console.log(results);
-});
+// let sql = "SELECT * FROM user;";
+// pool.execute(sql, function(err, results){
+//     if(err) throw err;
+//     console.log(results);
+// });
 
 
 pool.getConnection(function(err) {
