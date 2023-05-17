@@ -4,6 +4,9 @@
     import Textfield from '../lib/Textfield.svelte';
     // /** @type {import('./$types').PageData} */
     // export let data;
+    export let continueRoute;
+
+    console.log(continueRoute)
 
     function logIn() {
         localStorage.setItem("logged", "true");
@@ -29,7 +32,7 @@
             </form>
             <p>Don't have an account? <a href="/#/signup">Sign Up!</a></p>
             <div class="login-button">
-                <Button on:click={logIn} to="/" icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Login</Button>
+                <Button on:click={logIn} to={continueRoute ? continueRoute : "/"} icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Login</Button>
             </div>
         </div>
         

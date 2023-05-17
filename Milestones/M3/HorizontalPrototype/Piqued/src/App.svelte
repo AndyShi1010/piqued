@@ -6,7 +6,9 @@
 
   let fullscreen = false;
 
-  let routes = {
+  let continueTo = "/";
+
+  $: routes = {
     '/': wrap({
       asyncComponent: () => import('./views/Home.svelte'),
     }),
@@ -26,6 +28,9 @@
       asyncComponent: () => import('./views/Account.svelte'),
       conditions: (detail) => {
           return (localStorage.getItem('logged') == "true") ? true : false;
+      },
+      props: {
+        continueRoute: "/account"
       }
     }),
     '/article': wrap({
@@ -35,10 +40,16 @@
       asyncComponent: () => import('./views/CreatePost.svelte'),
       conditions: (detail) => {
           return (localStorage.getItem('logged') == "true") ? true : false;
+      },
+      props: {
+        continueRoute: "/post"
       }
     }),
     '/login': wrap({
       asyncComponent: () => import('./views/Login.svelte'),
+      props: {
+        continueRoute: continueTo
+      }
     }),
     '/signup': wrap({
       asyncComponent: () => import('./views/Signup.svelte'),
@@ -62,15 +73,21 @@
   }
 
   function conditionsFailed(event) {
-    console.log('conditionsFailed event', event.detail)
+    console.log('conditionsFailed event', event.detail);
+    continueTo = `/#${event.detail.location}`;
+    console.log(continueTo);
     replace('/login');
   }
 </script>
 
 {#if fullscreen}
-<Router routes={routes} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged} />
+<Router routes={routes} 
+
+
+
+on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged}/>
 {:else}
-<PageWithNav routes={routes} routerComponent={Router} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged}/>
+<PageWithNav routes={routes} routerComponent={Router} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged} />
 {/if}
 
 
