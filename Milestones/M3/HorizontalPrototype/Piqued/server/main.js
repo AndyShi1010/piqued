@@ -2,13 +2,10 @@ import express from "express";
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import flash from 'connect-flash'
 import {resolveBaseUrl} from "vite";
-import sessions from "express-session";
 import expressSession from "express-mysql-session";
 import cookieParser from 'cookie-parser';
 import db from "./databaseConnection.js";
-import path from "path";
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
 
@@ -20,7 +17,6 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(flash());
 app.set("view engine", "svelte");
 app.use(morgan('dev'));
 app.use(express.json());
@@ -38,8 +34,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 } )); // session secret
-
-app.use(cookieParser());
 
 const sessionMiddleware = session({
   store: new pgSession({ pgPromise: db }),
