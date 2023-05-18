@@ -45,6 +45,7 @@
             <input bind:value={textValue} {disabled}> 
         {/if}
         
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <span class="trailing-icon" on:click>
             <slot name="trailing-icon"></slot>
         </span>

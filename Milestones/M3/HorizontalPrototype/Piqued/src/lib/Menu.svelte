@@ -16,6 +16,7 @@
 </script>
 
 <div class="menu-container">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="menu-button" on:click|stopPropagation="{toggleMenu}">
         <slot name="menu-button"></slot>
     </div>

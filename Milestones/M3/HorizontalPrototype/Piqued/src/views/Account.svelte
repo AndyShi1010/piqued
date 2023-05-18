@@ -8,6 +8,7 @@
     <h1>Account Settings</h1>
     <div class="account-container">
         <div class="account-image">
+            <!-- svelte-ignore a11y-img-redundant-alt -->
             <img src="../img/burger.jpg" alt="description of image" width="300" height="200">
         </div>
         <div class="Account-Box">
