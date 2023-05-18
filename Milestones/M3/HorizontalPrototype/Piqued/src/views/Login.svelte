@@ -22,7 +22,7 @@
         <div id="home-button"><Button type="primary" to="/" icon="iconLeft"><House size={"24"}/>Home</Button></div>
         <div class="login-container">
             <h1>Log In</h1>
-            <form action="">
+            <form method="post" action="../server/models/users.js">
                 <div class="textfield-container">
                     <Textfield  type="text">Username/Email</Textfield>
                 </div>

@@ -1,4 +1,4 @@
-import db from "../database.js";
+import db from "../databaseConnection.js";
 import bcrypt from "bcrypt";
 
 const users = {};
@@ -46,4 +46,6 @@ users.authenticate = (username,password) => {
     })
         .catch((err) => Promise.reject(err));
 }
+
+
 export default users;

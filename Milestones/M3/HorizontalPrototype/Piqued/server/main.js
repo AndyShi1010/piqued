@@ -7,10 +7,9 @@ import {resolveBaseUrl} from "vite";
 import sessions from "express-session";
 import expressSession from "express-mysql-session";
 import cookieParser from 'cookie-parser';
-import db from "./database.js";
+import db from "./databaseConnection.js";
 import path from "path";
 import createError from "http-errors";
-// import requestPrint from "../debug/debugprint.cjs";
 
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
@@ -57,48 +56,40 @@ app.use(sessions({
 //   .catch(err => res,json(err));
 // });
 
-app.get("/api/search", (req, res) => {
-  console.log(req.query);
-  let type = req.query.by;
-  let query = req.query.q;
-  res.json({
-    message: "Hello World!",
-    by: type,
-    query: query
-  });
-  console.log(type, query);
-  console.log("Search Route");
+// app.get("/api/search", (req, res) => {
+//   console.log(req.query);
+//   let type = req.query.by;
+//   let query = req.query.q;
+//   res.json({
+//     message: "Hello World!",
+//     by: type,
+//     query: query
+//   });
+//   console.log(type, query);
+//   console.log("Search Route");
 
-  let sql = ``;
-  db.execute(sql, function(err, results){
-    if(err) throw err;
-    if(results && results.length > 0){
-      res.send(JSON(results))
-      res.redirect("/#/searchpage")
-    } else {
-      res.send(404);
-    }
-    console.log(results);
-  });
+//   let sql = ``;
+//   db.execute(sql, function(err, results){
+//     if(err) throw err;
+//     if(results && results.length > 0){
+//       res.send(JSON(results))
+//       res.redirect("/#/searchpage")
+//     } else {
+//       res.send(404);
+//     }
+//     console.log(results);
+//   });
 
-})
+// })
 
 
 app.use("/", express.static('dist'));
-
-// app.use("/#/test", (req, res) => {
-//   res.redirect('/test');
-// })
-
 app.use("/#/login", (req, res) => {
   res.redirect('/login');
 })
-
 app.use("/#/signup", (req, res) => {
   res.redirect('/signup');
 })
-
-
 app.use("/*", (req, res) => {
   res.redirect('/#/404');
 })
