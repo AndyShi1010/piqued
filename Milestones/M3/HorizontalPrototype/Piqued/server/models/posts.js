@@ -1,4 +1,4 @@
-import db from "../database.js";
+import db from "../databaseConnection.js";
 const posts = {};
 
 const createPostSQL =

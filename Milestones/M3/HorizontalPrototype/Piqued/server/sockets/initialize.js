@@ -16,4 +16,4 @@ const initSockets = (app, sessionMiddleware) => {
   return server;
 };
 
-module.exports = initSockets;
+export default initSockets;
