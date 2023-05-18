@@ -3,7 +3,7 @@
     import { Editor } from '@tiptap/core'
     import { Placeholder } from '@tiptap/extension-placeholder'
     import StarterKit from '@tiptap/starter-kit'
-    import { TextItalic, TextStrikethrough, TextBolder, TextT, TextHOne, TextHTwo} from 'phosphor-svelte';
+    import { TextItalic, TextStrikethrough, TextT, TextHOne, TextHTwo} from 'phosphor-svelte';
     import Button from './Button.svelte';
   
   

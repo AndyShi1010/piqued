@@ -39,6 +39,9 @@
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
+            <Button>
+                Chat
+            </Button>
             <Button to="/#/post" icon="iconLeft">
                 <NotePencil size="{24}" weight="bold"/>
                 Post
