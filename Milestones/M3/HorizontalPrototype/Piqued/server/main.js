@@ -10,7 +10,9 @@ import cookieParser from 'cookie-parser';
 import db from "./databaseConnection.js";
 import path from "path";
 import createError from "http-errors";
+import initSockets from "./sockets/initialize.js";
 
+const pgSession = require("connect-pg-simple")(session);
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
 
@@ -38,6 +40,18 @@ app.use(session({
 } )); // session secret
 
 app.use(cookieParser());
+
+const sessionMiddleware = session({
+  store: new pgSession({ pgPromise: db }),
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+});
+
+app.use(sessionMiddleware);
+const server = initSockets(app, sessionMiddleware);
+
 app.use(sessions({
   key: "sid",
   secret: "piqued",

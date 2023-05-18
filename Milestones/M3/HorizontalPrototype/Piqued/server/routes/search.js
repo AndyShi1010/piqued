@@ -1,6 +1,6 @@
 const express = require("express");
 const Post = require("../models/posts");
-const app = express.Router();
+const router = express.Router();
 
 app.get("/api/search", async (req, res) => {
 
@@ -11,4 +11,5 @@ app.get("/api/search", async (req, res) => {
     })
   
   })
-  module.exports = app;
+
+  module.exports = router;
