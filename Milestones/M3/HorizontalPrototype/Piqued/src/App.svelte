@@ -81,11 +81,7 @@
 </script>
 
 {#if fullscreen}
-<Router routes={routes} 
-
-
-
-on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged}/>
+<Router routes={routes} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged}/>
 {:else}
 <PageWithNav routes={routes} routerComponent={Router} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeChanged} />
 {/if}

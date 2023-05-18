@@ -11,6 +11,7 @@
     function logIn() {
         localStorage.setItem("logged", "true");
         localStorage.setItem("user", "TempUser");
+        localStorage.setItem("newLog", "true");
     }
 </script>
 

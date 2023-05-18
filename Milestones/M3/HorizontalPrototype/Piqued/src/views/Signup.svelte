@@ -2,7 +2,7 @@
     import Button from '../lib/Button.svelte';
     import { House, ArrowRight } from 'phosphor-svelte'
     import Textfield from '../lib/Textfield.svelte';
-    import { CheckCircle } from 'phosphor-svelte';
+    import { CheckCircle, XCircle } from 'phosphor-svelte';
     // /** @type {import('./$types').PageData} */
     // export let data;
 
@@ -42,6 +42,7 @@
     function signUp() {
         localStorage.setItem("logged", "true");
         localStorage.setItem("user", "SignedUpUser");
+        localStorage.setItem("newLog", "true");
     }
 
     function validateName() {
@@ -234,23 +235,43 @@
                     {/if}
                     <div class="password-checks {showPasswordChecks ? "show" : ""}">
                         <div class="check {passwordEight ? "pass" : ""}" id="eight-chars">
-                            <CheckCircle size="{16}" weight="fill"/>
+                            {#if passwordEight}
+                                <CheckCircle size="{16}" weight="fill"/>
+                            {:else}
+                                <XCircle size="{16}" weight="fill"/>
+                            {/if}
                             8 characters or more.
                         </div>
                         <div class="check {passwordUppercase ? "pass" : ""}" id="uppercase">
-                            <CheckCircle size="{16}" weight="fill"/>
+                            {#if passwordUppercase}
+                                <CheckCircle size="{16}" weight="fill"/>
+                            {:else}
+                                <XCircle size="{16}" weight="fill"/>
+                            {/if}
                             Contains one or more uppercase letter.
                         </div>
                         <div class="check {passwordLowercase ? "pass" : ""}" id="lowercase">
-                            <CheckCircle size="{16}" weight="fill"/>
+                            {#if passwordLowercase}
+                                <CheckCircle size="{16}" weight="fill"/>
+                            {:else}
+                                <XCircle size="{16}" weight="fill"/>
+                            {/if}
                             Contains one or more lower letter.
                         </div>
                         <div class="check {passwordNum ? "pass" : ""}" id="special">
-                            <CheckCircle size="{16}" weight="fill"/>
+                            {#if passwordNum}
+                                <CheckCircle size="{16}" weight="fill"/>
+                            {:else}
+                                <XCircle size="{16}" weight="fill"/>
+                            {/if}
                             Contains one or more numbers.
                         </div>
                         <div class="check {passwordSpecial ? "pass" : ""}" id="special">
-                            <CheckCircle size="{16}" weight="fill"/>
+                            {#if passwordSpecial}
+                                <CheckCircle size="{16}" weight="fill"/>
+                            {:else}
+                                <XCircle size="{16}" weight="fill"/>
+                            {/if}
                             Contains one or more special characters.
                         </div>
                     </div>

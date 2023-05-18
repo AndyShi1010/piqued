@@ -63,9 +63,9 @@
 </script>
 
 <div class="page-container">  
-    {#if logged == "true" && showHeading}
+    <!-- {#if logged == "true" && showHeading}
         <h2 style="margin-bottom: 32px; text-align: center; color: #0f5023">You are logged in.</h2>
-    {/if}
+    {/if} -->
     <div id="homepage-search">
         <Searchbar placeholder={"Browse"}/>
     </div>
