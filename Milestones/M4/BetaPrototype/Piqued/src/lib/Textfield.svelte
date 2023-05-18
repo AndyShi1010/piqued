@@ -4,14 +4,23 @@
     export let error = false;
     export let disabled = false;
     export let colorway = "regular"
+<<<<<<< HEAD
+=======
+    export let required = false;
+>>>>>>> dev
     // export let iconLeft = false;
     // export let iconRight = false;
     
     let filled;
 
     export let textValue = "";
+<<<<<<< HEAD
     
 
+=======
+
+    export let elem = undefined;
+>>>>>>> dev
 </script>
 
 <div>
@@ -21,7 +30,11 @@
     {colorway == "light" ? "light" : ""} 
     {disabled ? "disabled" : ""} 
     {type} 
+<<<<<<< HEAD
     {(textValue != null && textValue != "") ? "filled" : ""}"
+=======
+    {(textValue != null && textValue.trim() != "") ? "filled" : ""}"
+>>>>>>> dev
     >
         <span class="leading-icon">
             <slot name="leading-icon"></slot>
@@ -30,6 +43,7 @@
             <slot></slot>
         </span>
         {#if type == "text"}
+<<<<<<< HEAD
             <input type="text" bind:value={textValue} {disabled}>
         {:else if type == "password"}
             <input type="password" bind:value={textValue} {disabled}>
@@ -43,6 +57,21 @@
             <input type="tel" bind:value={textValue} {disabled}> 
         {:else} 
             <input bind:value={textValue} {disabled}> 
+=======
+            <input type="text" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}>
+        {:else if type == "password"}
+            <input type="password" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}>
+        {:else if type == "email"}
+            <input type="email" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
+        {:else if type == "date"}
+            <input type="date" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
+        {:else if type == "tel"}
+            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
+        {:else if type == "time"}
+            <input type="tel" bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
+        {:else} 
+            <input bind:value={textValue} {disabled} bind:this={elem} on:change on:input on:focus on:blur {required}> 
+>>>>>>> dev
         {/if}
         
         <span class="trailing-icon" on:click>
@@ -132,6 +161,12 @@
     .field-container:focus-within input, .field-container.filled input {
         padding-top: 16px;
     }
+<<<<<<< HEAD
+=======
+    .field-container.error.filled .label, .field-container.error:focus-within .label{
+        color: var(--error-red-700);
+    }
+>>>>>>> dev
     .leading-icon:empty ~ .label {
         /* color: blue; */
         left: 16px;

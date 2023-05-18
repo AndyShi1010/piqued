@@ -71,6 +71,7 @@
         background-color: var(--neutral-pink-200);
         pointer-events: none;
         cursor: not-allowed;
+        box-shadow: none;
     }
 
     .btn-secondary {

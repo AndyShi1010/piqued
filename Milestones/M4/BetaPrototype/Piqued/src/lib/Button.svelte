@@ -71,6 +71,10 @@
         background-color: var(--neutral-pink-200);
         pointer-events: none;
         cursor: not-allowed;
+<<<<<<< HEAD
+=======
+        box-shadow: none;
+>>>>>>> dev
     }
 
     .btn-secondary {

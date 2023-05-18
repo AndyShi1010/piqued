@@ -6,7 +6,7 @@
 
     export let value = "";
 
-    export let onsubmit = null;
+    // export let onsubmit = null;
 
     function searchSubmit(e) {
         console.log('Search Submit')

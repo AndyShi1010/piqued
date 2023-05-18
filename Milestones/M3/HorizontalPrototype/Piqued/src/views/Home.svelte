@@ -32,20 +32,49 @@
         }
     }
     const logged = localStorage.getItem('logged');
+
+    let showHeading = true;
+    setTimeout(() => {
+    showHeading = false;
+    }, 2500);
+
+    // // Get the h2 tag
+    // var h2 = document.querySelector("h2");
+    // // Set a flag to keep track of whether the h2 tag has already been shown
+    // var hasShownH2 = false;
+    // // Define a function to show and hide the h2 tag
+    // function showAndHideH2() {
+    //   // If the h2 tag has already been shown, return
+    //   if (hasShownH2) {
+    //     return;
+    //   }
+    //   // Set the flag to true
+    //   hasShownH2 = true;
+    //   // Show the h2 tag
+    //   h2.style.display = "block";
+    //   // Wait for 2.5 seconds
+    //   setTimeout(function() {
+    //     // Hide the h2 tag
+    //     h2.style.display = "none";
+    //   }, 2500);
+    // }
+    // // Call the showAndHideH2 function when the page loads
+    // showAndHideH2();
 </script>
 
-<div class="page-container">
-    {#if logged == "true"}
-        <h2 style="margin-bottom: 32px;">You are now logged in.</h2>
-    {/if}
+<div class="page-container">  
+    <!-- {#if logged == "true" && showHeading}
+        <h2 style="margin-bottom: 32px; text-align: center; color: #0f5023">You are logged in.</h2>
+    {/if} -->
     <div id="homepage-search">
         <Searchbar placeholder={"Browse"}/>
     </div>
     <h1>Highlights</h1>
+    
     <div class="card-container">
-        <Card {...cardData.card1} />
-        <Card {...cardData.card2} />
-        <Card {...cardData.card3} />
+        <Card {...cardData.card1} index={0}/>
+        <Card {...cardData.card2} index={1}/>
+        <Card {...cardData.card3} index={3}/>
     </div>
 </div>
 
@@ -72,3 +101,5 @@
         /* padding: 32px clamp(0px, 20%, 720px); */
     }
 </style>
+  
+  

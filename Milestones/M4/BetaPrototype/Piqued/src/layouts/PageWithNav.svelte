@@ -1,4 +1,5 @@
 <script>
+<<<<<<< HEAD
     import { fade } from 'svelte/transition';
     import Router, {location, link} from 'svelte-spa-router';
     import Navbar from '../lib/Navbar.svelte';
@@ -10,6 +11,37 @@
 <Navbar />
 <div class="padded-page">
     <svelte:component this={routerComponent} {routes} on:routeLoaded/>
+=======
+    import { fly } from 'svelte/transition';
+    import Router, {location, link} from 'svelte-spa-router';
+    import Navbar from '../lib/Navbar.svelte';
+    import Footer from '../lib/Footer.svelte';
+    import Toast from '../lib/Toast.svelte';
+    import { onMount } from 'svelte';
+    export let routerComponent;
+	export let routes;
+
+    let newLog = localStorage.getItem('newLog');
+    let showHeading = true;
+
+    onMount(() => {
+        setTimeout(() => {
+            localStorage.removeItem('newLog');
+            showHeading = false;
+        },5000);
+    })
+    let toastDelay = 1000
+</script>
+
+<Navbar />
+    {#if newLog == "true" && showHeading}
+        <Toast delay={toastDelay} type="error">
+            <p slot="message">You are now logged in.</p>
+        </Toast>
+    {/if}
+<div class="padded-page">
+    <svelte:component this={routerComponent} {routes} on:routeLoaded on:conditionsFailed/>
+>>>>>>> dev
 </div>
 <Footer />
 

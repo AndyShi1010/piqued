@@ -21,7 +21,11 @@
     </div>
 
     {#if show}
+<<<<<<< HEAD
     <div style="width: {width}px;" class="dropdown  {align}" transition:fly="{{y: -10}}">
+=======
+    <div style="width: {width}px;" class="dropdown  {align}" transition:fly="{{y: -10, duration: 250}}">
+>>>>>>> dev
         <slot name="dropdown"></slot>
     </div>
     {/if}

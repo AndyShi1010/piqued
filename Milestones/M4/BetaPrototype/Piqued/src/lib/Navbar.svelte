@@ -4,6 +4,10 @@
     import Menu from '../lib/Menu.svelte';
     import MenuEntry from '../lib/MenuEntry.svelte';
     import MenuDropdown from '../lib/MenuDropdown.svelte';
+<<<<<<< HEAD
+=======
+    import { onMount } from "svelte";
+>>>>>>> dev
     const logged = localStorage.getItem('logged');
     const userName = localStorage.getItem('user');
 
@@ -12,15 +16,35 @@
     }
     
 
+<<<<<<< HEAD
     let scroll;
     const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
     console.log(scrollY, navHeight)
+=======
+    let scroll
+    let nav
+    let navHeight
+
+    onMount(() => {
+        navHeight = parseInt(nav.offsetHeight);
+        // console.log(scroll, navHeight);
+    }) 
+    
+
+    function onScroll() {
+        console.log(scroll, navHeight);
+    }
+>>>>>>> dev
 
     
     
 </script>
 
+<<<<<<< HEAD
 <div id="nav" class="{(scroll >= navHeight) ? "full-width" : ""}">
+=======
+<div id="nav" class="{(scroll >= navHeight) ? "full-width" : ""}" bind:this={nav}>
+>>>>>>> dev
     <div id="nav-container">
         
         <a id="logo" href="/">
@@ -28,6 +52,12 @@
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
+<<<<<<< HEAD
+=======
+            <Button>
+                Chat
+            </Button>
+>>>>>>> dev
             <Button to="/#/post" icon="iconLeft">
                 <NotePencil size="{24}" weight="bold"/>
                 Post
@@ -121,7 +151,11 @@
         padding: 0px 16px;
     }
     #logo img {
+<<<<<<< HEAD
         width: 100%;
+=======
+        width: auto;
+>>>>>>> dev
         height: 100%;
         display: block;
         color: gray;

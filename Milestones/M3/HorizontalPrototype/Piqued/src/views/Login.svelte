@@ -4,10 +4,14 @@
     import Textfield from '../lib/Textfield.svelte';
     // /** @type {import('./$types').PageData} */
     // export let data;
+    export let continueRoute;
+
+    console.log(continueRoute)
 
     function logIn() {
-        localStorage.setItem("logged", "false");
+        localStorage.setItem("logged", "true");
         localStorage.setItem("user", "TempUser");
+        localStorage.setItem("newLog", "true");
     }
 </script>
 
@@ -19,7 +23,7 @@
         <div id="home-button"><Button type="primary" to="/" icon="iconLeft"><House size={"24"}/>Home</Button></div>
         <div class="login-container">
             <h1>Log In</h1>
-            <form action="">
+            <form method="post" action="../server/models/users.js">
                 <div class="textfield-container">
                     <Textfield  type="text">Username/Email</Textfield>
                 </div>
@@ -29,7 +33,7 @@
             </form>
             <p>Don't have an account? <a href="/#/signup">Sign Up!</a></p>
             <div class="login-button">
-                <Button on:click={logIn} to="/" icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Login</Button>
+                <Button on:click={logIn} to={continueRoute ? continueRoute : "/"} icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Login</Button>
             </div>
         </div>
         
