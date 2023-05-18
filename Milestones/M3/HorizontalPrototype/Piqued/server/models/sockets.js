@@ -1,8 +1,8 @@
 const db = require("./databaseConnection.js");
 
-const store = (user_id, socket_id, table_id = 0) =>
+const store = (user_id, socket_id) =>
   db.none(
-    "INSERT INTO user_sockets (user_id, table_id, socket_id) VALUES ($1, $2, $3)",
+    "INSERT INTO user_sockets (user_id, socket_id) VALUES ($1, $2, $3)",
     [user_id, table_id, socket_id]
   );
 
