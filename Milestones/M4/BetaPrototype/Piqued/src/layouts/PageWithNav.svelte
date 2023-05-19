@@ -22,7 +22,7 @@
 
 <Navbar />
     {#if newLog == "true" && showHeading}
-        <Toast delay={toastDelay} type="error">
+        <Toast delay={toastDelay}>
             <p slot="message">You are now logged in.</p>
         </Toast>
     {/if}

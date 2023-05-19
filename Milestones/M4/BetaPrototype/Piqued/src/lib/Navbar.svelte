@@ -1,9 +1,9 @@
 <script>
     import Button from "./Button.svelte";
-    import { SignOut, NotePencil, User, GearSix } from "phosphor-svelte"
-    import Menu from '../lib/Menu.svelte';
-    import MenuEntry from '../lib/MenuEntry.svelte';
-    import MenuDropdown from '../lib/MenuDropdown.svelte';
+    import { SignOut, NotePencil, User, GearSix, Chats } from "phosphor-svelte"
+    import Menu from './Menu.svelte';
+    import MenuEntry from './MenuEntry.svelte';
+    import MenuDropdown from './MenuDropdown.svelte';
     import { onMount } from "svelte";
     const logged = localStorage.getItem('logged');
     const userName = localStorage.getItem('user');
@@ -27,7 +27,25 @@
         console.log(scroll, navHeight);
     }
 
-    
+    // function openChatWindow() {
+    // // Open a new window with custom settings
+    // const chatWindow = window.open("/#/Chatbox.svelte", "Chat Window", "width=500,height=400");
+
+    // // Create the content to display in the new window
+    // const chatContent = document.createElement("div");
+    // chatContent.textContent = "This is the chat window content.";
+
+    // // Append the content to the new window
+    // chatWindow.document.body.appendChild(chatContent);
+
+    // document.getElementById("myButton").addEventListener("click", openWindow);
+
+    // // Function to open the window
+    // function openWindow() {
+    //   // Call a function from your separate JavaScript file to open the window
+    //   openChatWindow();
+    // }
+    // }
     
 </script>
 
@@ -39,9 +57,10 @@
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
-            <Button>
-                Chat
+            <Button type="text">
+                <Chats size={24} weight="bold" />
             </Button>
+            <!-- Post Button -->
             <Button to="/#/post" icon="iconLeft">
                 <NotePencil size="{24}" weight="bold"/>
                 Post
@@ -64,6 +83,11 @@
                             <SignOut slot="leading-icon" size="{24}" weight="bold" />
                             <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
                             Log Out
+                        </MenuEntry>
+                        <MenuEntry to="/#/biopage">
+                            <SignOut slot="leading-icon" size="{24}" weight="bold" />
+                            <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
+                            Username
                         </MenuEntry>
                     </MenuDropdown>
                 </Menu>
