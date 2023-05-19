@@ -3,7 +3,7 @@
     import { Editor } from '@tiptap/core'
     import { Placeholder } from '@tiptap/extension-placeholder'
     import StarterKit from '@tiptap/starter-kit'
-    import { TextItalic, TextStrikethrough, TextT, TextHOne, TextHTwo} from 'phosphor-svelte';
+    import { TextItalic, TextStrikethrough, TextT, TextB, TextHOne, TextHTwo, Paragraph} from 'phosphor-svelte';
     import Button from './Button.svelte';
   
   
@@ -53,7 +53,7 @@
       </button>
 
       <button on:click={() => editor.chain().focus().setParagraph().run()} class:active={editor.isActive('paragraph')}>
-        <TextT size={24} weight="bold"/>
+        <Paragraph size={24} weight="bold"/>
       </button>
 
       <div class="separator"></div>
@@ -63,9 +63,9 @@
 
       <button
       on:click={() => editor.chain().focus().toggleMark('bold').run()}
-      class:active={editor.isActive('bold')}
+      class:active={editor.isActive('bold')} 
       >
-      <TextBolder size={24} weight="bold"/>
+      <TextB size={24} weight="bold"/>
       </button>
 
       <button
@@ -83,7 +83,6 @@
       </button>
       <button
         on:click={() => {console.log(editor.getJSON())}}
-        class:active={editor.isActive('strike')}
       >
       Save
       </button>
@@ -102,6 +101,11 @@
       border-radius: 8px;
       margin-top: 0px;
       margin-bottom: 0px;
+      background-color: var(--primary-orange-800);
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: var(--primary-orange-900);
     }
     button.active {
       /* background: var(--accent-red-700);

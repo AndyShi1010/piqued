@@ -2,11 +2,13 @@
     import Button from "../lib/Button.svelte";
     import Dialog from "../lib/Dialogue.svelte";
     import Textfield from "../lib/Textfield.svelte";
+    import Uploader from "../lib/Uploader.svelte";
 
 	let fullNameModal;
 	let usernameModal;
 	let emailModal;
 	let passwordModal;
+    let pfpModal;
 </script>
 
 
@@ -14,8 +16,7 @@
     <h1>Account Settings</h1>
     <div class="account-container">
         <div class="account-image">
-            <!-- svelte-ignore a11y-img-redundant-alt -->
-            <img src="../img/burger.jpg" alt="description of image" width="300" height="200">
+            <img src="../img/burger.jpg" alt="profile picture" width="300" height="200">
         </div>
         <div class="Account-Box">
             <div id="username">
@@ -45,6 +46,7 @@
                     <Button on:click={() => {passwordModal.showDialogClick()}}>Change Password</Button>
                 </div>
             </div>
+            <Button on:click={() => {pfpModal.showDialogClick()}}>Change PFP</Button>
         </div>
     </div>
 </div>
@@ -99,6 +101,17 @@
     </div>
 </Dialog>
 
+<Dialog bind:this={pfpModal}>
+    <div id="pfp-dialog">
+        <h2>Change Profile Picture</h2>
+        <Uploader></Uploader>
+        <div class="dialog-buttons">
+            <Button on:click={() => {pfpModal.closeClick()}} type="secondary">Close</Button>
+            <Button>Change Picture</Button>
+        </div>
+    </div>
+</Dialog>
+
 <style>
     .account-settings h1 {
         margin-bottom: 32px;
@@ -147,6 +160,14 @@
         flex-direction: column;
         gap: 16px; 
     }
-    
+    @media screen and (max-width: 720px) {
+        .account-container { 
+            flex-direction: column;
+        }
+        .account-image img {
+            width: 128px;
+            height: 128px;
+        }
+    }
 </style>
 
