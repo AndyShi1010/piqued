@@ -5,7 +5,8 @@
     export let delay = 3000
 </script>
 
-<div class="toast" in:fly="{{x: 10, duration: 500, delay: delay}}" out:fly="{{x: 10, duration: 500}}">
+<div class="toast {type == "error" ? "error": type == "warning" ? "warning" : ""}" 
+    in:fly="{{x: 10, duration: 500, delay: delay}}" out:fly="{{x: 10, duration: 500}}">
     <div class="icon">
         {#if type == "error"}
             <WarningOctagon size={32} weight="bold"/>
@@ -36,6 +37,22 @@
         overflow: hidden;
         max-width: 400px;
         z-index: 20;
+    }
+    .toast.error {
+        background-color: var(--error-red-100);
+        color: var(--error-red-700);
+    }
+    .toast.error .icon {
+        background-color: var(--error-red-700);
+        color: white;
+    }
+    .toast.warning {
+        background-color: var(--primary-orange-700);
+        color: var(--black);
+    }
+    .toast.warning .icon {
+        background-color: var(--primary-orange-900);
+        color: var(--black);
     }
     .icon {
         display: flex;
