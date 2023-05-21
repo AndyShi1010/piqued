@@ -62,7 +62,7 @@ app.use(sessions({
 }));
 
 app.use("/api/search", search);
-
+app.use("/", express.static('dist'));
 
 //connect to port
 app.listen(port, () => {
