@@ -48,7 +48,8 @@ postsModel.getProfileLikedPosts = (profileName) => {
         "LEFT JOIN piquedDB.hashtag ON posts.postId = hashtag.postId \n" +
         "LEFT JOIN piquedDB.tags on tags.tags_id=hashtag.tag\n" +
         "WHERE postReaction.fk_userId = (SELECT profile_id from piquedDB.profile WHERE displayName = ? )\n" +
-        "GROUP BY posts.postId;"
+        "GROUP BY posts.postId" +
+        "ORDER BY postReaction.lastModified DESC;"
     return db.execute(getProfileLikedPosts, [profileName])
         .then(([results, fields]) => {
             return Promise.resolve(results);
