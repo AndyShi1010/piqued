@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
                     results = results.filter(result =>
                         result.title.toLowerCase().includes(query[i].toLowerCase())
                         || result.simpleText.toLowerCase().includes(query[i].toLowerCase())
+                        || result.category.toLowerCase().includes(query[i].toLowerCase())
                         || result.displayName.toLowerCase().includes(query[i].toLowerCase()));
                     if (!results.length) {
                         results = temp;

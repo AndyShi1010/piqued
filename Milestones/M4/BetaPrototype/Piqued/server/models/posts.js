@@ -2,7 +2,7 @@ import db from "../databaseConnection.js";
 
 const postsModel = {};
 const selectFrom = "SELECT posts.postId,displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
-    "category,wordCount,COUNT( DISTINCT postReaction.fk_userId) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag) as hashtags\n" +
+    "category,wordCount,COUNT( DISTINCT postReaction.fk_userId) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag ) as hashtags\n" +
     "FROM piquedDB.posts \n" +
     "JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
     "LEFT JOIN piquedDB.postReaction ON posts.postId = postReaction.fk_postId\n" +
@@ -84,7 +84,9 @@ postsModel.searchPostsByKeyword = (query) => {
 }
 
 postsModel.searchPostsByHashTag = (hashtag) => {
-    const searchByHashTagSQL = selectFrom + " WHERE tags.tag= ? GROUP BY posts.postId"
+    const searchByHashTagSQL = selectFrom + "WHERE posts.postId IN (SELECT posts.postId FROM piquedDB.posts " +
+        "LEFT JOIN piquedDB.hashtag ON posts.postId = hashtag.postId LEFT JOIN piquedDB.tags on tags.tags_id=hashtag.tag"+
+   " WHERE tags.tag = ?) GROUP BY posts.postId";
 
     let sql = db.format(searchByHashTagSQL, [hashtag])
     return db.execute(sql)
