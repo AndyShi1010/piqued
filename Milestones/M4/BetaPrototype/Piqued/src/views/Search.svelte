@@ -61,12 +61,12 @@
         // let pageHref = $querystring;
         console.log("Perform search", by, query);
         setTimeout(() => {
-            fetch(`/api/search?by=${by}&q=${query}`)
+            fetch(`http://localhost:4000/api/search?by=${by}&q=${query}`)
             .then(response => response.json())
             .then(json => {
-                let resJson = JSON.stringify(json);
-                console.log(resJson);
-                results = resJson;
+               // let resJson = JSON.stringify(json);
+               // results = resJson;
+                results = json.message;
                 loading = false;
             })
         } , 2000);
