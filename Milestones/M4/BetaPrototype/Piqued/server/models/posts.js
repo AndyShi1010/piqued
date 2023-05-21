@@ -58,7 +58,7 @@ postsModel.getProfileLikedPosts = (profileName) => {
 }
 
 postsModel.getPostById = (getById) => {
-    const getPostSQL = "SELECT displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
+    const getPostSQL = "SELECT posts.postId, displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
         "    category,wordCount,COUNT(reactionType) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag)\n" +
         "    FROM piquedDB.posts \n" +
         "    JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
@@ -74,7 +74,7 @@ postsModel.getPostById = (getById) => {
 }
 
 postsModel.getNPosts = (n) => {
-    const getNPostsSQL = "SELECT displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
+    const getNPostsSQL = "SELECT posts.postId, displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
     "    category,wordCount,COUNT(reactionType) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag)\n" +
     "    FROM piquedDB.posts \n" +
     "    JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
@@ -91,7 +91,7 @@ postsModel.getNPosts = (n) => {
 }
 
 postsModel.searchPostsByKeyword = (query) => {
-    const searchByKeywordSQL = "SELECT displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
+    const searchByKeywordSQL = "SELECT posts.postId, displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
         "    category,wordCount,COUNT(reactionType) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag)\n" +
         "    FROM piquedDB.posts \n" +
         "    JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
@@ -109,7 +109,7 @@ postsModel.searchPostsByKeyword = (query) => {
 }
 
 postsModel.searchPostsByHashTag = (hashtag) => {
-    const searchByHashTagSQL = "SELECT displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
+    const searchByHashTagSQL = "SELECT posts.postId, displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
         "    category,wordCount,COUNT(reactionType) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag)\n" +
         "    FROM piquedDB.posts \n" +
         "    JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
