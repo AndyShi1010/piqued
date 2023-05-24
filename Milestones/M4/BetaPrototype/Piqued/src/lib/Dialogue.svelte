@@ -36,7 +36,7 @@
 
 <!-- HTML Code -->
 <!-- Dialogue box -->
-<dialog bind:this={dialog}>
+<dialog bind:this={dialog} on:close>
     <slot></slot>
 </dialog>
 

@@ -12,7 +12,7 @@
   
     let imageModal
     let uploader
-    let image
+    let image = ""
 
     let element
     let editor
@@ -99,24 +99,26 @@
       >
       <TextStrikethrough size={20} weight="bold"/>
       </button>
-      
-      <button
-        on:click={() => {console.log(editor.getJSON())}}
-      >
-      Save
-      </button>
+
+      <div class="separator"></div>
 
       <button
       on:click={() => {imageModal.showDialogClick()}}
       >
       <ImageSquare size={20} weight="bold"/>
       </button>
+
+      <button
+        on:click={() => {console.log(editor.getJSON())}}
+      >
+      Save
+      </button>
     </div>
     {/if}
     <div class="editor" bind:this={element} />
 </div>
 
-<Dialog bind:this={imageModal}>
+<Dialog bind:this={imageModal} on:close={()=>{uploader.clearFile();}}>
   <div id="image-dialog">
       <h2>Insert Image</h2>
       <Uploader bind:file={image} bind:this={uploader}></Uploader>
@@ -124,9 +126,9 @@
           <Button on:click={() => {imageModal.closeClick()}} type="secondary">Close</Button>
           <Button on:click={() => {
             editor.commands.setImage({ src: image })
-            uploader.clearFile()
-            imageModal.closeClick()}
-          }
+            // uploader.clearFile()
+            imageModal.closeClick()}}
+            disabled={image == ""}
           >Insert</Button>
       </div>
   </div>
@@ -169,15 +171,17 @@
     }
     .editor {
       background-color: var(--primary-orange-700);
-      height: 100%;
+      /* height: 100%; */
       padding: 24px;
       border: none;
-      border-radius: 16px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: border 0.25s;
     }
     .separator {
       display: inline-block;
-      margin-left: 16px;
-      margin-right: 16px;
+      margin-left: 8px;
+      margin-right: 8px;
       background-color: var(--gray-400);
       width: 1px;
       height: 32px;
@@ -185,8 +189,12 @@
     .editor h1 {
       line-height: 1.5;
     }
+    .editor:focus, .editor:focus-within {
+      border: 2px solid var(--accent-red-700);
+    }
     .editor :global(.ProseMirror) {
       min-height: 128px;
+      height: 100%;
       /* resize: vertical; */
       /* overflow: auto; */
     }

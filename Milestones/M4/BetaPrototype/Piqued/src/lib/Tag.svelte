@@ -24,6 +24,9 @@
         line-height: 1;
         transition: background-color 0.25s;
         height: min-content;
+        width: min-content;
+        white-space: nowrap;
+        display: block;
     }
     a.badge {
         background-color: var(--accent-red-700);

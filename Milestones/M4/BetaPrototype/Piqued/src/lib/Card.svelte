@@ -22,16 +22,18 @@
 
 <div class="card {horizontal ? 'horizontal' : ''}" in:fly="{{y: 10, duration: 500, delay: index * 100}}">
     {#if img}
-    <img src={img} alt="" loading="lazy">
+    <a href="/#/article/{to}">
+        <img style={horizontal ? "transform-origin: right;" : "transform-origin: bottom;"} src={img} alt="" loading="lazy">
+    </a>
     {/if}
     <div class="card-body">
         {#if nearby || trending}
         <div class="card-badges">
             {#if nearby}
-                <Tag type="badge"><MapPin size="{12}" weight="bold"/>Nearby</Tag>
+                <Tag type="badge" to="/#/search?by=badge&q=nearby"><MapPin size="{12}" weight="bold"/>Nearby</Tag>
             {/if}
             {#if trending}
-                <Tag type="badge"><TrendUp size="{12}" weight="bold"/>Trending</Tag>
+                <Tag type="badge" to="/#/search?by=badge&q=trending"><TrendUp size="{12}" weight="bold"/>Trending</Tag>
             {/if}
         </div>
         {/if}
@@ -111,6 +113,11 @@
         display: block;
         aspect-ratio: 16 / 9;
         object-fit: cover;
+        transition: transform 0.25s, filter 0.25s;
+    }
+    img:hover {
+        transform: scale(1.1);
+        filter: brightness(0.7)
     }
     a.title {
         color: var(--black);
@@ -118,6 +125,7 @@
     }
     a.title:hover {
         text-decoration: underline;
+        color: var(--accent-red-700);
     }
     h1 {
         margin: 0;
