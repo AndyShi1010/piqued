@@ -6,7 +6,7 @@
 </script>
 
 <div class="toast {type == "error" ? "error": type == "warning" ? "warning" : ""}" 
-    in:fly="{{x: 10, duration: 500, delay: delay}}" out:fly="{{x: 10, duration: 500}}">
+    in:fly="{{x: 10, duration: 500, delay:  delay}}" out:fly="{{x: 10, duration: 500}}">
     <div class="icon">
         {#if type == "error"}
             <WarningOctagon size={32} weight="bold"/>

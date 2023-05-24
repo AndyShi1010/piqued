@@ -55,7 +55,7 @@
     <div id="username-dialog">
         <h2>Change Username</h2>
         <Textfield >New Username</Textfield>
-        <Textfield >Confirm Password</Textfield>
+        <Textfield type="password">Confirm Password</Textfield>
         <div class="dialog-buttons">
             <Button on:click={() => {usernameModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Username</Button>
@@ -68,7 +68,7 @@
     <div id="fullname-dialog">
         <h2>Change Full Name</h2>
         <Textfield >New Full Name</Textfield>
-        <Textfield >Confirm Password</Textfield>
+        <Textfield type="password">Confirm Password</Textfield>
         <div class="dialog-buttons">
             <Button on:click={() => {fullNameModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Full Name</Button>
@@ -80,7 +80,7 @@
     <div id="email-dialog">
         <h2>Change Email</h2>
         <Textfield >New Email</Textfield>
-        <Textfield >Confirm Password</Textfield>
+        <Textfield type="password">Confirm Password</Textfield>
         <div class="dialog-buttons">
             <Button on:click={() => {emailModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Email</Button>
@@ -91,9 +91,9 @@
 <Dialog bind:this={passwordModal}>
     <div id="password-dialog">
         <h2>Change Password</h2>
-        <Textfield >Old Password</Textfield>
-        <Textfield >New Password</Textfield>
-        <Textfield >Confirm Password</Textfield>
+        <Textfield type="password">Old Password</Textfield>
+        <Textfield type="password">New Password</Textfield>
+        <Textfield type="password">Confirm Password</Textfield>
         <div class="dialog-buttons">
             <Button on:click={() => {passwordModal.closeClick()}} type="secondary">Close</Button>
             <Button>Change Password</Button>
@@ -149,11 +149,10 @@
         flex-direction: row;
         justify-content: space-between;
     }
-    #username-dialog, #fullname-dialog, #email-dialog, #password-dialog {
-        padding: 100px, 100px;
+    #username-dialog, #fullname-dialog, #email-dialog, #password-dialog, #pfp-dialog {
+        /* padding: 100px, 100px; */
         height: auto;
         width: 360px;
-        border-radius: 5px;
 		border-width: 1px;
 		transition: all 2s;
         display: flex;
