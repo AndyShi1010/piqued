@@ -20,7 +20,9 @@
   "dependencies": {
     "@editorjs/editorjs": "^2.26.5",
     "@tiptap/core": "^2.0.3",
+    "@tiptap/extension-image": "^2.0.3",
     "@tiptap/extension-placeholder": "^2.0.3",
+    "@tiptap/extension-underline": "^2.0.3",
     "@tiptap/pm": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
     "bcrypt": "^5.1.0",

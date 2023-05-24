@@ -9,7 +9,7 @@
             trending: false,
             description: "We went to every burger joint in SF and ranked them. These are the results. Lorem ipsum dolor sit amet.",
             tags: ["burger", "sf", "bayarea"],
-            to: "/", 
+            to: "1234", 
             img: "../img/burger.jpg",
         },
         card2: {
@@ -18,7 +18,7 @@
             trending: true,
             description: "Planning a daytrip to Napa? Here are some perfect places to go",
             tags: ["napa", "sf", "bayarea"],
-            to: "/", 
+            to: "1235", 
             img: "../img/grapes.jpg",
         },
         card3: {
@@ -27,8 +27,7 @@
             trending: true,
             description: "These are some of the best movies based on box office sales. ",
             tags: [],
-            to: "/", 
-            img: "../img/movie.jpg",
+            to: "1236", 
         }
     }
     const logged = localStorage.getItem('logged');
@@ -69,13 +68,40 @@
     <div id="homepage-search">
         <Searchbar placeholder={"Browse"}/>
     </div>
-    <h1>Highlights</h1>
-    
-    <div class="card-container">
-        <Card {...cardData.card1} index={0}/>
-        <Card {...cardData.card2} index={1}/>
-        <Card {...cardData.card3} index={3}/>
-    </div>
+
+    {#if logged == "true"}
+        <h1>For You</h1>
+        <div class="card-container">
+            <div class="card-column-flex">
+                <Card {...cardData.card1} index={0} showLikes showComments/>
+                <Card {...cardData.card2} index={0}/>
+                <Card {...cardData.card3} index={0} showLikes showComments/>
+                <Card {...cardData.card2} index={0}/>
+                <Card {...cardData.card1    } index={0} showLikes/>
+            </div>
+            <div class="card-column-flex">
+                <Card {...cardData.card2} index={1}/>
+                <Card {...cardData.card3} index={1}/>
+                <Card {...cardData.card1} index={1}/>
+                <Card {...cardData.card3} index={1}/>
+            </div>
+            <div class="card-column-flex">
+                <Card {...cardData.card2} index={1}/>
+                <Card {...cardData.card1} index={1}/>
+                <Card {...cardData.card1} index={1}/>
+                <Card {...cardData.card3} index={1}/>
+                <Card {...cardData.card2} index={1}/>
+            </div>
+        </div>
+
+    {:else}
+        <h1>Highlights</h1>
+        <div class="card-container">
+            <Card {...cardData.card1} index={0}/>
+            <Card {...cardData.card2} index={1}/>
+            <Card {...cardData.card3} index={3}/>
+        </div>
+    {/if}
 </div>
 
 <style>
@@ -92,13 +118,25 @@
         grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
         /* grid-auto-columns: 1fr;
         grid-auto-flow: column; */
-        gap: 16px;
+        gap: 32px;
+    }
+    .card-column-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
     }
     #homepage-search {
         display: block;
+        padding: 0px 64px;
         /* position: sticky;
         top: 2px; */
         /* padding: 32px clamp(0px, 20%, 720px); */
+    }
+    
+    @media screen and (max-width: 720px) {
+        #homepage-search {
+            padding: 0px 16px;
+        }
     }
 </style>
   

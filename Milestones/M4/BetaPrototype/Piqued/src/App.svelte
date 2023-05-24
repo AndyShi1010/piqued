@@ -33,18 +33,21 @@
         continueRoute: "/account"
       }
     }),
-    '/article': wrap({
+    '/article/:postid': wrap({
       asyncComponent: () => import('./views/Article.svelte'),
     }),
-    '/biopage': wrap({
-      asyncComponent: () => import('./views/Biopage.svelte'),
-      conditions: (detail) => {
-          return (localStorage.getItem('logged') == "true") ? true : false;
-      },
-      props: {
-        continueRoute: "/biopage"
-      }
+    '/user/:username': wrap({
+      asyncComponent: () => import('./views/User.svelte'),
+      // conditions: (detail) => {
+      //     return (localStorage.getItem('logged') == "true") ? true : false;
+      // },
+      // props: {
+      //   continueRoute: "/biopage"
+      // }
     }),
+    // '/user/:username/liked': wrap({
+    //   asyncComponent: () => import('./views/User.svelte'),
+    // }),
     '/post': wrap({
       asyncComponent: () => import('./views/CreatePost.svelte'),
       conditions: (detail) => {

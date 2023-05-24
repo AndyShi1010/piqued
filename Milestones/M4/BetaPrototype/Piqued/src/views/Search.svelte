@@ -7,7 +7,8 @@
 
     import { onMount } from "svelte";
 
-    let results = ""
+    let resultsMessage = ""
+    let resultsData = []
     let searchTerm = ""
     let loading = true;
     $: pageHref = $querystring;
@@ -60,16 +61,26 @@
         loading = true;
         // let pageHref = $querystring;
         console.log("Perform search", by, query);
-        setTimeout(() => {
-            fetch(`/api/search?by=${by}&q=${query}`)
+        fetch(`/api/search?by=${by}&q=${query}`)
             .then(response => response.json())
             .then(json => {
                // let resJson = JSON.stringify(json);
                // results = resJson;
-                results = json.message;
+                resultsMessage = json.message;
+                resultsData = json.results;
                 loading = false;
             })
-        } , 2000);
+        console.log(resultsData);
+        // setTimeout(() => {
+        //     fetch(`/api/search?by=${by}&q=${query}`)
+        //     .then(response => response.json())
+        //     .then(json => {
+        //        // let resJson = JSON.stringify(json);
+        //        // results = resJson;
+        //         results = json.message;
+        //         loading = false;
+        //     })
+        // } , 2000);
         
         // let queries = pageHref.substring(pageHref.indexOf('?'));
         // console.log(queries)
@@ -118,20 +129,33 @@
     <div class="searchbar">
         <Searchbar onsubmit={() => {performSearch(searchTerm)}} bind:value={searchTerm}/>
     </div>
-    <h1 style="color: #0f5023">Results</h1>
+    <h1>Results</h1>
     {#if loading}
         <div class="skeleton-loader" transition:fade>
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
             <Card {...cardData.card1} horizontal/>
             <Card {...cardData.card2} horizontal/>
             <Card {...cardData.card3} horizontal/>
-        </div>
+        </div> -->
     {:else}
-        {results}
+        <p>{resultsMessage}</p>
+        <div class="results-container">
+            {#each resultsData as res, i}
+                <Card  
+                title = {res.title}
+                description = {res.body}
+                tags = {res.hashtags.split(",")}
+                to = "/"
+                index = {i}
+                showLikes
+                showComments
+                horizontal/>
+            {/each}
+        </div>
     {/if}
 </div>
 
@@ -142,6 +166,7 @@
     }
     .searchbar {
         margin-bottom: 64px;
+        padding: 0px 64px;
     }
     .skeleton-loader {
         display: grid;
@@ -155,12 +180,26 @@
         animation: skeleton 3s infinite linear;
         border-radius: 8px;
     }
+    .results-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    p {
+        margin-block-start: 32px;
+        margin-block-end: 32px;
+    }
     @keyframes skeleton{
         0% {
             background-position: 200% 0%;
         }
         100% {
             background-position: -200% -0%;
+        }
+    }
+    @media screen and (max-width: 720px) {
+        .searchbar {
+            padding: 0px 16px;
         }
     }
 </style>
