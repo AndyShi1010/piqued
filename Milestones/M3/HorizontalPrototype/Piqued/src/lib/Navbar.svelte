@@ -1,6 +1,6 @@
 <script>
     import Button from "./Button.svelte";
-    import { SignOut, NotePencil, User, GearSix } from "phosphor-svelte"
+    import { SignOut, NotePencil, User, GearSix, Chats } from "phosphor-svelte"
     import Menu from '../lib/Menu.svelte';
     import MenuEntry from '../lib/MenuEntry.svelte';
     import MenuDropdown from '../lib/MenuDropdown.svelte';
@@ -39,6 +39,9 @@
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
+            <Button type="text">
+                <Chats size={24} weight="bold" />
+            </Button>
             <Button to="/#/post" icon="iconLeft">
                 <NotePencil size="{24}" weight="bold"/>
                 Post

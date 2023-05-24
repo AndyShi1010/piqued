@@ -1,5 +1,7 @@
-const http = require("http");
-const { Server } = require("socket.io");
+// const http = require("http");
+import http from "http"
+import { Server } from "socket.io";
+// const { Server } = require("socket.io");
 
 const initSockets = (app, sessionMiddleware) => {
   const server = http.createServer(app);

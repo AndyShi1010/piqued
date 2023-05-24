@@ -1,5 +1,5 @@
 import db from "../databaseConnection.js";
-const posts = {};
+const postsmodel = {};
 
 const createPostSQL =
     "INSERT INTO piquedDB.posts (author,title,body, unformatted_body, visibility, commentsAllowed, category,wordCount) VALUE (?,?,?,?,?,?,?,?)";
@@ -19,7 +19,7 @@ const searchSQL = "SELECT displayName, title,body,unformatted_body AS simpleText
     "category,wordCount,COUNT(reactionType) AS likes FROM piquedDB.posts JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
     "LEFT JOIN piquedDB.postReaction ON posts.postId = postReaction.fk_postId WHERE ?? LIKE ? GROUP BY posts.postId "
 
-posts.create  = (fk_user, postTitle, postBody,unformatted_body, postVisibility, allowComments, postCategory,wordCount,mediaPath) => {
+postsmodel.create  = (fk_user, postTitle, postBody,unformatted_body, postVisibility, allowComments, postCategory,wordCount,mediaPath) => {
     return db.execute(createPostSQL, [
         fk_user,
         postTitle,
@@ -38,7 +38,7 @@ posts.create  = (fk_user, postTitle, postBody,unformatted_body, postVisibility, 
     }).catch((err) => Promise.reject(err))
 };
 
-posts.getPostById = (getById) => {
+postsmodel.getPostById = (getById) => {
     return db.execute(getPostSQL, [getById])
         .then(([results, fields]) => {
             return Promise.resolve(results);
@@ -46,7 +46,7 @@ posts.getPostById = (getById) => {
         .catch((err)=> Promise.reject(err))
 }
 
-posts.getNPosts = (n) =>{
+postsmodel.getNPosts = (n) =>{
     let sql = db.format(getNPostsSQL,[n])
     return db.execute(sql)
         .then(([results, fields]) => {
@@ -55,9 +55,10 @@ posts.getNPosts = (n) =>{
         .catch((err)=> Promise.reject(err))
 }
 
-posts.searchPosts = (by, query) => {
+postsmodel.searchPosts = (by, query) => {
     let like = "%"+query+"%";
     let sql = db.format(searchSQL,[by,like]);
+    console.log("Search posts")
     return db.execute(sql)
         .then(([results, fields]) => {
             return Promise.resolve(results);
@@ -65,4 +66,4 @@ posts.searchPosts = (by, query) => {
         .catch((err)=> Promise.reject(err))
 }
 
-export default posts;
+export default postsmodel;

@@ -9,7 +9,15 @@ import db from "./databaseConnection.js";
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
 
-const pgSession = require("connect-pg-simple")(session);
+import postsmodel from './models/posts.js';
+
+// const posts = require("./models/posts.js")
+
+
+import pgSession from "connect-pg-simple"
+
+// import { router } from "./routes/search"
+// const pgSession = require("connect-pg-simple")(session);
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
 
@@ -24,6 +32,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
+// app.use('/search', router);
+
 // app.use((req, res, next)=>{
 //   requestPrint(req.url);
 //   next();
@@ -35,16 +45,18 @@ app.use(session({
   saveUninitialized: true
 } )); // session secret
 
-const sessionMiddleware = session({
-  store: new pgSession({ pgPromise: db }),
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
-});
+app.use(cookieParser());
 
-app.use(sessionMiddleware);
-const server = initSockets(app, sessionMiddleware);
+// const sessionMiddleware = session({
+//   store: new pgSession({ pgPromise: db }),
+//   secret: process.env.SECRET,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+// });
+
+// app.use(sessionMiddleware);
+// const server = initSockets(app, sessionMiddleware);
 
 app.use(sessions({
   key: "sid",
@@ -64,31 +76,34 @@ app.use(sessions({
 //   .catch(err => res,json(err));
 // });
 
-// app.get("/api/search", (req, res) => {
-//   console.log(req.query);
-//   let type = req.query.by;
-//   let query = req.query.q;
-//   res.json({
-//     message: "Hello World!",
-//     by: type,
-//     query: query
-//   });
-//   console.log(type, query);
-//   console.log("Search Route");
+app.get("/api/search", (req, res) => {
+  // console.log(req.query);
+  let type = req.query.by;
+  let query = req.query.q;
+  // const Post = require("../models/posts");
+  let response = postsmodel.searchPosts(type, query);
+  console.log(response);
+  // res.json({
+  //   message: "Hello World!",
+  //   by: type,
+  //   query: query
+  // });
+  // console.log(type, query);
+  // console.log("Search Route");
 
-//   let sql = ``;
-//   db.execute(sql, function(err, results){
-//     if(err) throw err;
-//     if(results && results.length > 0){
-//       res.send(JSON(results))
-//       res.redirect("/#/searchpage")
-//     } else {
-//       res.send(404);
-//     }
-//     console.log(results);
-//   });
+  // let sql = ``;
+  // db.execute(sql, function(err, results){
+  //   if(err) throw err;
+  //   if(results && results.length > 0){
+  //     res.send(JSON(results))
+  //     res.redirect("/#/searchpage")
+  //   } else {
+  //     res.send(404);
+  //   }
+  //   console.log(results);
+  // });
 
-// })
+})
 
 
 app.use("/", express.static('dist'));
