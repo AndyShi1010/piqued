@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import db from "./databaseConnection.js";
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
+import signupRoute from "./routes/signup.js"
 
 import postsmodel from './models/posts.js';
 
@@ -105,14 +106,15 @@ app.get("/api/search", (req, res) => {
 
 })
 
+app.use("/signup", signupRoute);
 
 app.use("/", express.static('dist'));
-app.use("/#/login", (req, res) => {
-  res.redirect('/login');
-})
-app.use("/#/signup", (req, res) => {
-  res.redirect('/signup');
-})
+// app.use("/#/login", (req, res) => {
+//   res.redirect('/login');
+// })
+// app.use("/#/signup", (req, res) => {
+//   res.redirect('/signup');
+// })
 app.use("/*", (req, res) => {
   res.redirect('/#/404');
 })
