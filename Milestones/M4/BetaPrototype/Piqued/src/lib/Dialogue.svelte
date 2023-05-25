@@ -36,7 +36,7 @@
 
 <!-- HTML Code -->
 <!-- Dialogue box -->
-<dialog bind:this={dialog}>
+<dialog bind:this={dialog} on:close>
     <slot></slot>
 </dialog>
 
@@ -78,11 +78,11 @@
 @keyframes slide-in {
 	from {
 		opacity: 0;
-		transform: translateY(-20px);
+		transform: translateY(-20px) scale(0.9);
 	}
 	to {
 		opacity: 1;
-		transform: translateY(0);
+		transform: translateY(0) scale(1);
 	}
 }
 </style>

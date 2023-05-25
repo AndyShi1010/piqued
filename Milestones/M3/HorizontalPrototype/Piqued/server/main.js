@@ -2,15 +2,13 @@ import express from "express";
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import flash from 'connect-flash'
 import {resolveBaseUrl} from "vite";
-import sessions from "express-session";
 import expressSession from "express-mysql-session";
 import cookieParser from 'cookie-parser';
 import db from "./databaseConnection.js";
-import path from "path";
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
+import signupRoute from "./routes/signup.js"
 
 import postsmodel from './models/posts.js';
 
@@ -28,7 +26,6 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(flash());
 app.set("view engine", "svelte");
 app.use(morgan('dev'));
 app.use(express.json());
@@ -109,14 +106,15 @@ app.get("/api/search", (req, res) => {
 
 })
 
+app.use("/signup", signupRoute);
 
 app.use("/", express.static('dist'));
-app.use("/#/login", (req, res) => {
-  res.redirect('/login');
-})
-app.use("/#/signup", (req, res) => {
-  res.redirect('/signup');
-})
+// app.use("/#/login", (req, res) => {
+//   res.redirect('/login');
+// })
+// app.use("/#/signup", (req, res) => {
+//   res.redirect('/signup');
+// })
 app.use("/*", (req, res) => {
   res.redirect('/#/404');
 })

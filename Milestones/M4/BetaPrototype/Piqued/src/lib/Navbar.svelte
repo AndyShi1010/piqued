@@ -5,17 +5,28 @@
     import MenuEntry from './MenuEntry.svelte';
     import MenuDropdown from './MenuDropdown.svelte';
     import { onMount } from "svelte";
+    import Chatbox from "./Chatbox.svelte";
+    import { username } from '../stores.js';
     const logged = localStorage.getItem('logged');
-    const userName = localStorage.getItem('user');
+    let userName = localStorage.getItem('username');
 
+    // username.subscribe(value => {
+	// 	userName = value;
+	// });
+    
     function logOut() {
         localStorage.setItem("logged", "false");
     }
-    
+
+    let width = window.innerWidth;
+
+    window.onresize = () => {width = window.innerWidth};
 
     let scroll
     let nav
     let navHeight
+
+    let showChatbox = false;
 
     onMount(() => {
         navHeight = parseInt(nav.offsetHeight);
@@ -25,6 +36,15 @@
 
     function onScroll() {
         console.log(scroll, navHeight);
+    }
+
+    function toggleChat() {
+        showChatbox = !showChatbox;
+        if (showChatbox) {
+            document.body.addEventListener('click', toggleChat);
+        } else {
+            document.body.removeEventListener('click', toggleChat);
+        }
     }
 
     // function openChatWindow() {
@@ -57,9 +77,14 @@
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
-            <Button type="text">
-                <Chats size={24} weight="bold" />
-            </Button>
+            <div class="chat">
+                <div class="button-container" on:click|stopPropagation={toggleChat}>
+                    <Button type="text" icon="iconOnly">
+                        <Chats size={24} weight="bold" />
+                    </Button>
+                </div>
+                <Chatbox bind:show={showChatbox}/>
+            </div>
             <!-- Post Button -->
             <Button to="/#/post" icon="iconLeft">
                 <NotePencil size="{24}" weight="bold"/>
@@ -67,13 +92,21 @@
             </Button>
             <div class="user-menu">
                 <Menu width="{240}" align="bottomRight">
-                    <Button slot="menu-button" type="text">
-                        {userName}
+                    <Button slot="menu-button" type="text" icon="{width > 720 ? "iconRight" : "iconOnly"}">
                         <span id="pfp">
                             <User size="{24}" weight="bold"/>
                         </span>
+                        {#if width > 720}
+                            {userName}
+                        {/if}
                     </Button>
                     <MenuDropdown slot="dropdown">
+                        <MenuEntry to="/#/user/{userName}">
+                            <User slot="leading-icon" size="{24}" weight="bold"/>
+                            <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
+                            {userName}
+                        </MenuEntry>
+                        <div class="separator"></div>
                         <MenuEntry to="#/account">
                             <GearSix slot="leading-icon" size="{24}" weight="bold" />
                             <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
@@ -83,11 +116,6 @@
                             <SignOut slot="leading-icon" size="{24}" weight="bold" />
                             <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
                             Log Out
-                        </MenuEntry>
-                        <MenuEntry to="/#/biopage">
-                            <SignOut slot="leading-icon" size="{24}" weight="bold" />
-                            <!-- <EnvelopeSimple slot="leading-icon" size="{24}" /> -->
-                            Username
                         </MenuEntry>
                     </MenuDropdown>
                 </Menu>
@@ -129,8 +157,10 @@
         transition: background-color 0.25s, border-bottom 0.25s;
     }
     div#nav.full-width {
-        background-color: var(--primary-orange-700);
+        background-color: var(--primary-orange-700-a70);
         border-bottom: 1px solid var(--neutral-pink-200);
+        backdrop-filter: blur(80px) brightness(1.5);
+        -webkit-backdrop-filter: blur(80px) brightness(1.5);
     }
     #nav #nav-container {
         padding: 0px 16px;
@@ -167,7 +197,7 @@
     }
     div#action-buttons {
         display: flex;
-        gap: 12px;
+        gap: 16px;
         align-items: center;
     }
 
@@ -176,10 +206,21 @@
         height: 36px;
         background-color: var(--gray-400);
         border-radius: 50%;
-        margin-left: 8px;
+        /* margin-left: 8px; */
         display: flex;
         justify-content: center;
         align-items: center;
         color: white;
+    }
+    .separator {
+      display: block;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      background-color: var(--neutral-pink-200);
+      width: 100%;
+      height: 1px;
+    }
+    .chat {
+        position: relative;
     }
 </style>

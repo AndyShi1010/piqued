@@ -8,6 +8,7 @@ const pool = mysql.createPool({
   database: 'piquedDB',
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD:Milestones/M3/HorizontalPrototype/Piqued/server/database.js
 let sql = "SELECT * FROM user;";
 pool.execute(sql, function(err, results){
@@ -21,6 +22,13 @@ pool.execute(sql, function(err, results){
 //     console.log(results);
 // });
 >>>>>>> master:Milestones/M3/HorizontalPrototype/Piqued/server/databaseConnection.js
+=======
+let sql = "SELECT * FROM user;";
+pool.execute(sql, function(err, results){
+    if(err) throw err;
+    console.log(results);
+});
+>>>>>>> dev
 
 
 pool.getConnection(function(err) {

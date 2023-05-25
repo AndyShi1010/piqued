@@ -2,41 +2,36 @@ import express from "express";
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import flash from 'connect-flash'
 import {resolveBaseUrl} from "vite";
-import sessions from "express-session";
 import expressSession from "express-mysql-session";
 import cookieParser from 'cookie-parser';
 import db from "./databaseConnection.js";
-import path from "path";
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
-
-import postsmodel from './models/posts.js';
-
-// const posts = require("./models/posts.js")
-
+import signupRoute from "./routes/signup.js"
+import search from "./routes/search.js"
+import users from "./routes/users.js"
+import posts from "./routes/posts.js"
 
 import pgSession from "connect-pg-simple"
 
 // import { router } from "./routes/search"
 // const pgSession = require("connect-pg-simple")(session);
-const store = expressSession(sessions);
+import login from "./routes/login.js";
+const store = expressSession(session);
 const mysqlSessionStore = new store({/* Default Options*/},db);
 
 const port = process.env.PORT || 4000;
 
 const app = express();
+// app.use(cors());
 
-app.use(flash());
 app.set("view engine", "svelte");
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-
-// app.use('/search', router);
 
 // app.use((req, res, next)=>{
 //   requestPrint(req.url);
@@ -62,7 +57,7 @@ app.use(cookieParser());
 // app.use(sessionMiddleware);
 // const server = initSockets(app, sessionMiddleware);
 
-app.use(sessions({
+app.use(session({
   key: "sid",
   secret: "piqued",
   store: mysqlSessionStore,
@@ -71,55 +66,12 @@ app.use(sessions({
   saveUninitialized: false
 }));
 
-
-// app.get("/users", (req,res) =>{
-//   db.query("SELECT * FROM users")
-//   .then (([results, fields])=>{
-//     res.json(results);
-//   })
-//   .catch(err => res,json(err));
-// });
-
-app.get("/api/search", (req, res) => {
-  // console.log(req.query);
-  let type = req.query.by;
-  let query = req.query.q;
-  // const Post = require("../models/posts");
-  let response = postsmodel.searchPosts(type, query);
-  console.log(response);
-  // res.json({
-  //   message: "Hello World!",
-  //   by: type,
-  //   query: query
-  // });
-  // console.log(type, query);
-  // console.log("Search Route");
-
-  // let sql = ``;
-  // db.execute(sql, function(err, results){
-  //   if(err) throw err;
-  //   if(results && results.length > 0){
-  //     res.send(JSON(results))
-  //     res.redirect("/#/searchpage")
-  //   } else {
-  //     res.send(404);
-  //   }
-  //   console.log(results);
-  // });
-
-})
-
-
+app.use("/login", login);
+app.use("/signup", signupRoute);
+app.use("/users",users);
+app.use("/posts",posts);
+app.use("/api/search", search);
 app.use("/", express.static('dist'));
-app.use("/#/login", (req, res) => {
-  res.redirect('/login');
-})
-app.use("/#/signup", (req, res) => {
-  res.redirect('/signup');
-})
-app.use("/*", (req, res) => {
-  res.redirect('/#/404');
-})
 
 //connect to port
 app.listen(port, () => {

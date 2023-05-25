@@ -147,7 +147,7 @@
         transform: translateY(-50%);
         left: 52px;
         transition: top 0.25s, font-size 0.25s;
-        font-weight: 600;
+        font-weight: 500;
         user-select: none;
         color: var(--black);
     }

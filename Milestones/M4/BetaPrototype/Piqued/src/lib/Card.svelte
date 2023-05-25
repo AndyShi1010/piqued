@@ -1,6 +1,6 @@
 <script>
-    import { TrendUp, MapPin } from "phosphor-svelte"
-    import { fade } from 'svelte/transition';
+    import { TrendUp, MapPin, ThumbsUp, ChatCenteredText } from "phosphor-svelte"
+    import { fade, fly } from 'svelte/transition';
     import Button from "./Button.svelte";
     import Tag from "./Tag.svelte";
 
@@ -12,24 +12,32 @@
     export let to;
     export let img;
     export let horizontal = false;
+    export let likes = 0;
+    export let comments = 0;
+    export let showLikes = false;
+    export let showComments = false;
 
     export let index = 0;
 </script>
 
-<div class="card {horizontal ? 'horizontal' : ''}" in:fade="{{duration: 500, delay: index * 100}}">
-    <img src={img} alt="" loading="lazy">
+<div class="card {horizontal ? 'horizontal' : ''}" in:fly="{{y: 10, duration: 500, delay: index * 100}}">
+    {#if img}
+    <a href="/#/article/{to}">
+        <img style={horizontal ? "transform-origin: right;" : "transform-origin: bottom;"} src={img} alt="" loading="lazy">
+    </a>
+    {/if}
     <div class="card-body">
         {#if nearby || trending}
         <div class="card-badges">
             {#if nearby}
-                <Tag type="badge"><MapPin size="{12}" weight="bold"/>Nearby</Tag>
+                <Tag type="badge" to="/#/search?by=badge&q=nearby"><MapPin size="{12}" weight="bold"/>Nearby</Tag>
             {/if}
             {#if trending}
-                <Tag type="badge"><TrendUp size="{12}" weight="bold"/>Trending</Tag>
+                <Tag type="badge" to="/#/search?by=badge&q=trending"><TrendUp size="{12}" weight="bold"/>Trending</Tag>
             {/if}
         </div>
         {/if}
-        <h1>{title}</h1>
+        <a href="/#/article/{to}" class="title"><h1>{title}</h1></a>
         <p>{description}</p>
         {#if tags.length !=0}
         <div class="card-tags">
@@ -38,9 +46,29 @@
             {/each}
         </div>
         {/if}
-        <div class="readmore-button">
-            <Button to="/#/article" type="text">Read More</Button>
+        {#if showLikes || showComments}
+        <div class="like-comment-container">
+            {#if showLikes}
+                <div class="likes">
+                    <ThumbsUp size={16} weight="bold"/>
+                    {likes}
+                </div>
+            {/if}
+            {#if showLikes && showComments}
+                <div class="separator"></div>
+            {/if}
+            {#if showComments}
+                <div class="comments">
+                    <ChatCenteredText size={16} weight="bold"/>
+                    {comments}
+                </div>
+            {/if}
         </div>
+        {/if}
+
+        <!-- <div class="readmore-button">
+            <Button to="/#/article" type="text">Read More</Button>
+        </div> -->
         <!-- <a class="card-link" href={to}>Read More</a> -->
     </div>
 </div>
@@ -53,17 +81,18 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        height: min-content;
     }
     div.card.horizontal {
         flex-direction: row;
     }
     div.card.horizontal img {
-        width: 50%;
+        width: 30%;
         max-width: 340px;
         aspect-ratio: 16 / 9;
     }
     div.card.horizontal .card-body {
-        width: 70%;
+        width: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -84,6 +113,19 @@
         display: block;
         aspect-ratio: 16 / 9;
         object-fit: cover;
+        transition: transform 0.25s, filter 0.25s;
+    }
+    img:hover {
+        transform: scale(1.1);
+        filter: brightness(0.7)
+    }
+    a.title {
+        color: var(--black);
+        text-decoration: none;
+    }
+    a.title:hover {
+        text-decoration: underline;
+        color: var(--accent-red-700);
     }
     h1 {
         margin: 0;
@@ -96,6 +138,11 @@
         margin: 0;
         font-family: var(--body-type);
     }
+    .card-body p {
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+    }
     .card-tags {
         display: flex;
         gap: 8px;
@@ -105,5 +152,26 @@
         margin-left: auto;
         display: block;
         width: fit-content;
+    }
+    .like-comment-container {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        margin-top: 16px;
+    }
+    .likes, .comments {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-family: var(--body-type);
+    }
+    
+    .separator {
+      display: inline-block;
+      background-color: var(--gray-400);
+      width: 1px;
+      height: 24px;
     }
 </style>
