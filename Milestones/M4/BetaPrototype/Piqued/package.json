@@ -48,6 +48,11 @@
     "qs": "^6.11.1",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
-    "svelte-spa-router": "^3.3.0"
-  }
+    "svelte-spa-router": "^3.3.0",
+    "vite-plugin-svelte-monorepo": "github:sveltejs/vite-plugin-svelte"
+  },
+  "description": "This template should help get you started developing with Svelte in Vite.",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
