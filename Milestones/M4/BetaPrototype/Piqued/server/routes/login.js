@@ -38,19 +38,26 @@ router.post("/", async (req, res) => {
     try {
         const authenticate = Users.authenticate(usernameEmail, password)
         .then((auth) => {
-            if (auth) {
+            if (auth && auth != -1) {
                 // res.locals.logged = true;
                 // res.locals.username = authenticate;
-                console.log(auth)
+                console.log("Auth", auth)
                 res.status(200).json({"userid": auth})
                 // response.redirect("/#/account");
             } else {
-                response.status(401).send("Error logging in")
+                res.status(401).send({error: "Password or username is incorrect"})
                 throw "Credentials invalid";
             }
         })
+        .catch((error) => {
+            console.log({ error });
+            // res.type('json')
+            // res.status(401).send({error})
+        })
     } catch (error) {
         console.log({ error });
+        res.type('json')
+        res.status(401).send({error})
     }
     // res.status(200).send("Authenitcated")
     

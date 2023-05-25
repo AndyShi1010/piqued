@@ -10,11 +10,8 @@ import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
 import signupRoute from "./routes/signup.js"
 import search from "./routes/search.js"
-
-import postsmodel from './models/posts.js';
-
-// const posts = require("./models/posts.js")
-
+import users from "./routes/users.js"
+import posts from "./routes/posts.js"
 
 import pgSession from "connect-pg-simple"
 
@@ -35,8 +32,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-
-// app.use('/search', router);
 
 // app.use((req, res, next)=>{
 //   requestPrint(req.url);
@@ -73,6 +68,8 @@ app.use(session({
 
 app.use("/login", login);
 app.use("/signup", signupRoute);
+app.use("/users",users);
+app.use("/posts",posts);
 app.use("/api/search", search);
 app.use("/", express.static('dist'));
 

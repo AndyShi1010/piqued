@@ -28,6 +28,7 @@
             description: "These are some of the best movies based on box office sales. ",
             tags: [],
             to: "1236", 
+            img: "../img/movie.jpg"
         }
     }
     const logged = localStorage.getItem('logged');
@@ -74,23 +75,23 @@
         <div class="card-container">
             <div class="card-column-flex">
                 <Card {...cardData.card1} index={0} showLikes showComments/>
-                <Card {...cardData.card2} index={0}/>
+                <Card {...cardData.card2} index={0} showLikes showComments/>
                 <Card {...cardData.card3} index={0} showLikes showComments/>
-                <Card {...cardData.card2} index={0}/>
-                <Card {...cardData.card1    } index={0} showLikes/>
+                <Card {...cardData.card2} index={0} showLikes showComments/>
+                <Card {...cardData.card1    } index={0} showLikes showComments/>
             </div>
             <div class="card-column-flex">
-                <Card {...cardData.card2} index={1}/>
-                <Card {...cardData.card3} index={1}/>
-                <Card {...cardData.card1} index={1}/>
-                <Card {...cardData.card3} index={1}/>
+                <Card {...cardData.card2} index={1} showLikes showComments/>
+                <Card {...cardData.card3} index={1} showLikes showComments/>
+                <Card {...cardData.card1} index={1} showLikes showComments/>
+                <Card {...cardData.card3} index={1} showLikes showComments/>
             </div>
             <div class="card-column-flex">
-                <Card {...cardData.card2} index={1}/>
-                <Card {...cardData.card1} index={1}/>
-                <Card {...cardData.card1} index={1}/>
-                <Card {...cardData.card3} index={1}/>
-                <Card {...cardData.card2} index={1}/>
+                <Card {...cardData.card2} index={1} showLikes showComments/>
+                <Card {...cardData.card1} index={1} showLikes showComments/>
+                <Card {...cardData.card1} index={1} showLikes showComments/>
+                <Card {...cardData.card3} index={1} showLikes showComments/>
+                <Card {...cardData.card2} index={1} showLikes showComments/>
             </div>
         </div>
 

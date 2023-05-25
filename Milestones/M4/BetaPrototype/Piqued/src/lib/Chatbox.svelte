@@ -18,22 +18,7 @@
         {
             user: "Test 3",
             time: new Date(),
-            content: "Nm hby"
-        },
-        {
-            user: "Test 3",
-            time: new Date(),
-            content: "Nm hby"
-        },
-        {
-            user: "Test 3",
-            time: new Date(),
-            content: "Nm hby"
-        },
-        {
-            user: "Test 3",
-            time: new Date(),
-            content: "Nm hby"
+            content: "Yo"
         }
     ]
 </script>

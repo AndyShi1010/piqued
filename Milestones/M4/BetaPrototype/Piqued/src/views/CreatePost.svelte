@@ -4,6 +4,11 @@
     import Button from "../lib/Button.svelte";
     import { PaperPlaneTilt, PlusCircle } from 'phosphor-svelte';
     import Tag from "../lib/Tag.svelte";
+    import { username } from '../stores.js';
+    let userName = localStorage.getItem('username');
+    // username.subscribe(value => {
+    //         userName = value;
+    //     });
     // import { editorContent } from "../lib/PostEditor.svelte"
 
     let tags = []
@@ -62,7 +67,7 @@
             <div class="account-image">
                 <img src="../img/burger.jpg" alt="profile picture" loading="lazy">
             </div>
-            <h2>Username</h2>
+            <h2>{userName}</h2>
         </div>
         <div class="separator"></div>
         <div id="post-button">  

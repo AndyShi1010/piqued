@@ -8,11 +8,11 @@
     import Chatbox from "./Chatbox.svelte";
     import { username } from '../stores.js';
     const logged = localStorage.getItem('logged');
-    let userName
+    let userName = localStorage.getItem('username');
 
-    username.subscribe(value => {
-		userName = value;
-	});
+    // username.subscribe(value => {
+	// 	userName = value;
+	// });
     
     function logOut() {
         localStorage.setItem("logged", "false");
