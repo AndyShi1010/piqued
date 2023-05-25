@@ -40,6 +40,8 @@
     let fullnameError = "Error";
     let passwordError = "Error";
 
+    let signupError = false;
+
     async function signUp() {
         console.log(fullnameElem.value, usernameElem.value, emailElem.value, passwordElem.value);
         const res = await fetch(`/signup`, 
@@ -61,6 +63,8 @@
             console.log(response)
             if (response.status == 200) {
                 push("/login")
+            } else {
+                signupError = true;
             }
         })
     }
@@ -364,6 +368,11 @@
                     >
                     and <a href="/#/privacy">Privacy Policy</a>.
                 </p>
+                {#if signupError}
+                <div class="validation-error">
+                    User already exists.
+                </div>
+                {/if}
                 <div class="signup-button">
                     <Button
                         on:click={signUp}
