@@ -346,7 +346,7 @@
                     <Textfield
                         type="password"
                         bind:elem={passwordConfirmElem}
-                        on:change={checkPasswordMatch}
+                        on:input={checkPasswordMatch}
                         error={!passwordMatch && showPasswordMatchError}
                         required>Confirm Password</Textfield
                     >
@@ -436,8 +436,8 @@
     }
     .prompt p {
         margin: 0;
-        margin-top: 32px;
-        margin-bottom: 32px;
+        /* margin-top: 32px;
+        margin-bottom: 32px; */
     }
 
     .prompt p a {

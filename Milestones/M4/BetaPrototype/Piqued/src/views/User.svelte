@@ -6,12 +6,17 @@
 
     import {link} from 'svelte-spa-router'
     import {location} from 'svelte-spa-router'
+    import { username } from '../stores.js';
 
     console.log($location);
 
     // import active from 'svelte-spa-router/active'
 
-    const userName = localStorage.getItem('user');
+    let userName = localStorage.getItem('username');
+
+    // username.subscribe(value => {
+    //         userName = value;
+    // });
   </script>
 
 <div class="biopage">
@@ -20,7 +25,7 @@
             <img src="../img/burger.jpg" alt="profile picture" width="300" height="200" loading="lazy">
         </div>
         <div class="info">
-            <h2>Username</h2>
+            <h2>{userName}</h2>
             <div class="info-section" id="contact">
                 <p>Full name</p>
                 <p>Email</p>
