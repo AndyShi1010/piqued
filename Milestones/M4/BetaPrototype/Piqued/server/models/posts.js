@@ -1,15 +1,16 @@
 import db from "../databaseConnection.js";
 
 const postsModel = {};
-const selectFrom = "SELECT posts.postId,displayName, title,body,unformatted_body AS simpleText, visibility, commentsAllowed,posts.lastModified,posts.createdAt,\n" +
-    "category,wordCount,COUNT( DISTINCT postReaction.fk_userId) AS likes, group_concat(DISTINCT tags.tag ORDER BY tags.tag ) as hashtags\n" +
+const selectFrom = "SELECT posts.postId,displayName, title,body,unformatted_body AS simpleText, posts.lastModified,posts.createdAt,\n" +
+    "category,wordCount,COUNT( DISTINCT postReaction.fk_userId) AS likes ,COUNT(DISTINCT comments.commentId) as commentCount, group_concat(DISTINCT tags.tag ORDER BY tags.tag ) as hashtags\n" +
     "FROM piquedDB.posts \n" +
     "JOIN piquedDB.profile ON profile.profile_id=posts.author\n" +
     "LEFT JOIN piquedDB.postReaction ON posts.postId = postReaction.fk_postId\n" +
     "LEFT JOIN piquedDB.hashtag ON posts.postId = hashtag.postId \n" +
-    "LEFT JOIN piquedDB.tags on tags.tags_id=hashtag.tag\n ";
+    "LEFT JOIN piquedDB.tags on tags.tags_id=hashtag.tag\n "+
+    "LEFT JOIN piquedDB.comments on posts.postId = comments.fk_postId ";
 
-postsModel.create = (fk_user, postTitle, postBody, unformatted_body, postVisibility, allowComments, postCategory, wordCount, mediaPath) => {
+postsModel.create = (fk_user, postTitle, postBody, unformatted_body, postVisibility, allowComments, postCategory, wordCount, mediaPath,tags) => {
     const createPostSQL =
         "INSERT INTO piquedDB.posts (author,title,body, unformatted_body, visibility, commentsAllowed, category,wordCount) VALUE (?,?,?,?,?,?,?,?)";
     return db.execute(createPostSQL, [
@@ -21,12 +22,39 @@ postsModel.create = (fk_user, postTitle, postBody, unformatted_body, postVisibil
         allowComments,
         postCategory,
         wordCount,
-    ]).then(([results, fields]) => {
+    ]).then(async ([results, fields]) => {
         if (mediaPath) {
             const insertPicSQL = "INSERT INTO piquedDB.media (fk_postId, mediaPath) VALUE (?,?)";
             db.execute(insertPicSQL, [results.insertId, mediaPath])
         }
-        return Promise.resolve(results);
+        if (tags) {
+            const getTagIdIfExistsSQL = "SELECT tags_id from piquedDB.tags where tag = ?";
+            const insertTagIfNotExistsSQL = "INSERT INTO piquedDB.tags (tag) VALUES (?)";
+            const insertLinkSQL = "INSERT INTO piquedDB.hashtag (postId, tag) VALUES (?,?);"
+            if (tags.length) {
+                for (let i = 0; i < tags.length; i++) {
+                    let getTag;
+                    getTag = await db.execute(getTagIdIfExistsSQL,[tags[i]])
+                        .then(([results, fields]) => {
+                            if(results && results.length) {
+                                return Promise.resolve(results[0].tags_id);
+                            } else{ return Promise.resolve(0);}
+                        })
+                        .catch((err) => Promise.reject(err))
+                    if(!getTag){
+                         getTag = await db.execute(insertTagIfNotExistsSQL,[tags[i]])
+                            .then(([results, fields]) => {
+                                return Promise.resolve(results.insertId);
+                            })
+                            .catch((err) => Promise.reject(err))
+                    }
+                    if(getTag){
+                        db.execute(insertLinkSQL,[results.insertId,getTag]);
+                    }
+                }
+            }
+        }
+        return Promise.resolve(results.affectedRows);
 
     }).catch((err) => Promise.reject(err))
 };
@@ -56,7 +84,9 @@ postsModel.getPostById = (getById) => {
     const getPostSQL = selectFrom +" WHERE posts.postId = ?";
     return db.execute(getPostSQL, [getById])
         .then(([results, fields]) => {
-            return Promise.resolve(results);
+            if(results && results[0].postId){
+                return Promise.resolve(results[0]);}
+            else{return Promise.reject(0);}
         })
         .catch((err) => Promise.reject(err))
 }
