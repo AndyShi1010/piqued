@@ -9,17 +9,20 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (request, response) => {
-  const { username, name, email, password } = request.body;
+  const { fullname, username, email, password } = request.body;
+  console.log(fullname, username, email, password)
   const usernameExists = await Users.usernameExists(username);
   const emailExists = await Users.emailExists(email);
-
+  console.log(usernameExists, emailExists)
   try {
     if (usernameExists || emailExists) {
-      response.redirect("login");
+      response.status(400).send("Username or Email taken")
     }
     else {
-      const { id } = await Users.create(username, name, email, password);
-      response.redirect("/#/account");
+      const { id } = await Users.create(username, fullname, email, password);
+      // console.log(id)
+      response.status(200).send("User Created")
+      // response.redirect("/#/account");
     }
   } catch (error) {
     console.log({ error });

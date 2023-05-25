@@ -36,23 +36,40 @@ router.post("/", async (req, res) => {
     const { usernameEmail, password } = req.body;
     console.log(usernameEmail, password)
     try {
-        const authenticate = Users.authenticate(usernameEmail, password);
-        if (authenticate) {
-            // res.locals.logged = true;
-            // res.locals.username = authenticate;
-            // console.log(res.locals)
-            res.status(200).send("Authenticated")
-            // response.redirect("/#/account");
-        } else {
-            response.status(401).send("Error logging in")
-            throw "Credentials invalid";
-        }
+        const authenticate = Users.authenticate(usernameEmail, password)
+        .then((auth) => {
+            if (auth) {
+                // res.locals.logged = true;
+                // res.locals.username = authenticate;
+                console.log(auth)
+                res.status(200).json({"userid": auth})
+                // response.redirect("/#/account");
+            } else {
+                response.status(401).send("Error logging in")
+                throw "Credentials invalid";
+            }
+        })
     } catch (error) {
         console.log({ error });
     }
     // res.status(200).send("Authenitcated")
     
     // res.redirect("/#/terms")
+})
+
+router.post("/id", async (req, res) => {
+    const { userid } = req.body;
+    try {
+        const user = Users.getUser(userid)
+        .then((user) => {
+            if (user)  {
+                console.log(user)
+                res.status(200).json(user)
+            }
+        })
+    } catch (error) {
+        console.log({ error });
+    }
 })
 
 export default router;

@@ -6,9 +6,14 @@
     import MenuDropdown from './MenuDropdown.svelte';
     import { onMount } from "svelte";
     import Chatbox from "./Chatbox.svelte";
+    import { username } from '../stores.js';
     const logged = localStorage.getItem('logged');
-    const userName = localStorage.getItem('user');
+    let userName
 
+    username.subscribe(value => {
+		userName = value;
+	});
+    
     function logOut() {
         localStorage.setItem("logged", "false");
     }

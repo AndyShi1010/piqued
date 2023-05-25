@@ -3,6 +3,10 @@
     import { House, ArrowRight } from 'phosphor-svelte'
     import Textfield from '../lib/Textfield.svelte';
     import { push } from 'svelte-spa-router'
+
+    import { username } from '../stores.js';
+
+	
     // /** @type {import('./$types').PageData} */
     // export let data;
     export let continueRoute;
@@ -28,36 +32,31 @@
         })
         .then((response) => 
         {   
-            console.log(response)
-            if (response.status == 200) {
+            response.json()
+            .then((json) => {
+                console.log(json);
                 localStorage.setItem("logged", "true");
-                localStorage.setItem("user", "TempUser");
-                localStorage.setItem("newLog", "true");  
-                push(continueRoute)
-            } else {
-                console.log("Error");
-            }
+                localStorage.setItem("userid", json.userid);
+                fetch(`/login/id`, 
+                {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "userid": json.userid
+                    })
+                }).then((response) => {
+                    response.json()
+                    .then((json) => {
+                        console.log(json);
+                        username.set(json.username);
+                        push(continueRoute);
+                    })
+                })
+            })
         })
-        // .then(json => {
-        //     // let resJson = JSON.stringify(json);
-        //     // results = resJson;
-        //     console.log(json)
-        // })
-        // .then((response) => {
-        //     console.log(response.body)
-        //     push(continueRoute)
-        // })
-            // .then(json => {
-            //    // let resJson = JSON.stringify(json);
-            //    // results = resJson;
-            //     resultsMessage = json.message;
-            //     resultsData = json.results;
-            //     loading = false;
-            // })
-        // console.log(resultsData);
-        // localStorage.setItem("logged", "true");
-        // localStorage.setItem("user", "TempUser");
-        // localStorage.setItem("newLog", "true");
     }
 </script>
 

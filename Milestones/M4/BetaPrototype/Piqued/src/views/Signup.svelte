@@ -59,7 +59,9 @@
         .then((response) => 
         {
             console.log(response)
-            push("/")
+            if (response.status == 200) {
+                push("/login")
+            }
         })
     }
 
@@ -456,6 +458,7 @@
         gap: 8px;
         height: 0px;
         opacity: 0;
+        visibility: hidden;
         /* transform: scaleY(0);
         transform-origin: top; */
         /* overflow: hidden; */
@@ -465,6 +468,7 @@
     .password-checks.show {
         margin-top: 8px;
         height: auto;
+        visibility: visible;
         opacity: 1;
         /* transform: scaleY(1); */
     }
