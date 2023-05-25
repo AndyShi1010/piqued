@@ -11,6 +11,7 @@ import cors from 'cors';
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
 import search  from "./routes/search.js";
+import login from "./routes/login.js";
 const store = expressSession(sessions);
 const mysqlSessionStore = new store({/* Default Options*/},db);
 
@@ -18,6 +19,7 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 app.use(cors());
+app.use(express.json())
 
 app.use(flash());
 app.set("view engine", "svelte");
@@ -61,8 +63,20 @@ app.use(sessions({
   saveUninitialized: false
 }));
 
-app.use("/api/search", search);
 app.use("/", express.static('dist'));
+
+app.use("/api/search", search);
+app.use("/login", login);
+
+//This is for hash route aliasing. Please do not remove
+//If user goes to /route it auto-redirects to the proper /#/route hashroute in frontend
+// app.use("/login", (req, res) => {
+//   res.redirect('/#/login');
+// })
+
+// app.use("/signup", (req, res) => {
+//   res.redirect('/#/signup');
+// })
 
 //connect to port
 app.listen(port, () => {
