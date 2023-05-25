@@ -9,6 +9,8 @@
 	let emailModal;
 	let passwordModal;
     let pfpModal;
+
+    let userName = localStorage.getItem('username');
 </script>
 
 
@@ -22,7 +24,7 @@
             <div id="username">
                 <h2>Username</h2>
                 <div class="account-info-box">
-                    <p>Username Lorem Ipsum</p>
+                    <p>{userName}</p>
                     <Button on:click={() => {usernameModal.showDialogClick()}}>Edit</Button>
                 </div>
             </div>
