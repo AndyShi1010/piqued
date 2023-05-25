@@ -9,6 +9,7 @@ import db from "./databaseConnection.js";
 import createError from "http-errors";
 import initSockets from "./sockets/initialize.js";
 import signupRoute from "./routes/signup.js"
+import search from "./routes/search.js"
 
 import postsmodel from './models/posts.js';
 
@@ -26,7 +27,7 @@ const mysqlSessionStore = new store({/* Default Options*/},db);
 const port = process.env.PORT || 4000;
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 
 app.set("view engine", "svelte");
 app.use(morgan('dev'));
@@ -70,6 +71,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use("/login", login);
+app.use("/signup", signupRoute);
 app.use("/api/search", search);
 app.use("/", express.static('dist'));
 

@@ -15,11 +15,11 @@ router.post("/", async (request, response) => {
 
   try {
     if (usernameExists || emailExists) {
-      // response.redirect("login");
+      response.redirect("login");
     }
     else {
       const { id } = await Users.create(username, name, email, password);
-      // response.redirect("/#/account");
+      response.redirect("/#/account");
     }
   } catch (error) {
     console.log({ error });

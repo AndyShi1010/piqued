@@ -40,9 +40,9 @@
     let fullnameError = "Error";
     let passwordError = "Error";
 
-    function signUp() {
+    async function signUp() {
         console.log(fullnameElem.value, usernameElem.value, emailElem.value, passwordElem.value);
-        fetch(`/api/signup`, 
+        const res = await fetch(`/signup`, 
         {
             method: 'POST',
             headers: {

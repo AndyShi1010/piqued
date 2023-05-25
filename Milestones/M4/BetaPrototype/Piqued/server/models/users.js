@@ -4,15 +4,15 @@ import bcrypt from "bcrypt";
 // const users = {};
 const saltRounds = 10;
 
-const createUserSQL = "INSERT INTO user(username, name, email, password) VALUES (?,?,?,?);"
-const createProfile = "INSERT INTO profile (user, displayName) VALUE (?,?)";
+const createUserSQL = 'INSERT INTO user (username, name, email, password, lastLogin, createdAt) VALUES (?,?,?,?, now(), now())'
+const createProfile = "INSERT INTO profile (user, displayName) VALUE (?,?)"
 const userExistSQL = "SELECT * FROM user WHERE username=?"
 const emailExistSQL = "SELECT * FROM user WHERE email=?"
-const authSQL = "SELECT userId, displayName, avatar, username,email,password,lastLogin FROM user JOIN profile ON profile.user = user.userId WHERE username = ?;"
+const authSQL = "SELECT userId, displayName, avatar, username,email,password,lastLogin FROM user JOIN profile ON profile.user = user.userId WHERE username = ?"
 
-const create = async (createUsername, createName, createEmail, createPassword) => {
+const create = async (createUsername, createName, createEmail, createPassword, createLastLogin, createdAt) => {
     const hashedPassword = await bcrypt.hash(createPassword, saltRounds);
-    return db.execute(createUserSQL, [createUsername, createName, createEmail, hashedPassword])
+    return db.execute(createUserSQL, [createUsername, createName, createEmail, hashedPassword, createLastLogin, createdAt])
         .then(([results, fields]) => {
             db.execute(createProfile, [results.insertId, createUsername]);
             return Promise.resolve(results);
@@ -36,7 +36,7 @@ const emailExists = (email) => {
         .catch((err) => Promise.reject(err));
 }
 
-const authenticate = (username,password) => {
+const authenticate = async (username,password) => {
     return db.execute(authSQL,[username]).then(async ([results, fields]) => {
         if (results) {
             const passwordsMatch = await bcrypt.compareSync(password, results[0].password);
