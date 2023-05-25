@@ -24,7 +24,7 @@ const create = async (createUsername, createName, createEmail, createPassword) =
 const usernameExists = (username) => {
     return db.execute(userExistSQL, [username])
         .then(([results, fields]) => {
-            return Promise.resolve(!results);
+            return Promise.resolve(results.length);
         })
         .catch((err) => Promise.reject(err));
 }
@@ -85,6 +85,53 @@ const getUser = (userId) => {
 
 
 }
+const passwordCheck = (userId, password) => {
+    const getPassword = "SELECT password from piquedDB.user WHERE username = ?";
+    return db.execute(getPassword,[userId])
+        .then(([results, fields]) => {
+            return bcrypt.compareSync(password, results[0].password);
+        }).catch((err) => Promise.reject(err));
+}
+const updateUsersName = (updatedName,userId) => {
+    const updateUserSql = "UPDATE piquedDB.user SET username = ? WHERE userId = ?";
+    return db.execute(updateUserSql,[updatedName,userId])
+        .then(([results, fields]) => {
+            return results.affectedRows;
+        }).catch((err) => Promise.reject(err));
+}
 
+const updatePassword = async (userId, newPassword) => {
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    const updatePasswordSQL = "UPDATE piquedDB.user SET password = ? WHERE userId = ?"
+    return db.execute(updatePasswordSQL, [hashedPassword, userId])
+        .then(([results, fields]) => {
+            return results.affectedRows;
+        }).catch((err) => Promise.reject(err));
+}
 
-export default {create, usernameExists, emailExists, authenticate, getUser}; 
+const updateName = async (userId,fullName) => {
+    const fullNameSQL = "UPDATE piquedDB.user SET name = ? WHERE userId = ?"
+    return db.execute(fullNameSQL,[fullName,userId])
+        .then(([results, fields]) => {
+            return results.affectedRows;
+        }).catch((err) => Promise.reject(err));
+}
+
+const updateEmail = async (userId,email) => {
+    const emailSQL = "UPDATE piquedDB.user SET email = ? WHERE userId = ?"
+    return db.execute(emailSQL,[email,userId])
+        .then(([results, fields]) => {
+            return results.affectedRows;
+        }).catch((err) => Promise.reject(err));
+}
+const updateProfilePic = async (userId,pfp) => {
+    const updatePFPsql = "UPDATE piquedDB.profile SET avatar = ? " +
+        "WHERE user = (SELECT userId  FROM piquedDB.user WHERE userId = ?);"
+    return db.execute(updatePFPsql,[pfp,userId])
+        .then(([results, fields]) => {
+            return results.affectedRows;
+        }).catch((err) => Promise.reject(err));
+}
+
+export default {create, usernameExists, emailExists, authenticate, getUser, updateUsersName, passwordCheck
+,updatePassword, updateName,updateEmail,updateProfilePic};
