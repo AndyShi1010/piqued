@@ -62,16 +62,28 @@ const authenticate = async (username,password) => {
 
 const getUser = (userId) => {
     // console.log(userId);
-    return db.execute(getUserSQL, [userId])
-    .then(([results, fields]) => {
-        console.log(results);
-        if (results && results.length == 1) {
-            return results[0];
+    try {
+        if (userId) {
+            return db.execute(getUserSQL, [userId])
+            .then(([results, fields]) => {
+                console.log(results);
+                if (results && results.length == 1) {
+                    return results[0];
+                } else {
+                    return Promise.resolve(-1);
+                }
+            })
+            .catch((err) => Promise.reject(err));
         } else {
-            return Promise.resolve(-1);
+            throw "UserID invalid"
         }
-    })
-    .catch((err) => Promise.reject(err));
+    } catch (error) {
+        console.log({ error });
+        Promise.resolve(-1);
+    }
+    
+
+
 }
 
 
