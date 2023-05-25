@@ -34,13 +34,11 @@
         </ul>
         {#if $location == `/user/${userName}#liked`}
         <div class="articles" in:fly="{{x: 10, duration: 250, delay: 300}}" out:fly="{{x: 10, duration: 250}}">
-            <h1>Liked Posts</h1>
             <Card></Card>
             <Card></Card>
         </div>
         {:else}
         <div class="articles" in:fly="{{x: -10, duration: 250, delay: 300}}" out:fly="{{x: -10, duration: 250}}">
-            <h1>User Posts</h1>
             <Card></Card>
             <Card></Card>
         </div>
@@ -59,7 +57,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 16px;
         background-color: var(--primary-orange-700);
         padding: 32px 64px;
         box-sizing: border-box;
@@ -93,7 +91,7 @@
     }
     .tab-bar li {
         display: block;
-        padding: 16px;
+        padding: 16px 8px 24px 8px;
         font-family: var(--display-type);
         font-size: 18px;
     }
@@ -127,6 +125,11 @@
         transform: scaleX(1);
         background-color: var(--accent-red-700);
         display: block;
+    }
+    .articles {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
     @media screen and (max-width: 720px) {
         .biopage {

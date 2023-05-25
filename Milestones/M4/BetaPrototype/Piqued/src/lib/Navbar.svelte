@@ -5,9 +5,15 @@
     import MenuEntry from './MenuEntry.svelte';
     import MenuDropdown from './MenuDropdown.svelte';
     import { onMount } from "svelte";
+    import Chatbox from "./Chatbox.svelte";
+    import { username } from '../stores.js';
     const logged = localStorage.getItem('logged');
-    const userName = localStorage.getItem('user');
+    let userName
 
+    username.subscribe(value => {
+		userName = value;
+	});
+    
     function logOut() {
         localStorage.setItem("logged", "false");
     }
@@ -20,6 +26,8 @@
     let nav
     let navHeight
 
+    let showChatbox = false;
+
     onMount(() => {
         navHeight = parseInt(nav.offsetHeight);
         // console.log(scroll, navHeight);
@@ -28,6 +36,15 @@
 
     function onScroll() {
         console.log(scroll, navHeight);
+    }
+
+    function toggleChat() {
+        showChatbox = !showChatbox;
+        if (showChatbox) {
+            document.body.addEventListener('click', toggleChat);
+        } else {
+            document.body.removeEventListener('click', toggleChat);
+        }
     }
 
     // function openChatWindow() {
@@ -60,9 +77,14 @@
         </a>
         {#if logged == "true"}
         <div id="action-buttons">
-            <Button type="text" icon="iconOnly">
-                <Chats size={24} weight="bold" />
-            </Button>
+            <div class="chat">
+                <div class="button-container" on:click|stopPropagation={toggleChat}>
+                    <Button type="text" icon="iconOnly">
+                        <Chats size={24} weight="bold" />
+                    </Button>
+                </div>
+                <Chatbox bind:show={showChatbox}/>
+            </div>
             <!-- Post Button -->
             <Button to="/#/post" icon="iconLeft">
                 <NotePencil size="{24}" weight="bold"/>
@@ -197,5 +219,8 @@
       background-color: var(--neutral-pink-200);
       width: 100%;
       height: 1px;
+    }
+    .chat {
+        position: relative;
     }
 </style>

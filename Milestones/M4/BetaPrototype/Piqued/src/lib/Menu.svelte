@@ -22,7 +22,7 @@
     </div>
 
     {#if show}
-    <div style="width: {width}px;" class="dropdown  {align}" transition:fly="{{y: -10, duration: 250}}">
+    <div style="width: {width}px;" class="dropdown  {align}" transition:fly="{{y: -10, duration: 250}}" on:click|stopPropagation={()=>{}}>
         <slot name="dropdown"></slot>
     </div>
     {/if}

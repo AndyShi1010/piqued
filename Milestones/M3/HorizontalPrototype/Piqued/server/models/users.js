@@ -1,7 +1,7 @@
 import db from "../databaseConnection.js";
 import bcrypt from "bcrypt";
 
-const users = {};
+// const users = {};
 const saltRounds = 10;
 
 const createUserSQL = "INSERT INTO user(username, name, email, password) VALUES (?,?,?,?);"
@@ -10,7 +10,7 @@ const userExistSQL = "SELECT * FROM user WHERE username=?"
 const emailExistSQL = "SELECT * FROM user WHERE email=?"
 const authSQL = "SELECT userId, displayName, avatar, username,email,password,lastLogin FROM user JOIN profile ON profile.user = user.userId WHERE username = ?;"
 
-users.create = async (createUsername, createName, createEmail, createPassword) => {
+const create = async (createUsername, createName, createEmail, createPassword) => {
     const hashedPassword = await bcrypt.hash(createPassword, saltRounds);
     return db.execute(createUserSQL, [createUsername, createName, createEmail, hashedPassword])
         .then(([results, fields]) => {
@@ -20,7 +20,7 @@ users.create = async (createUsername, createName, createEmail, createPassword) =
         }).catch((err) => Promise.reject(err))
 };
 
-users.usernameExists = (username) => {
+const usernameExists = (username) => {
     return db.execute(userExistSQL, [username])
         .then(([results, fields]) => {
             return Promise.resolve(!results);
@@ -28,7 +28,7 @@ users.usernameExists = (username) => {
         .catch((err) => Promise.reject(err));
 }
 
-users.emailExists = (email) => {
+const emailExists = (email) => {
     return db.execute(emailExistSQL, [email])
         .then(([results, fields]) => {
             return Promise.resolve(!results);
@@ -36,7 +36,7 @@ users.emailExists = (email) => {
         .catch((err) => Promise.reject(err));
 }
 
-users.authenticate = (username,password) => {
+const authenticate = (username,password) => {
     return db.execute(authSQL,[username]).then(async ([results, fields]) => {
         if (results) {
             const passwordsMatch = await bcrypt.compareSync(password, results[0].password);
@@ -48,4 +48,4 @@ users.authenticate = (username,password) => {
 }
 
 
-export default users;
+export default {create, usernameExists, emailExists, authenticate}; 
