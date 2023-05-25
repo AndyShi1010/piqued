@@ -2,16 +2,45 @@
     import Button from '../lib/Button.svelte';
     import { House, ArrowRight } from 'phosphor-svelte'
     import Textfield from '../lib/Textfield.svelte';
+    import { push } from 'svelte-spa-router'
     // /** @type {import('./$types').PageData} */
     // export let data;
     export let continueRoute;
 
     console.log(continueRoute)
 
+    let usernameEmailElem;
+    let passwordElem;
+
     function logIn() {
-        localStorage.setItem("logged", "true");
-        localStorage.setItem("user", "TempUser");
-        localStorage.setItem("newLog", "true");
+        console.log(usernameEmailElem.value, passwordElem.value);
+        fetch(`/login`, 
+        {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "usernameEmail": usernameEmailElem.value,
+                "password": passwordElem.value
+            })
+        })
+        .then((response) => {
+            console.log(response)
+            push(continueRoute)
+        })
+            // .then(json => {
+            //    // let resJson = JSON.stringify(json);
+            //    // results = resJson;
+            //     resultsMessage = json.message;
+            //     resultsData = json.results;
+            //     loading = false;
+            // })
+        // console.log(resultsData);
+        // localStorage.setItem("logged", "true");
+        // localStorage.setItem("user", "TempUser");
+        // localStorage.setItem("newLog", "true");
     }
 </script>
 
@@ -25,15 +54,15 @@
             <h1>Log In</h1>
             <form method="post" action="../server/models/users.js">
                 <div class="textfield-container">
-                    <Textfield  type="text">Username/Email</Textfield>
+                    <Textfield type="text" bind:elem={usernameEmailElem}>Username/Email</Textfield>
                 </div>
                 <div class="textfield-container">
-                    <Textfield  type="password">Password</Textfield>
+                    <Textfield type="password" bind:elem={passwordElem}>Password</Textfield>
                 </div>
             </form>
             <p>Don't have an account? <a href="/#/signup">Sign Up!</a></p>
             <div class="login-button">
-                <Button on:click={logIn} to={continueRoute ? continueRoute : "/"} icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Login</Button>
+                <Button on:click={logIn} icon="iconRight"><ArrowRight size={"24"} weight="bold"/>Login</Button>
             </div>
         </div>
         

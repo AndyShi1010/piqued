@@ -4,8 +4,32 @@
     import Button from "../lib/Button.svelte";
     import { PaperPlaneTilt, PlusCircle } from 'phosphor-svelte';
     import Tag from "../lib/Tag.svelte";
+    // import { editorContent } from "../lib/PostEditor.svelte"
 
-    let tags = ["Cheese", "Burger"]
+    let tags = []
+    let showTagInput = false
+    let tagInput
+
+    let postContent;
+
+	// count.subscribe(value => {
+	// 	postContent = $editorContent;
+    //     console.log(postContent);
+	// });
+
+
+    function pushTag(e) {
+        if (e.key === "Enter") {
+            e.target.value = e.target.value.trim();
+            if (e.target.value != "") {
+                if (!tags.includes(e.target.value)) {
+                    tags = [...tags, e.target.value]
+                    e.target.value = ""
+                    showTagInput = false;
+                }
+            }
+        }   
+    }
 </script>
 
 
@@ -16,13 +40,21 @@
         <div class="tag-editor">
             <span>Tags:</span>
             {#each tags as i}
-                <Tag type="hashtag" disabled>{i}</Tag>
+                <button class="tag" on:click={() => {
+                        // const item = tags.indexOf(i);
+                        tags = tags.filter(t => t != i)
+                        // tags = tags.splice(tags.indexOf(i), 1)
+                        // console.log(item)
+                        console.log(tags);
+                    }}>#{i}</button>
             {/each}
-            <button class="add-tag"><PlusCircle size={20} weight="bold" /></button>
-            <input type="text">
+            <button class="add-tag" on:click={(e) => {showTagInput = !showTagInput; e.target.blur()}}><PlusCircle size={16} weight="bold" /></button>
+            {#if showTagInput}
+                <input type="text" id="tag-input" on:keypress={pushTag} bind:this={tagInput} on:blur={() => {showTagInput = false}} autofocus>
+            {/if}
         </div>
 
-        <PostEditor></PostEditor>
+        <PostEditor bind:data={postContent}></PostEditor>
     </div>
 
     <div class="main-account">
@@ -34,7 +66,7 @@
         </div>
         <div class="separator"></div>
         <div id="post-button">  
-            <Button type="primary" to="/" icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
+            <Button type="primary" on:click={() => {console.log(postContent)}} icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
         </div>
     </div>
 </div>
@@ -62,7 +94,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 16px;
         background-color: var(--primary-orange-700);
         padding: 32px;
         box-sizing: border-box;
@@ -76,7 +108,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 16px;
     }
     .account-image img {
         aspect-ratio: 1 / 1;
@@ -103,10 +135,31 @@
         display: flex;
         flex-direction: row;
         gap: 8px;
+        align-items: center;
+        font-family: var(--body-type);
+    }
+    .tag {
+        padding: 6px 8px;
+        font-size: 12px;
+        border-radius: 4px;
+        font-family: var(--body-type);
+        text-decoration: none;
+        line-height: 1;
+        border: 0px;
+        background-color: var(--primary-orange-800);
+        color: var(--accent-red-900);
+        transition: background-color 0.25s;
+        height: min-content;
+        cursor: pointer;
+    }
+    .tag:hover, .tag:focus {
+        background-color: var(--error-red-100);
+        color: var(--error-red-700);
+        text-decoration: line-through;
     }
     .add-tag {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         border: none;
         border-radius: 8px;
         margin-top: 0px;
@@ -120,6 +173,19 @@
     }
     .add-tag:hover {
       background-color: var(--primary-orange-900);
+    }
+    #tag-input {
+        background-color: var(--primary-orange-700);
+        padding: 4px;
+        border-radius: 8px;
+        width: 96px;
+        font-family: var(--body-type);
+    }
+    #tag-input:focus {
+        padding: 4px;
+        background-color: var(--primary-orange-700);
+        border: 2px solid var(--accent-red-700);
+        outline-offset: 2px;
     }
     @media screen and (max-width: 720px) {
         .page-container {

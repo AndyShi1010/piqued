@@ -1,7 +1,7 @@
 <script>
     import { UploadSimple, Trash } from 'phosphor-svelte';
 
-    let fileInput
+    export let fileInput
     export let file
     let filename
 

@@ -86,7 +86,7 @@
 
   function conditionsFailed(event) {
     console.log('conditionsFailed event', event.detail);
-    continueTo = `/#${event.detail.location}`;
+    continueTo = `${event.detail.location}`;
     console.log(continueTo);
     replace('/login');
   }
