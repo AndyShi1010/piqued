@@ -1,31 +1,31 @@
-const express = require("express");
-const bcrypt = require("bcrypt");
-const Users = require("../../server/models/users.js");
+import express from "express";
+import Users from "../../server/models/users.js";
 
 const router = express.Router();
 
-router.get("/#/signup", (req, res) => {
-  res.render("signup");
+
+router.get("/", (req, res) => {
+  res.redirect("signup");
 });
 
-router.post("/#/signup", async (request, response) => {
+router.post("/", async (request, response) => {
   const { username, name, email, password } = request.body;
-  const usernameExists = Users.usernameExists(username);
-  const emailExists = Users.emailExists(email);
+  const usernameExists = await Users.usernameExists(username);
+  const emailExists = await Users.emailExists(email);
 
   try {
     if (usernameExists || emailExists) {
-      response.render("login");
+      response.redirect("login");
     }
     else {
-      const { id } = Users.create(username, name, email, password);
+      const { id } = await Users.create(username, name, email, password);
       response.redirect("/#/account");
     }
   } catch (error) {
     console.log({ error });
-    response.render("signup", { username, name, email, password });
+    // response.redirect("signup", { username, name, email, password });
   }
 
 });
 
-module.exports = router;
+export default router;
