@@ -50,9 +50,7 @@ router.post("/create-post", async (req, res) => {
         const createPost = await postsModel.create(1, "title", body,
             body_unformatted, 1, 1, null, wordCount, null, tagsSplit);
         if (createPost) {
-            message = "blah";
-            console.log(message);
-            res.status(200).json(message);
+            res.status(200);
         } else {
             message = "Server error creating post";
             res.status(500).json(message);
@@ -78,21 +76,6 @@ router.get("/user/:username", async (req,res)=>{
     }
 })
 
-router.get("/likedBy/:username", async (req,res)=>{
-    const userName = req.params.username;
-    try {
-        const usersLikedPosts = await postsModel.getProfileLikedPosts(userName)
-        console.log(usersLikedPosts);
-        if(!usersLikedPosts.length){
-            res.status(404).json({message:"No posts found."});
-        }
-        else{
-            res.status(200).json(usersLikedPosts);
-        }
-    }catch (err){
-        res.status(500).json({message: "Server error."})
-    }
-})
 
 
 export default router;
