@@ -38,7 +38,8 @@ users.emailExists = (email) => {
 
 users.authenticate = (username,password) => {
     return db.execute(authSQL,[username]).then(async ([results, fields]) => {
-        if (results) {
+        if (results && results.length == 1) {
+            console.log("Result", results)
             const passwordsMatch = await bcrypt.compareSync(password, results[0].password);
             return passwordsMatch? Promise.resolve(results[0]):Promise.resolve(-1);
         }

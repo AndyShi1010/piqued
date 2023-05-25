@@ -38,7 +38,10 @@ router.post("/", async (req, res) => {
     try {
         const authenticate = Users.authenticate(usernameEmail, password);
         if (authenticate) {
-            res.status(200).send("Authenitcated")
+            // res.locals.logged = true;
+            // res.locals.username = authenticate;
+            // console.log(res.locals)
+            res.status(200).send("Authenticated")
             // response.redirect("/#/account");
         } else {
             response.status(401).send("Error logging in")

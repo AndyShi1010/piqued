@@ -26,10 +26,27 @@
                 "password": passwordElem.value
             })
         })
-        .then((response) => {
+        .then((response) => 
+        {   
             console.log(response)
-            push(continueRoute)
+            if (response.status == 200) {
+                localStorage.setItem("logged", "true");
+                localStorage.setItem("user", "TempUser");
+                localStorage.setItem("newLog", "true");  
+                push(continueRoute)
+            } else {
+                console.log("Error");
+            }
         })
+        // .then(json => {
+        //     // let resJson = JSON.stringify(json);
+        //     // results = resJson;
+        //     console.log(json)
+        // })
+        // .then((response) => {
+        //     console.log(response.body)
+        //     push(continueRoute)
+        // })
             // .then(json => {
             //    // let resJson = JSON.stringify(json);
             //    // results = resJson;
