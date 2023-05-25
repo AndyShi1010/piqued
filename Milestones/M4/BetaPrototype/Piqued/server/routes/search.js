@@ -18,7 +18,6 @@ router.get("/", async (req, res) => {
                 results = await postsModel.searchPostsByKeyword(query[0]);
                 for (let i = 1; i < query.length; i++) {
                     temp = results;
-                    //TODO filter post visible == 0 && author ==  logged in user
                     results = results.filter(result =>
                         result.title.toLowerCase().includes(query[i].toLowerCase())
                         || result.simpleText.toLowerCase().includes(query[i].toLowerCase())

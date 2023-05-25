@@ -1,6 +1,7 @@
 import express from "express";
 import postsModel from '../models/posts.js';
 import {parsePostBody} from "../helperFunctions/postHelpers.js";
+import commentsModel from "../models/comments.js";
 
 
 const router = express.Router();
@@ -9,11 +10,26 @@ router.get("/:id", async (req, res) => {
     let id = req.params.id;
     try {
         const post = await postsModel.getPostById(id);
+        post.comments = await commentsModel.getPostComments(post.postId)
         if (post) {
             res.status(200).json({post})
         }
     } catch (err) {
         res.status(404).json({message: "Post Does not exist"});
+    }
+})
+
+router.post("/:id/create-comment",async (req,res) => {
+    let comment;
+    let userid;
+    let postid = req.params.id;
+
+    try {
+        const addComment = await commentsModel.createComment(userid,postid,comment);
+        res.status(200).json({message: "Post Created."});
+
+    }catch (err)  {
+        res.status(500).json({message: "Error creating comment"})
     }
 })
 
