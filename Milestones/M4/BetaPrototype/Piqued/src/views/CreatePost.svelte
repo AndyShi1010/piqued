@@ -4,10 +4,19 @@
     import Button from "../lib/Button.svelte";
     import { PaperPlaneTilt, PlusCircle } from 'phosphor-svelte';
     import Tag from "../lib/Tag.svelte";
+    // import { editorContent } from "../lib/PostEditor.svelte"
 
-    let tags = ["Cheese"]
+    let tags = []
     let showTagInput = false
     let tagInput
+
+    let postContent;
+
+	// count.subscribe(value => {
+	// 	postContent = $editorContent;
+    //     console.log(postContent);
+	// });
+
 
     function pushTag(e) {
         if (e.key === "Enter") {
@@ -19,8 +28,7 @@
                     showTagInput = false;
                 }
             }
-        }
-        
+        }   
     }
 </script>
 
@@ -46,7 +54,7 @@
             {/if}
         </div>
 
-        <PostEditor></PostEditor>
+        <PostEditor bind:data={postContent}></PostEditor>
     </div>
 
     <div class="main-account">
@@ -58,7 +66,7 @@
         </div>
         <div class="separator"></div>
         <div id="post-button">  
-            <Button type="primary" to="/" icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
+            <Button type="primary" on:click={() => {console.log(postContent)}} icon="iconRight"><PaperPlaneTilt size={"24"} weight="bold"/>Publish</Button>
         </div>
     </div>
 </div>

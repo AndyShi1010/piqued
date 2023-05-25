@@ -9,6 +9,8 @@
     import { Image } from '@tiptap/extension-image'
     import Uploader from './Uploader.svelte';
     import Dialog from './Dialogue.svelte';
+
+    // import { writable } from 'svelte/store';
   
     let imageModal
     let uploader
@@ -17,6 +19,8 @@
     let element
     let editor
     export let data = ""
+
+    // export const editorContent = writable(data);
   
     onMount(() => {
       
@@ -37,7 +41,10 @@
           // force re-render so `editor.isActive` works as expected
           editor = editor
         },
-      })
+      });
+      editor.on('update', ({ editor }) => {
+        data = editor.getJSON();
+		  });
     })
   
     onDestroy(() => {
